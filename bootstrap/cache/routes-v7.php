@@ -13,7 +13,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::42RarEMU1yrBf4MP',
+            '_route' => 'generated::1SwEdvs8utGD9SVg',
           ),
           1 => NULL,
           2 => 
@@ -107,19 +107,155 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/admin/dashboard' => 
+      '/business-category' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'admin.dashboard',
+            '_route' => 'business-category',
           ),
           1 => NULL,
           2 => 
           array (
             'GET' => 0,
             'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/business-category-save' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'business-category-save',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/department' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'department',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/department-save' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'department-save',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/property-stage' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'property-stage',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/property-stage-save' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'property-stage-save',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/source' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'source',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/source-save' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'source-save',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
           ),
           3 => NULL,
           4 => false,
@@ -323,286 +459,6 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/theme/inventory/products' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'theme.inventory.products',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/theme/inventory/categories' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'theme.inventory.categories',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/theme/inventory/stock' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'theme.inventory.stock',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/theme/sales/customers' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'theme.sales.customers',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/theme/sales/quotations' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'theme.sales.quotations',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/theme/sales/sales-orders' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'theme.sales.sales-orders',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/theme/sales/invoices' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'theme.sales.invoices',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/theme/sales/suppliers' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'theme.sales.suppliers',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/theme/reports/sales-report' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'theme.reports.sales-report',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/theme/reports/analytics' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'theme.reports.analytics',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/theme/admin/users' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'theme.admin.users',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/theme/admin/roles-permissions' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'theme.admin.roles-permissions',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/theme/admin/settings' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'theme.admin.settings',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/theme/admin/profile' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'theme.admin.profile',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
     ),
     2 => 
     array (
@@ -755,7 +611,7 @@ app('router')->setCompiledRoutes(
   ),
   'attributes' => 
   array (
-    'generated::42RarEMU1yrBf4MP' => 
+    'generated::1SwEdvs8utGD9SVg' => 
     array (
       'methods' => 
       array (
@@ -783,8 +639,8 @@ app('router')->setCompiledRoutes(
                     return response(\\Illuminate\\Support\\Facades\\View::file(\'C:\\\\xampp\\\\htdocs\\\\kktechsale\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Configuration\'.\'/../resources/health-up.blade.php\', [
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
-                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"00000000000008220000000000000000";}}',
-        'as' => 'generated::42RarEMU1yrBf4MP',
+                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"00000000000005280000000000000000";}}',
+        'as' => 'generated::1SwEdvs8utGD9SVg',
       ),
       'fallback' => false,
       'defaults' => 
@@ -949,14 +805,14 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'admin.dashboard' => 
+    'business-category' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'admin/dashboard',
+      'uri' => 'business-category',
       'action' => 
       array (
         'middleware' => 
@@ -964,14 +820,276 @@ app('router')->setCompiledRoutes(
           0 => 'web',
           1 => 'App\\Http\\Middleware\\SuperAdmin',
         ),
-        'uses' => 'App\\Http\\Controllers\\Admin\\DashboardController@index',
-        'controller' => 'App\\Http\\Controllers\\Admin\\DashboardController@index',
+        'uses' => 'App\\Http\\Controllers\\MasterController@businessCategory',
+        'controller' => 'App\\Http\\Controllers\\MasterController@businessCategory',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'admin.dashboard',
+        'as' => 'business-category',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'business-category-save' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'business-category-save',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'App\\Http\\Middleware\\SuperAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\MasterController@saveBusinessCategory',
+        'controller' => 'App\\Http\\Controllers\\MasterController@saveBusinessCategory',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'business-category-save',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'department' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'department',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'App\\Http\\Middleware\\SuperAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\MasterController@department',
+        'controller' => 'App\\Http\\Controllers\\MasterController@department',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'department',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'department-save' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'department-save',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'App\\Http\\Middleware\\SuperAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\MasterController@saveDepartment',
+        'controller' => 'App\\Http\\Controllers\\MasterController@saveDepartment',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'department-save',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'property-stage' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'property-stage',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'App\\Http\\Middleware\\SuperAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\MasterController@propertyStage',
+        'controller' => 'App\\Http\\Controllers\\MasterController@propertyStage',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'property-stage',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'property-stage-save' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'property-stage-save',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'App\\Http\\Middleware\\SuperAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\MasterController@savePropertyStage',
+        'controller' => 'App\\Http\\Controllers\\MasterController@savePropertyStage',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'property-stage-save',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'source' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'source',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'App\\Http\\Middleware\\SuperAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\MasterController@source',
+        'controller' => 'App\\Http\\Controllers\\MasterController@source',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'source',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'source-save' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'source-save',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'App\\Http\\Middleware\\SuperAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\MasterController@saveSource',
+        'controller' => 'App\\Http\\Controllers\\MasterController@saveSource',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'source-save',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1042,7 +1160,7 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:51:"function () {
     return \\view(\'vp.dashboard\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000008300000000000000000";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"000000000000053d0000000000000000";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
@@ -1523,556 +1641,6 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'theme.inventory.products' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'theme/inventory/products',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'App\\Http\\Middleware\\SuperAdmin',
-          2 => 'App\\Http\\Middleware\\SuperAdmin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Theme\\InventoryController@products',
-        'controller' => 'App\\Http\\Controllers\\Theme\\InventoryController@products',
-        'as' => 'theme.inventory.products',
-        'namespace' => NULL,
-        'prefix' => 'theme/inventory',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'theme.inventory.categories' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'theme/inventory/categories',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'App\\Http\\Middleware\\SuperAdmin',
-          2 => 'App\\Http\\Middleware\\SuperAdmin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Theme\\InventoryController@categories',
-        'controller' => 'App\\Http\\Controllers\\Theme\\InventoryController@categories',
-        'as' => 'theme.inventory.categories',
-        'namespace' => NULL,
-        'prefix' => 'theme/inventory',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'theme.inventory.stock' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'theme/inventory/stock',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'App\\Http\\Middleware\\SuperAdmin',
-          2 => 'App\\Http\\Middleware\\SuperAdmin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Theme\\InventoryController@stock',
-        'controller' => 'App\\Http\\Controllers\\Theme\\InventoryController@stock',
-        'as' => 'theme.inventory.stock',
-        'namespace' => NULL,
-        'prefix' => 'theme/inventory',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'theme.sales.customers' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'theme/sales/customers',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'App\\Http\\Middleware\\SuperAdmin',
-          2 => 'App\\Http\\Middleware\\SuperAdmin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Theme\\SalesController@customers',
-        'controller' => 'App\\Http\\Controllers\\Theme\\SalesController@customers',
-        'as' => 'theme.sales.customers',
-        'namespace' => NULL,
-        'prefix' => 'theme/sales',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'theme.sales.quotations' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'theme/sales/quotations',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'App\\Http\\Middleware\\SuperAdmin',
-          2 => 'App\\Http\\Middleware\\SuperAdmin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Theme\\SalesController@quotations',
-        'controller' => 'App\\Http\\Controllers\\Theme\\SalesController@quotations',
-        'as' => 'theme.sales.quotations',
-        'namespace' => NULL,
-        'prefix' => 'theme/sales',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'theme.sales.sales-orders' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'theme/sales/sales-orders',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'App\\Http\\Middleware\\SuperAdmin',
-          2 => 'App\\Http\\Middleware\\SuperAdmin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Theme\\SalesController@salesOrders',
-        'controller' => 'App\\Http\\Controllers\\Theme\\SalesController@salesOrders',
-        'as' => 'theme.sales.sales-orders',
-        'namespace' => NULL,
-        'prefix' => 'theme/sales',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'theme.sales.invoices' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'theme/sales/invoices',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'App\\Http\\Middleware\\SuperAdmin',
-          2 => 'App\\Http\\Middleware\\SuperAdmin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Theme\\SalesController@invoices',
-        'controller' => 'App\\Http\\Controllers\\Theme\\SalesController@invoices',
-        'as' => 'theme.sales.invoices',
-        'namespace' => NULL,
-        'prefix' => 'theme/sales',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'theme.sales.suppliers' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'theme/sales/suppliers',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'App\\Http\\Middleware\\SuperAdmin',
-          2 => 'App\\Http\\Middleware\\SuperAdmin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Theme\\SalesController@suppliers',
-        'controller' => 'App\\Http\\Controllers\\Theme\\SalesController@suppliers',
-        'as' => 'theme.sales.suppliers',
-        'namespace' => NULL,
-        'prefix' => 'theme/sales',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'theme.reports.sales-report' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'theme/reports/sales-report',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'App\\Http\\Middleware\\SuperAdmin',
-          2 => 'App\\Http\\Middleware\\SuperAdmin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Theme\\ReportsController@salesReport',
-        'controller' => 'App\\Http\\Controllers\\Theme\\ReportsController@salesReport',
-        'as' => 'theme.reports.sales-report',
-        'namespace' => NULL,
-        'prefix' => 'theme/reports',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'theme.reports.analytics' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'theme/reports/analytics',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'App\\Http\\Middleware\\SuperAdmin',
-          2 => 'App\\Http\\Middleware\\SuperAdmin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Theme\\ReportsController@analytics',
-        'controller' => 'App\\Http\\Controllers\\Theme\\ReportsController@analytics',
-        'as' => 'theme.reports.analytics',
-        'namespace' => NULL,
-        'prefix' => 'theme/reports',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'theme.admin.users' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'theme/admin/users',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'App\\Http\\Middleware\\SuperAdmin',
-          2 => 'App\\Http\\Middleware\\SuperAdmin',
-          3 => 'admin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Theme\\AdminController@users',
-        'controller' => 'App\\Http\\Controllers\\Theme\\AdminController@users',
-        'as' => 'theme.admin.users',
-        'namespace' => NULL,
-        'prefix' => 'theme/admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'theme.admin.roles-permissions' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'theme/admin/roles-permissions',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'App\\Http\\Middleware\\SuperAdmin',
-          2 => 'App\\Http\\Middleware\\SuperAdmin',
-          3 => 'admin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Theme\\AdminController@rolesPermissions',
-        'controller' => 'App\\Http\\Controllers\\Theme\\AdminController@rolesPermissions',
-        'as' => 'theme.admin.roles-permissions',
-        'namespace' => NULL,
-        'prefix' => 'theme/admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'theme.admin.settings' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'theme/admin/settings',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'App\\Http\\Middleware\\SuperAdmin',
-          2 => 'App\\Http\\Middleware\\SuperAdmin',
-          3 => 'admin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Theme\\AdminController@settings',
-        'controller' => 'App\\Http\\Controllers\\Theme\\AdminController@settings',
-        'as' => 'theme.admin.settings',
-        'namespace' => NULL,
-        'prefix' => 'theme/admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'theme.admin.profile' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'theme/admin/profile',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-          1 => 'App\\Http\\Middleware\\SuperAdmin',
-          2 => 'App\\Http\\Middleware\\SuperAdmin',
-          3 => 'admin',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Theme\\AdminController@profile',
-        'controller' => 'App\\Http\\Controllers\\Theme\\AdminController@profile',
-        'as' => 'theme.admin.profile',
-        'namespace' => NULL,
-        'prefix' => 'theme/admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
     'storage.local' => 
     array (
       'methods' => 
@@ -2089,7 +1657,7 @@ app('router')->setCompiledRoutes(
                         $config,
                         $isProduction
                     ))($request, $path);
-                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"000000000000082b0000000000000000";}}',
+                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"00000000000005310000000000000000";}}',
         'as' => 'storage.local',
       ),
       'fallback' => false,
@@ -2122,7 +1690,7 @@ app('router')->setCompiledRoutes(
                         $config,
                         $isProduction
                     ))($request, $path);
-                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"00000000000008330000000000000000";}}',
+                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"00000000000005400000000000000000";}}',
         'as' => 'storage.local.upload',
       ),
       'fallback' => false,

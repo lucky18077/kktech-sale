@@ -1,68 +1,75 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
 
-		<!-- Meta Tags -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="Dreams POS is a powerful Bootstrap based Inventory Management Admin Template designed for businesses, offering seamless invoicing, project tracking, and estimates.">
-		<meta name="keywords" content="inventory management, admin dashboard, bootstrap template, invoicing, estimates, business management, responsive admin, POS system">
-		<meta name="author" content="Dreams Technologies">
-		<meta name="robots" content="index, follow">
-		  @stack('title')
-		
-		<script src="/admin/js/theme-script.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
+<head>
 
-		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Dreams POS is a powerful Bootstrap based Inventory Management Admin Template designed for businesses, offering seamless invoicing, project tracking, and estimates.">
+	<meta name="keywords" content="inventory management, admin dashboard, bootstrap template, invoicing, estimates, business management, responsive admin, POS system">
+	<meta name="author" content="Dreams Technologies">
+	<meta name="robots" content="index, follow">
+	@stack('title')
 
-		<!-- Apple Touch Icon -->
-		<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-		
-		<!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="/admin/css/bootstrap.min.css">
-		
-		<!-- Datetimepicker CSS -->
-		<link rel="stylesheet" href="/admin/css/bootstrap-datetimepicker.min.css">
+	<!-- <script src="/admin/js/theme-script.js" type="4eb94832f85929b2ef942c65-text/javascript"></script> -->
 
-		<!-- animation CSS -->
-		<link rel="stylesheet" href="/admin/css/animate.css">
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
 
-		<!-- Feathericon CSS -->
-		<link rel="stylesheet" href="/admin/css/feather.css">
+	<!-- Apple Touch Icon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 
-		<!-- Select2 CSS -->
-		<link rel="stylesheet" href="/admin/css/select2.min.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/admin/css/bootstrap.min.css">
 
-		<!-- Quill CSS -->
-    	<link rel="stylesheet" href="/admin/css/quill.snow.css">
+	<!-- Datetimepicker CSS -->
+	<link rel="stylesheet" href="/admin/css/bootstrap-datetimepicker.min.css">
 
-		<!-- Bootstrap Tagsinput CSS -->
-		<link rel="stylesheet" href="/admin/css/bootstrap-tagsinput.css">
+	<!-- animation CSS -->
+	<link rel="stylesheet" href="/admin/css/animate.css">
 
-	   <!-- Tabler Icon CSS -->
-	    <link rel="stylesheet" href="/admin/css/tabler-icons.min.css">
+	<!-- Feathericon CSS -->
+	<link rel="stylesheet" href="/admin/css/feather.css">
 
-		<!-- Datatable CSS -->
-		<link rel="stylesheet" href="/admin/css/dataTables.bootstrap5.min.css">
+	<!-- Select2 CSS -->
+	<link rel="stylesheet" href="/admin/css/select2.min.css">
 
-		<!-- Fontawesome CSS -->
-		<link rel="stylesheet" href="/admin/css/fontawesome.min.css">
-		<link rel="stylesheet" href="/admin/css/all.min.css">
-		
-		<!-- Color Picker Css -->
-		<link rel="stylesheet" href="/admin/css/nano.min.css">
+	<!-- Quill CSS -->
+	<link rel="stylesheet" href="/admin/css/quill.snow.css">
 
-	    <!-- Main CSS -->
-        <link rel="stylesheet" href="/admin/css/style.css">
-		
-    </head>
-    <body><a href="https://dreamspos.dreamstechnologies.com/cdn-cgi/content?id=TjUhB86xjWQyVbUUh90j.tOnCQMiiAwu03Is6fMa2qw-1772695418.2519674-1.0.1.1-kBmIDs7zpcFiFwHOVCiC9nTCMEBwo1rhJhkoXGBJgTc" aria-hidden="true" rel="nofollow noopener" style="display: none !important; visibility: hidden !important"></a>
-		<div id="global-loader">
-			<div class="whirly-loader"> </div>
-		</div>
-		<!-- Main Wrapper -->
-        <div class="main-wrapper">
-			
+	<!-- Bootstrap Tagsinput CSS -->
+	<link rel="stylesheet" href="/admin/css/bootstrap-tagsinput.css">
+
+	<!-- Tabler Icon CSS -->
+	<link rel="stylesheet" href="/admin/css/tabler-icons.min.css">
+
+	<!-- Datatable CSS -->
+	<link rel="stylesheet" href="/admin/css/dataTables.bootstrap5.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="/admin/css/fontawesome.min.css">
+	<link rel="stylesheet" href="/admin/css/all.min.css">
+
+	<!-- Color Picker Css -->
+	<link rel="stylesheet" href="/admin/css/nano.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="/admin/css/style.css">
+
+	<script src="/admin/js/jquery-3.7.1.min.js"  ></script>
+
+</head>
+
+<body>
+	
+	<div id="global-loader">
+		<div class="whirly-loader"> </div>
+	</div>
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
 		<!-- Header -->
 		<div class="header">
 			<div class="main-header">
@@ -274,7 +281,7 @@
 							</div>
 						</div>
 					</li>
-					
+
 					<li class="nav-item pos-nav">
 						<a href="pos.html" class="btn btn-dark btn-md d-inline-flex align-items-center">
 							<i class="ti ti-device-laptop me-1"></i>POS
@@ -327,7 +334,7 @@
 													<img alt="Img" src="/admin/images/avatar-13.jpg">
 												</span>
 												<div class="flex-grow-1">
-													<p class="noti-details"><span class="noti-title">James Kirwin</span> confirmed his order.  Order No: #78901.Estimated delivery: 2 days</p>
+													<p class="noti-details"><span class="noti-title">James Kirwin</span> confirmed his order. Order No: #78901.Estimated delivery: 2 days</p>
 													<p class="noti-time">4 mins ago</p>
 												</div>
 											</div>
@@ -340,7 +347,7 @@
 													<img alt="Img" src="/admin/images/avatar-03.jpg">
 												</span>
 												<div class="flex-grow-1">
-													<p class="noti-details"><span class="noti-title">Leo Kelly</span> cancelled his order scheduled for  17 Jan 2025</p>
+													<p class="noti-details"><span class="noti-title">Leo Kelly</span> cancelled his order scheduled for 17 Jan 2025</p>
 													<p class="noti-time">10 mins ago</p>
 												</div>
 											</div>
@@ -366,7 +373,7 @@
 													<img alt="Img" src="/admin/images/avatar-02.jpg">
 												</span>
 												<div class="flex-grow-1">
-													<p class="noti-details"><span class="noti-title">Andrea</span> confirmed his order.  Order No: #73401.Estimated delivery: 3 days</p>
+													<p class="noti-details"><span class="noti-title">Andrea</span> confirmed his order. Order No: #73401.Estimated delivery: 3 days</p>
 													<p class="noti-time">4 mins ago</p>
 												</div>
 											</div>
@@ -437,12 +444,12 @@
 				<a href="index.html" class="logo logo-white">
 					<img src="/admin/images/logo-white.svg" alt="Img">
 				</a>
-					<a href="index.html" class="logo-small">
-						<img src="/admin/images/logo-small.png" alt="Img">
-					</a>
-					<a href="index.html" class="logo-small-white">
-						<img src="/admin/images/logo-small-white.png" alt="Img">
-					</a>
+				<a href="index.html" class="logo-small">
+					<img src="/admin/images/logo-small.png" alt="Img">
+				</a>
+				<a href="index.html" class="logo-small-white">
+					<img src="/admin/images/logo-small-white.png" alt="Img">
+				</a>
 				<a id="toggle_btn" href="javascript:void(0);">
 					<i data-feather="chevrons-left" class="feather-16"></i>
 				</a>
@@ -515,7 +522,7 @@
 									<ul>
 										<li><a href="dashboard.html">Coordinator</a></li>
 										<li><a href="companies.html">VP</a></li>
-										<li><a href="subscription.html" >Sale Manager/Executive</a></li>
+										<li><a href="subscription.html">Sale Manager/Executive</a></li>
 										<li><a href="domain.html">Designations</a></li>
 										<li><a href="packages.html">Office Team</a></li>
 									</ul>
@@ -523,11 +530,10 @@
 								<li class="submenu">
 									<a href="javascript:void(0);"><i class="ti ti-layout-sidebar-right-collapse fs-16 me-2"></i><span>Masters</span><span class="menu-arrow"></span></a>
 									<ul>
-										<li><a href="layout-horizontal.html">Business Category</a></li>
-										<li><a href="layout-detached.html">Department</a></li>
-										<li><a href="layout-two-column.html">Property Stage</a></li>
-										<li><a href="layout-hovered.html">Area</a></li>
-										<li><a href="layout-boxed.html">Sources</a></li>
+										<li><a href="{{ route('business-category') }}">Business Category</a></li>
+										<li><a href="{{ route('department') }}">Department</a></li>
+										<li><a href="{{ route('property-stage') }}">Property Stage</a></li>
+										<li><a href="{{ route('source') }}">Sources</a></li>
 										<li><a href="layout-rtl.html">Property Category</a></li>
 										<li><a href="layout-dark.html">Property Sub Category</a></li>
 									</ul>
