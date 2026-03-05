@@ -23,6 +23,12 @@ Route::post('/property-stage-save', [MasterController::class, 'savePropertyStage
 Route::get('/source', [MasterController::class, 'source'])->name('source');
 Route::post('/source-save', [MasterController::class, 'saveSource'])->name('source-save');
 
+Route::get('/product-category', [MasterController::class, 'productCategory'])->name('product-category');
+Route::post('/product-category-save', [MasterController::class, 'saveProductCategory'])->name('product-category-save');
+
+Route::get('/product-sub-category', [MasterController::class, 'productSubCategory'])->name('product-sub-category');
+Route::post('/product-sub-category-save', [MasterController::class, 'saveProductSubCategory'])->name('product-sub-category-save');
+
 // Admin, Coordinator, VP named routes (preserve existing controllers/views)
 Route::get('/coordinator/dashboard', [\App\Http\Controllers\Coordinator\DashboardController::class, 'index'])->name('coordinator.dashboard');
 Route::get('/vp/dashboard', function () {

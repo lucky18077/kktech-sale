@@ -15,7 +15,7 @@ return new class extends Migration
           $table->id();
           $table->text('name');
           $table->integer('active');
-          $table->timestamp('created_at');
+          $table->timestamps();
         });
         Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('categories');
@@ -32,7 +32,7 @@ return new class extends Migration
           $table->id();
           $table->text('name');
           $table->integer('active');
-          $table->timestamp('created_at');
+          $table->timestamps();
         });
     }
 };

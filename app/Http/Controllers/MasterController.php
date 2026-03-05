@@ -6,6 +6,8 @@ use App\Models\BusinessCategory;
 use App\Models\Department;
 use App\Models\PropertyStage;
 use App\Models\Source;
+use App\Models\ProductCategory;
+use App\Models\ProductSubcategory;
 use Illuminate\Http\Request;
 
 class MasterController extends Controller
@@ -112,5 +114,60 @@ class MasterController extends Controller
             ]);
         }
         return redirect()->back()->with('success', 'Source saved successfully');
+    }
+
+    public function productCategory(Request $request)
+    {
+        $productCategories = ProductCategory::all();
+        return view('admin.product-category', compact('productCategories'));
+    }
+    public function saveProductCategory(Request $request)
+    {   
+        $request->validate([
+            'name' => 'required',
+            'active' => 'required'
+        ]);
+        if ($request->id) {
+            $productCategory = ProductCategory::find($request->id);
+            $productCategory->update([
+                'name' => $request->name,
+                'active' => $request->active
+            ]);
+        } else {
+            ProductCategory::create([
+                'name' => $request->name  ,
+                'active' => $request->active
+            ]);
+        }
+        return redirect()->back()->with('success', 'Product Category saved successfully');
+    }
+
+    public function productSubCategory(Request $request)
+    {
+        $productSubCategories = ProductSubcategory::with('productCategory')->get();
+        $productCategories = ProductCategory::all(); 
+        return view('admin.product-sub-category', compact('productSubCategories', 'productCategories'));
+    }
+    public function saveProductSubCategory(Request $request)
+    {   
+        $request->validate([
+            'name' => 'required',
+            'active' => 'required'
+        ]);
+        if ($request->id) {
+            $productSubCategory = ProductSubcategory::find($request->id);
+            $productSubCategory->update([
+                'product_category_id' => $request->product_category_id,
+                'name' => $request->name,
+                'active' => $request->active
+            ]);
+        } else {
+            ProductSubcategory::create([
+                'product_category_id' => $request->product_category_id,
+                'name' => $request->name  ,
+                'active' => $request->active
+            ]);
+        }
+        return redirect()->back()->with('success', 'Product Sub-Category saved successfully');
     }
 }

@@ -19,7 +19,6 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
-        // Show static theme dashboard for now (extendable per role later)
         return view('admin.dashboard', compact('user'));
     }
 }
