@@ -11,7 +11,7 @@ class StaffController extends Controller
 {
   public function index() {
     $areamst =  AreaMaster::where('active', 1)->get();
-
-    return view('admin.vp', compact($areamst));
+    $data=compact('areamst');
+    return view('admin.vp')->with($data);
   }
 }
