@@ -94,7 +94,7 @@ class MasterController extends Controller
         return view('admin.source', compact('sources'));
     }
     public function saveSource(Request $request)
-    {
+    {   
         $request->validate([
             'source_name' => 'required',
             'active' => 'required'
