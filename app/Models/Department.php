@@ -12,17 +12,14 @@ use Illuminate\Database\Eloquent\Builder;
 class Department extends Model
 {
     use HasFactory;
-
+    protected $table = 'department';
     protected $fillable = [
         'dept_name',
         'description',
         'active',
     ];
 
-    protected $casts = [
-        'active' => 'boolean',
-    ];
-
+    
     public function users()
     {
         return $this->hasMany(User::class, 'dept_id');

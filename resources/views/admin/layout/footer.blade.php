@@ -1,6 +1,6 @@
 <div class="footer d-sm-flex align-items-center justify-content-between border-top bg-white p-3">
-	<p class="mb-0 text-gray-9">2014 - 2025 � DreamsPOS. All Right Reserved</p>
-	<p>Designed & Developed by <a href="javascript:void(0);" class="text-primary">Dreams</a></p>
+	<p class="mb-0 text-gray-9">22026 � KK-Tech Sales. All Right Reserved</p>
+	<p>Designed & Developed by <a href="javascript:void(0);" class="text-primary">Clikzop Innovations</a></p>
 </div>
 </div>
 </div>
@@ -131,7 +131,6 @@
 
 <!-- jQuery -->
 <script data-cfasync="false" src="/admin/js/email-decode.min.js"></script>
-<script src="/admin/js/jquery-3.7.1.min.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
 
 <!-- Feather Icon JS -->
 <script src="/admin/js/feather.min.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>

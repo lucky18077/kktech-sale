@@ -13,7 +13,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::VMe5Hj77AqW9lhcR',
+            '_route' => 'generated::1SwEdvs8utGD9SVg',
           ),
           1 => NULL,
           2 => 
@@ -107,19 +107,163 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+<<<<<<< HEAD
       '/vp' => 
+=======
+      '/business-category' => 
+>>>>>>> eef1c431b86fbcd6d12dcd371f26f73c777145c3
       array (
         0 => 
         array (
           0 => 
           array (
+<<<<<<< HEAD
             '_route' => 'vp',
+=======
+            '_route' => 'business-category',
+>>>>>>> eef1c431b86fbcd6d12dcd371f26f73c777145c3
           ),
           1 => NULL,
           2 => 
           array (
             'GET' => 0,
             'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/business-category-save' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'business-category-save',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/department' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'department',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/department-save' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'department-save',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/property-stage' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'property-stage',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/property-stage-save' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'property-stage-save',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/source' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'source',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/source-save' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'source-save',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
           ),
           3 => NULL,
           4 => false,
@@ -475,7 +619,11 @@ app('router')->setCompiledRoutes(
   ),
   'attributes' => 
   array (
+<<<<<<< HEAD
     'generated::VMe5Hj77AqW9lhcR' => 
+=======
+    'generated::1SwEdvs8utGD9SVg' => 
+>>>>>>> eef1c431b86fbcd6d12dcd371f26f73c777145c3
     array (
       'methods' => 
       array (
@@ -503,8 +651,13 @@ app('router')->setCompiledRoutes(
                     return response(\\Illuminate\\Support\\Facades\\View::file(\'C:\\\\xampp\\\\htdocs\\\\laravelNewSetup\\\\kktech-sale\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Configuration\'.\'/../resources/health-up.blade.php\', [
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
+<<<<<<< HEAD
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"00000000000004eb0000000000000000";}}',
         'as' => 'generated::VMe5Hj77AqW9lhcR',
+=======
+                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"00000000000005280000000000000000";}}',
+        'as' => 'generated::1SwEdvs8utGD9SVg',
+>>>>>>> eef1c431b86fbcd6d12dcd371f26f73c777145c3
       ),
       'fallback' => false,
       'defaults' => 
@@ -669,14 +822,22 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
+<<<<<<< HEAD
     'vp' => 
+=======
+    'business-category' => 
+>>>>>>> eef1c431b86fbcd6d12dcd371f26f73c777145c3
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
+<<<<<<< HEAD
       'uri' => 'vp',
+=======
+      'uri' => 'business-category',
+>>>>>>> eef1c431b86fbcd6d12dcd371f26f73c777145c3
       'action' => 
       array (
         'middleware' => 
@@ -684,14 +845,285 @@ app('router')->setCompiledRoutes(
           0 => 'web',
           1 => 'App\\Http\\Middleware\\SuperAdmin',
         ),
+<<<<<<< HEAD
         'uses' => 'App\\Http\\Controllers\\Admin\\StaffController@index',
         'controller' => 'App\\Http\\Controllers\\Admin\\StaffController@index',
+=======
+        'uses' => 'App\\Http\\Controllers\\MasterController@businessCategory',
+        'controller' => 'App\\Http\\Controllers\\MasterController@businessCategory',
+>>>>>>> eef1c431b86fbcd6d12dcd371f26f73c777145c3
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
+<<<<<<< HEAD
         'as' => 'vp',
+=======
+        'as' => 'business-category',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'business-category-save' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'business-category-save',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'App\\Http\\Middleware\\SuperAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\MasterController@saveBusinessCategory',
+        'controller' => 'App\\Http\\Controllers\\MasterController@saveBusinessCategory',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'business-category-save',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'department' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'department',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'App\\Http\\Middleware\\SuperAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\MasterController@department',
+        'controller' => 'App\\Http\\Controllers\\MasterController@department',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'department',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'department-save' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'department-save',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'App\\Http\\Middleware\\SuperAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\MasterController@saveDepartment',
+        'controller' => 'App\\Http\\Controllers\\MasterController@saveDepartment',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'department-save',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'property-stage' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'property-stage',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'App\\Http\\Middleware\\SuperAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\MasterController@propertyStage',
+        'controller' => 'App\\Http\\Controllers\\MasterController@propertyStage',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'property-stage',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'property-stage-save' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'property-stage-save',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'App\\Http\\Middleware\\SuperAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\MasterController@savePropertyStage',
+        'controller' => 'App\\Http\\Controllers\\MasterController@savePropertyStage',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'property-stage-save',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'source' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'source',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'App\\Http\\Middleware\\SuperAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\MasterController@source',
+        'controller' => 'App\\Http\\Controllers\\MasterController@source',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'source',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'source-save' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'source-save',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'App\\Http\\Middleware\\SuperAdmin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\MasterController@saveSource',
+        'controller' => 'App\\Http\\Controllers\\MasterController@saveSource',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'source-save',
+>>>>>>> eef1c431b86fbcd6d12dcd371f26f73c777145c3
       ),
       'fallback' => false,
       'defaults' => 
@@ -762,7 +1194,11 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:49:"function () {
     return \\view(\'vp.dashboard\');
+<<<<<<< HEAD
 }";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000004f90000000000000000";}}',
+=======
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"000000000000053d0000000000000000";}}',
+>>>>>>> eef1c431b86fbcd6d12dcd371f26f73c777145c3
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
@@ -1259,7 +1695,11 @@ app('router')->setCompiledRoutes(
                         $config,
                         $isProduction
                     ))($request, $path);
+<<<<<<< HEAD
                 }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"00000000000004f40000000000000000";}}',
+=======
+                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"00000000000005310000000000000000";}}',
+>>>>>>> eef1c431b86fbcd6d12dcd371f26f73c777145c3
         'as' => 'storage.local',
       ),
       'fallback' => false,
@@ -1292,7 +1732,11 @@ app('router')->setCompiledRoutes(
                         $config,
                         $isProduction
                     ))($request, $path);
+<<<<<<< HEAD
                 }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"00000000000004fc0000000000000000";}}',
+=======
+                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"00000000000005400000000000000000";}}',
+>>>>>>> eef1c431b86fbcd6d12dcd371f26f73c777145c3
         'as' => 'storage.local.upload',
       ),
       'fallback' => false,

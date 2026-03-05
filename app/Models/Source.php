@@ -21,10 +21,6 @@ class Source extends Model
         'active',
     ];
 
-    protected $casts = [
-        'active' => 'boolean',
-    ];
-
     public function leads()
     {
         return $this->hasMany(Lead::class, 'source_id');

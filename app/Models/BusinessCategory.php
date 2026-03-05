@@ -19,8 +19,4 @@ class BusinessCategory extends Model
         'description',
         'active',
     ];
-
-    protected $casts = [
-        'active' => 'boolean',
-    ];
 }
