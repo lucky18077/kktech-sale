@@ -510,8 +510,7 @@
 							<h6 class="submenu-hdr">Main</h6>
 							<ul>
 								<li class="active"><a href="{{ route('dashboard') }}"><i class="ti ti-layout-grid fs-16 me-2"></i><span>Dashboard</span></a></li>
-								 
-								<li class="submenu">
+								<li class="submenu mt-2">
 									<a href="javascript:void(0);"><i class="ti ti-user-edit fs-16 me-2"></i><span>Staff Management</span><span class="menu-arrow"></span></a>
 									<ul>
 										<li><a href="dashboard.html">Coordinator</a></li>
@@ -522,19 +521,20 @@
 									</ul>
 								</li>
 								<li class="submenu">
-									<a href="javascript:void(0);"><i class="ti ti-layout-sidebar-right-collapse fs-16 me-2"></i><span>Layouts</span><span class="menu-arrow"></span></a>
+									<a href="javascript:void(0);"><i class="ti ti-layout-sidebar-right-collapse fs-16 me-2"></i><span>Masters</span><span class="menu-arrow"></span></a>
 									<ul>
-										<li><a href="layout-horizontal.html">Horizontal</a></li>
-										<li><a href="layout-detached.html">Detached</a></li>
-										<li><a href="layout-two-column.html">Two Column</a></li>
-										<li><a href="layout-hovered.html">Hovered</a></li>
-										<li><a href="layout-boxed.html">Boxed</a></li>
-										<li><a href="layout-rtl.html">RTL</a></li>
-										<li><a href="layout-dark.html">Dark</a></li>
+										<li><a href="layout-horizontal.html">Business Category</a></li>
+										<li><a href="layout-detached.html">Department</a></li>
+										<li><a href="layout-two-column.html">Property Stage</a></li>
+										<li><a href="layout-hovered.html">Area</a></li>
+										<li><a href="layout-boxed.html">Sources</a></li>
+										<li><a href="layout-rtl.html">Property Category</a></li>
+										<li><a href="layout-dark.html">Property Sub Category</a></li>
 									</ul>
 								</li>
 							</ul>
 						</li>
+
 						<li class="submenu-open">
 							<h6 class="submenu-hdr">Inventory</h6>
 							<ul>
