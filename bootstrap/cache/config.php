@@ -109,9 +109,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\kktechsale\\resources\\views',
+      0 => 'C:\\xampp\\htdocs\\laravelNewSetup\\kktech-sale\\resources\\views',
     ),
-    'compiled' => 'C:\\xampp\\htdocs\\kktechsale\\storage\\framework\\views',
+    'compiled' => 'C:\\xampp\\htdocs\\laravelNewSetup\\kktech-sale\\storage\\framework\\views',
   ),
   'app' => 
   array (
@@ -273,8 +273,8 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\xampp\\htdocs\\kktechsale\\storage\\framework/cache/data',
-        'lock_path' => 'C:\\xampp\\htdocs\\kktechsale\\storage\\framework/cache/data',
+        'path' => 'C:\\xampp\\htdocs\\laravelNewSetup\\kktech-sale\\storage\\framework/cache/data',
+        'lock_path' => 'C:\\xampp\\htdocs\\laravelNewSetup\\kktech-sale\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -338,7 +338,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'kktech',
+        'database' => 'laravelkktech',
         'prefix' => '',
         'foreign_key_constraints' => true,
         'busy_timeout' => NULL,
@@ -351,8 +351,8 @@
         'driver' => 'mysql',
         'url' => NULL,
         'host' => 'localhost',
-        'port' => '3306',
-        'database' => 'kktech',
+        'port' => '3307',
+        'database' => 'laravelkktech',
         'username' => 'root',
         'password' => '',
         'unix_socket' => '',
@@ -371,8 +371,8 @@
         'driver' => 'mariadb',
         'url' => NULL,
         'host' => 'localhost',
-        'port' => '3306',
-        'database' => 'kktech',
+        'port' => '3307',
+        'database' => 'laravelkktech',
         'username' => 'root',
         'password' => '',
         'unix_socket' => '',
@@ -391,8 +391,8 @@
         'driver' => 'pgsql',
         'url' => NULL,
         'host' => 'localhost',
-        'port' => '3306',
-        'database' => 'kktech',
+        'port' => '3307',
+        'database' => 'laravelkktech',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -406,8 +406,8 @@
         'driver' => 'sqlsrv',
         'url' => NULL,
         'host' => 'localhost',
-        'port' => '3306',
-        'database' => 'kktech',
+        'port' => '3307',
+        'database' => 'laravelkktech',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -484,7 +484,7 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\kktechsale\\storage\\app/private',
+        'root' => 'C:\\xampp\\htdocs\\laravelNewSetup\\kktech-sale\\storage\\app/private',
         'serve' => true,
         'throw' => false,
         'report' => false,
@@ -492,7 +492,7 @@
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\kktechsale\\storage\\app/public',
+        'root' => 'C:\\xampp\\htdocs\\laravelNewSetup\\kktech-sale\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
         'throw' => false,
@@ -514,7 +514,7 @@
     ),
     'links' => 
     array (
-      'C:\\xampp\\htdocs\\kktechsale\\public\\storage' => 'C:\\xampp\\htdocs\\kktechsale\\storage\\app/public',
+      'C:\\xampp\\htdocs\\laravelNewSetup\\kktech-sale\\public\\storage' => 'C:\\xampp\\htdocs\\laravelNewSetup\\kktech-sale\\storage\\app/public',
     ),
   ),
   'logging' => 
@@ -539,14 +539,14 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\xampp\\htdocs\\kktechsale\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\laravelNewSetup\\kktech-sale\\storage\\logs/laravel.log',
         'level' => 'debug',
         'replace_placeholders' => true,
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\xampp\\htdocs\\kktechsale\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\laravelNewSetup\\kktech-sale\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
         'replace_placeholders' => true,
@@ -611,7 +611,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\xampp\\htdocs\\kktechsale\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\laravelNewSetup\\kktech-sale\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -689,7 +689,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\xampp\\htdocs\\kktechsale\\resources\\views/vendor/mail',
+        0 => 'C:\\xampp\\htdocs\\laravelNewSetup\\kktech-sale\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -801,7 +801,7 @@
     'lifetime' => 120,
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\xampp\\htdocs\\kktechsale\\storage\\framework/sessions',
+    'files' => 'C:\\xampp\\htdocs\\laravelNewSetup\\kktech-sale\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -817,48 +817,6 @@
     'http_only' => true,
     'same_site' => 'lax',
     'partitioned' => false,
-  ),
-  'permission' => 
-  array (
-    'models' => 
-    array (
-      'permission' => 'Spatie\\Permission\\Models\\Permission',
-      'role' => 'Spatie\\Permission\\Models\\Role',
-    ),
-    'table_names' => 
-    array (
-      'roles' => 'roles',
-      'permissions' => 'permissions',
-      'model_has_permissions' => 'model_has_permissions',
-      'model_has_roles' => 'model_has_roles',
-      'role_has_permissions' => 'role_has_permissions',
-    ),
-    'column_names' => 
-    array (
-      'role_pivot_key' => NULL,
-      'permission_pivot_key' => NULL,
-      'model_morph_key' => 'model_id',
-      'team_foreign_key' => 'team_id',
-    ),
-    'register_permission_check_method' => true,
-    'register_octane_reset_listener' => false,
-    'events_enabled' => false,
-    'teams' => false,
-    'team_resolver' => 'Spatie\\Permission\\DefaultTeamResolver',
-    'use_passport_client_credentials' => false,
-    'display_permission_in_exception' => false,
-    'display_role_in_exception' => false,
-    'enable_wildcard_permission' => false,
-    'cache' => 
-    array (
-      'expiration_time' => 
-      \DateInterval::__set_state(array(
-         'from_string' => true,
-         'date_string' => '24 hours',
-      )),
-      'key' => 'spatie.permission.cache',
-      'store' => 'default',
-    ),
   ),
   'tinker' => 
   array (
