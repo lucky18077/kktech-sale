@@ -24,9 +24,11 @@ class User extends Authenticatable
         'user_type',
         'token',
         'last_login',
-        'area_id',
         'is_active',
         'business_category',
+        'designation',
+        'active',
+        'phone',
         'last_ip',
     ];
 

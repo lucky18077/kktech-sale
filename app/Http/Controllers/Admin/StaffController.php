@@ -63,33 +63,37 @@ class StaffController extends Controller
     }
     public function addCoordinator(Request $request)
     {
+         $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'business_category' => 'required',
+            'usr_active' => 'required',
+            'usr_role' => 'required',
+        ]);
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
         $user->parent_id = Auth::user()->id;
-        $user->area_id = $request->area;
+        // $user->area_id = $request->area;
         $user->business_category = implode(',', $request->business_category);
         $user->is_active = $request->usr_active;
         $user->user_type = $request->usr_role;
         $user->save();
-
         return redirect()->back()->with('success','Coordinator Added Successfully');
     }
-     public function showSalesManager()
+    public function showSalesManager()
     {
        $salesManagers = DB::table('users as a')
         ->join('designation as b', 'a.designation', '=', 'b.id')
         ->select('a.*', 'b.name as designation')
         ->whereIn('a.user_type', ['Sales manager', 'Sales executive'])
         ->get();
+        // dd($salesManagers);
         $designations = Designation::get();
         return view('admin.sale-manager-executive', compact('salesManagers', 'designations'));
         
-    }
-    public function addSalesManager(Request $request)
-    {
-        return view('admin.sale-manager-executive');
     }
     public function showDesignations()
     {
@@ -135,6 +139,9 @@ class StaffController extends Controller
                 $department = OfficeTeam::find($request->id);
                 $department->update([
                     'name' => $request->name,
+                    'mobile' => $request->mobile,
+                    'department' => $request->department,
+                    'active' => $request->active
                 ]);
             } else {
                 OfficeTeam::create([
@@ -145,5 +152,41 @@ class StaffController extends Controller
                 ]);
             }
             return redirect()->back()->with('success', 'Department saved successfully'); 
+    }
+    public function addSalesManager(Request $request) 
+    {
+           $request->validate([
+                'name' => 'required',
+                'email'=> 'required',
+                'phone' => 'required',
+                'usr_role' => 'required',
+                'designation' => 'required',
+                'is_active' =>'required',
+                'password' =>'required'
+
+            ]);
+            if ($request->id) {
+                $user = User::find($request->id);
+                $user->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'designation' => $request->designation,
+                    'user_type' => $request->usr_role,
+                    'is_active' => $request->is_active,
+                    'password' => $request->password
+                ]);
+            } else {
+                User::create([
+                   'name' => $request->name,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'designation' => $request->designation,
+                    'user_type' => $request->usr_role,
+                    'is_active' => $request->is_active,
+                    'password' => $request->password
+                ]);
+            }
+            return redirect()->back()->with('success', 'Sales manager/Executive saved successfully'); 
     }
 }

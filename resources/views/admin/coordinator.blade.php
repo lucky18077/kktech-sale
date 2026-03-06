@@ -290,22 +290,22 @@
                         <div class="modal-body">
 
                             <div class="mb-3">
-                                <label class="form-label">Name</label>
-                                <input type="text" class="form-control" name="name" id="name">
+                                <label class="form-label">Name <span class="text-danger ms-1" required>*</span></label>
+                                <input type="text" class="form-control" name="name" id="name" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" name="email" id="email" class="form-control">
+                                <label class="form-label">Email <span class="text-danger ms-1" required>*</span></label>
+                                <input type="email" name="email" id="email" class="form-control" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Mobile</label>
-                                <input type="text" name="mobile" id="mobile" class="form-control">
+                                <label class="form-label">Mobile <span class="text-danger ms-1" required>*</span></label>
+                                <input type="text" name="mobile" id="mobile" class="form-control" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Role</label>
+                                <label class="form-label">Role <span class="text-danger ms-1" required>*</span></label>
                                 <select class="form-control" id="usr_role" name="usr_role">
                                     <option value="">----Select Role----</option>
                                     <option value="Sales coordinator">Sales coordinator</option>
@@ -313,8 +313,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Sales Area</label>
-                                <select class="form-control" id="area" name="area">
+                                <label class="form-label">Sales Area <span class="text-danger ms-1" required>*</span></label>
+                                <select class="form-control" id="area" name="area" required>
                                     <option value="">----Select Area----</option>
                                     @foreach($areaMst as $area)
                                         <option value="{{ $area->id }}">
@@ -325,9 +325,9 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Business Category</label>
+                                <label class="form-label">Business Category<span class="text-danger ms-1" required>*</span></label>
 
-                                <select class="form-control select2" id="business_category" name="business_category[]" multiple>
+                                <select class="form-control select2" id="business_category" name="business_category[]" multiple required>
                                     @foreach($businessCategories as $businessCategory)
                                         <option value="{{ $businessCategory->id }}">
                                             {{ $businessCategory->name }}
@@ -337,16 +337,16 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Active</label>
-                                <select class="form-control" id="usr_active" name="usr_active">
+                                <label class="form-label">Active <span class="text-danger ms-1" required>*</span></label>
+                                <select class="form-control" id="usr_active" name="usr_active" required>
                                     <option value="1">Active</option>
                                     <option value="0">Inactive</option>
                                 </select>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Password</label>
-                                <input type="text" class="form-control" name="password" id="password">
+                                <label class="form-label">Password <span class="text-danger ms-1" required>*</span></label>
+                                <input type="text" class="form-control" name="password" id="password" required>
                             </div>
 
                         </div>

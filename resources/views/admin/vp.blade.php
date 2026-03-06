@@ -284,15 +284,15 @@
 						<div class="modal-body">
 							<div class="mb-3">
 								<label class="form-label">Name<span class="text-danger ms-1">*</span></label>
-								<input type="text" class="form-control" name ='name'>
+								<input type="text" class="form-control" name ='name' required>
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Email<span class="text-danger ms-1">*</span></label>
-								<input type="email" name ='email' class="form-control">
+								<input type="email" name ='email' class="form-control" required>
 							</div>
                             <div class="mb-3">
 								<label class="form-label">Mobile<span class="text-danger ms-1">*</span></label>
-								<input type="phone"  name ='phone' class="form-control">
+								<input type="phone"  name ='phone' class="form-control" required>
 							</div>
                             <div class="mb-3">
                                 <label for=" " class="form-label">Role</label>
@@ -300,17 +300,6 @@
                                  <option value="Vice President" selected>Vice President</option>
                                 </select>
                             </div>
-							<div class="mb-3">
-								<label class="form-label">Sales Area</label>
-								<select class="form-control" id="area" name="area" required>
-									<option value="">----Select Area----</option>
-									@foreach($areamst as $area)
-										<option value="{{ $area->id }}">
-											{{ $area->area_name }}
-										</option>
-									@endforeach
-								</select>
-							</div>
 
 							<div class="mb-3">
 								<label class="form-label">Coordinator</label>
@@ -331,7 +320,7 @@
                             </div>
                              <div class="mb-3">
 								<label class="form-label">Password<span class="text-danger ms-1" required>*</span></label>
-								<input type="password" class="form-control" name= 'password'>
+								<input type="password" class="form-control" name= 'password' required>
 							</div>
 						</div>
 						<div class="modal-footer">

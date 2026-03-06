@@ -105,7 +105,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Mobile<span class="text-danger ms-1">*</span></label>
-                            <input type="phone" class="form-control" name="mobile" required>
+                            <input type="tel" class="form-control" name="mobile" required>
                         </div>
                         <div class="mb-3">
                             <label for=" " class="form-label">Department<span class="text-danger ms-1">*</span></label>
@@ -153,7 +153,6 @@
                 $("select[name=" + i + "]").val(o)
                 $("textarea[name=" + i + "]").val(o)
             });
-
             $("#designation").modal("show");
         });
     </script>
