@@ -15,23 +15,9 @@ class OfficeTeam extends Model
     protected $table = 'office_team';
 
     protected $fillable = [
-        'user_id',
-        'team_name',
-        'dept_id',
+        'name',
+        'mobile',
+        'department',
         'active',
     ];
-
-    protected $casts = [
-        'active' => 'boolean',
-    ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function department()
-    {
-        return $this->belongsTo(Department::class, 'dept_id');
-    }
 }

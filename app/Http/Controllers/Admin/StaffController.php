@@ -7,7 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\AreaMaster;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\BusinessCategory;
+use App\Models\Designation;
+use App\Models\Department;
+use App\Models\OfficeTeam;
+
+
 
 class StaffController extends Controller
 {
@@ -19,7 +25,7 @@ class StaffController extends Controller
         $users = User::where('user_type', 'sales coordinator')
                     ->whereNotIn('id', $parentIds)
                     ->get();
-        $vicePresidents = User::where('user_type', 'Vice President')->whereIn('parent_id', $parentIds)->get();
+        $vicePresidents = User::where('user_type', 'Vice President')->get();
         return view('admin.vp', compact('areamst','users', 'vicePresidents'));
     }
     public function addVp(Request $request)
@@ -69,5 +75,75 @@ class StaffController extends Controller
         $user->save();
 
         return redirect()->back()->with('success','Coordinator Added Successfully');
+    }
+     public function showSalesManager()
+    {
+       $salesManagers = DB::table('users as a')
+        ->join('designation as b', 'a.designation', '=', 'b.id')
+        ->select('a.*', 'b.name as designation')
+        ->whereIn('a.user_type', ['Sales manager', 'Sales executive'])
+        ->get();
+        $designations = Designation::get();
+        return view('admin.sale-manager-executive', compact('salesManagers', 'designations'));
+        
+    }
+    public function addSalesManager(Request $request)
+    {
+        return view('admin.sale-manager-executive');
+    }
+    public function showDesignations()
+    {
+        $designations = Designation::get();
+        return view('admin.designation', compact('designations'));
+        
+    }
+    public function addDesignation(Request $request) 
+    {
+            $request->validate([
+                    'name' => 'required'
+            ]);
+            if ($request->id) {
+                $department = Designation::find($request->id);
+                $department->update([
+                    'name' => $request->name,
+                ]);
+            } else {
+                Designation::create([
+                    'name' => $request->name,
+                ]);
+            }
+            return redirect()->back()->with('success', 'Designation saved successfully');
+    }
+    public function showOfficeTeams(Request $request) 
+    {
+            $teams = DB::table('office_team as a')
+                    ->join('department as b', 'a.department', '=', 'b.id')
+                    ->select('a.*', 'b.title as department', 'b.id as dep_id')
+                    ->get();
+            $departments = Department::where('active', 1)->get();
+            return view('admin.officeTeams', compact('teams','departments'));
+    }
+    public function addOfficeTeams(Request $request) 
+    {
+           $request->validate([
+                'name' => 'required',
+                'mobile'=> 'required',
+                'department' => 'required',
+                'active' => 'required'
+            ]);
+            if ($request->id) {
+                $department = OfficeTeam::find($request->id);
+                $department->update([
+                    'name' => $request->name,
+                ]);
+            } else {
+                OfficeTeam::create([
+                    'name' => $request->name,
+                    'mobile' => $request->mobile,
+                    'department' => $request->department,
+                    'active' => $request->active
+                ]);
+            }
+            return redirect()->back()->with('success', 'Department saved successfully'); 
     }
 }

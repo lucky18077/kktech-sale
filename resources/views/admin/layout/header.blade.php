@@ -452,9 +452,9 @@
 									<ul>
 										<li><a href="{{ route('coordinator') }}">Coordinator</a></li>
 										<li><a href="{{ route('vp') }}">VP</a></li>
-										<li><a href="subscription.html">Sale Manager/Executive</a></li>
-										<li><a href="domain.html">Designations</a></li>
-										<li><a href="packages.html">Office Team</a></li>
+										<li><a href="{{route('saleManager')}}">Sale Manager/Executive</a></li>
+										<li><a href="{{route('designations')}}">Designations</a></li>
+										<li><a href="{{route('officeTeams')}}">Office Team</a></li>
 									</ul>
 								</li>
 								<li class="submenu">

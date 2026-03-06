@@ -13,29 +13,11 @@ class Designation extends Model
 {
     use HasFactory;
 
+    protected $table = 'designation';
+
     protected $fillable = [
-        'desig_name',
-        'dept_id',
-        'description',
-        'active',
+        'id',
+        'name'
     ];
 
-    protected $casts = [
-        'active' => 'boolean',
-    ];
-
-    public function department()
-    {
-        return $this->belongsTo(Department::class, 'dept_id');
-    }
-
-    public function users()
-    {
-        return $this->hasMany(User::class, 'desig_id');
-    }
-
-    public function scopeActive(Builder $query)
-    {
-        return $query->where('active', 1);
-    }
 }

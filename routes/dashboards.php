@@ -5,14 +5,20 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\MasterController;
 
-// Unified dashboard route — uses auth middleware from web.php
+/* Dashboard routes */
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+/* Staff routes */
 Route::get('/vp', [StaffController::class, 'showVps'])->name('vp');
 Route::post('/vp-save', [StaffController::class, 'addVp'])->name('vp-save');
 Route::get('/coordinator', [StaffController::class, 'showCoordinators'])->name('coordinator');
 Route::post('/coordinator-save', [StaffController::class, 'addCoordinator'])->name('coordinator-save');
-
-
+Route::get('/saleManager', [StaffController::class, 'showSalesManager'])->name('saleManager');
+Route::post('/saleManager-save', [StaffController::class, 'addSalesManager'])->name('saleManager-save');
+Route::get('/designations', [StaffController::class, 'showDesignations'])->name('designations');
+Route::post('/designation-save', [StaffController::class, 'addDesignation'])->name('designation-save');
+Route::get('/officeTeams', [StaffController::class, 'showOfficeTeams'])->name('officeTeams');
+Route::post('/officeTeams-save', [StaffController::class, 'addOfficeTeams'])->name('officeTeams-save');
 
 // Master Controller
 Route::get('/business-category', [MasterController::class, 'businessCategory'])->name('business-category');
