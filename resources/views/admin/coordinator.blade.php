@@ -12,8 +12,8 @@
 					<div class="page-header">
 						<div class="add-item d-flex">
 							<div class="page-title">
-								<h4 class="fw-bold">Vice Presidents</h4>
-								<h6>Manage your Vice Presidnets</h6>
+								<h4 class="fw-bold">Coordinators</h4>
+								<h6>Manage your Coordinators</h6>
 							</div>
 						</div>
 						<ul class="table-top-head">
@@ -32,7 +32,7 @@
 						</ul>
 						<div class="page-btn">
 							<div class="page-btn">
-							<a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-category"><i class="ti ti-circle-plus me-1"></i>Add VP</a>
+							<a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-category"><i class="ti ti-circle-plus me-1"></i>Add Coordinator</a>
 						</div>
 						</div>	
 						{{-- <div class="page-btn import">
@@ -111,26 +111,26 @@
                                          @php
                                         $sno=1;
                                         @endphp
-                                        @foreach ($vicePresidents as $vicePresident)
+                                        @foreach ($coordinates as $coordinator)
                                             <tr>
                                                 <td>{{ $sno++ }}</td>
-                                                <td>{{ $vicePresident->name }}</td>
-                                                <td>{{ $vicePresident->mobile }}</td>
-                                                <td>{{ $vicePresident->user_type }}</td>
-                                                <td>{{ $vicePresident->email }}</td>
+                                                <td>{{ $coordinator->name }}</td>
+                                                <td>{{ $coordinator->mobile }}</td>
+                                                <td>{{ $coordinator->user_type }}</td>
+                                                <td>{{ $coordinator->email }}</td>
                                                 <td>
-                                                    @if($vicePresident->active == 1)
+                                                    @if($coordinator->active == 1)
                                                     <span class="badge bg-success fw-medium fs-10">Active</span>
                                                     @else
                                                     <span class="badge bg-danger fw-medium fs-10">Inactive</span>
                                                     @endif
                                                 </td>
-                                                <td>{{ $vicePresident->password }}</td>
-                                                 <td>{{ $vicePresident->created_at }}</td>
-                                                 <td>{{ $vicePresident->updated_at }}</td>
+                                                <td>{{ $coordinator->password }}</td>
+                                                 <td>{{ $coordinator->created_at }}</td>
+                                                 <td>{{ $coordinator->updated_at }}</td>
                                                 <td class="action-table-data">
                                                     <div class="edit-delete-action">
-                                                        <a href="javascript:void(0)" class="me-2 p-2 editvicePresident" data-vicePresident='@json($vicePresident)'>
+                                                        <a href="javascript:void(0)" class="me-2 p-2 editCoordinator" data-coordinator='@json($coordinator)'>
                                                             <i data-feather="edit" class="feather-edit"></i>
                                                         </a>
                                                     </div>
@@ -268,79 +268,135 @@
 			</div>
 		</div>
         <!-- Add Category -->
-		<div class="modal fade" id="add-category">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<div class="page-title">
-							<h4>Add VP</h4>
-						</div>
-						<button type="button" class="close bg-danger text-white fs-16" data-bs-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<form action="/vp-save" method ='POST'>
-						@csrf
-						<div class="modal-body">
-							<div class="mb-3">
-								<label class="form-label">Name<span class="text-danger ms-1">*</span></label>
-								<input type="text" class="form-control" name ='name'>
-							</div>
-							<div class="mb-3">
-								<label class="form-label">Email<span class="text-danger ms-1">*</span></label>
-								<input type="email" name ='email' class="form-control">
-							</div>
-                            <div class="mb-3">
-								<label class="form-label">Mobile<span class="text-danger ms-1">*</span></label>
-								<input type="phone"  name ='phone' class="form-control">
-							</div>
-                            <div class="mb-3">
-                                <label for=" " class="form-label">Role</label>
-                                <select class="form-control" id="usr_role" name="usr_role" required>
-                                 <option value="Vice President" selected>Vice President</option>
-                                </select>
-                            </div>
-							<div class="mb-3">
-								<label class="form-label">Sales Area</label>
-								<select class="form-control" id="area" name="area" required>
-									<option value="">----Select Area----</option>
-									@foreach($areamst as $area)
-										<option value="{{ $area->id }}">
-											{{ $area->area_name }}
-										</option>
-									@endforeach
-								</select>
-							</div>
+                <div class="modal fade" id="add-category">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
 
-							<div class="mb-3">
-								<label class="form-label">Coordinator</label>
-								<select class="form-control" id="parent_id" name="parent_id[]" multiple required>
-									@foreach($users as $user)
-										<option value="{{ $user->id }}">
-											{{ $user->name }}
-										</option>
-									@endforeach
-								</select>
-							</div>
+                    <div class="modal-header">
+                        <div class="page-title">
+                            <h4 id="modalTitle">Add Coordinator</h4>
+                        </div>
+                        <button type="button" class="close bg-danger text-white fs-16" data-bs-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+
+                    <form action="/coordinator-save" method="POST">
+                        @csrf
+
+                        <!-- Hidden ID for update -->
+                        <input type="hidden" name="id" id="edit_id">
+
+                        <div class="modal-body">
+
                             <div class="mb-3">
-                                <label for=" " class="form-label">Active</label>
-                                <select class="form-control" id="" name="is_active" required>
-                                    <option value="1">Active</option>
-                                    <option value="0">In Active</option>
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" name="name" id="name">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" name="email" id="email" class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Mobile</label>
+                                <input type="text" name="mobile" id="mobile" class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Role</label>
+                                <select class="form-control" id="usr_role" name="usr_role">
+                                    <option value="">----Select Role----</option>
+                                    <option value="Sales coordinator">Sales coordinator</option>
                                 </select>
                             </div>
-                             <div class="mb-3">
-								<label class="form-label">Password<span class="text-danger ms-1" required>*</span></label>
-								<input type="password" class="form-control" name= 'password'>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn me-2 btn-secondary" data-bs-dismiss="modal">Cancel</button>
-							<button type="submit" class="btn btn-primary">Add user</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-		<!-- /Add Category -->
+
+                            <div class="mb-3">
+                                <label class="form-label">Sales Area</label>
+                                <select class="form-control" id="area" name="area">
+                                    <option value="">----Select Area----</option>
+                                    @foreach($areaMst as $area)
+                                        <option value="{{ $area->id }}">
+                                            {{ $area->area_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Business Category</label>
+
+                                <select class="form-control select2" id="business_category" name="business_category[]" multiple>
+                                    @foreach($businessCategories as $businessCategory)
+                                        <option value="{{ $businessCategory->id }}">
+                                            {{ $businessCategory->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Active</label>
+                                <select class="form-control" id="usr_active" name="usr_active">
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="text" class="form-control" name="password" id="password">
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn me-2 btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" id="submitBtn">Save Coordinator</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+	<script>
+    $(document).ready(function(){
+    // Add button reset
+    $(".btn-primary[data-bs-target='#add-category']").click(function(){
+
+        $("#modalTitle").text("Add Coordinator");
+        $("#submitBtn").text("Add Coordinator");
+
+        $("#edit_id").val('');
+        $("#name").val('');
+        $("#email").val('');
+        $("#mobile").val('');
+        $("#usr_role").val('');
+        $("#usr_active").val('');
+        $("#password").val('');
+    });
+    // Edit Coordinator
+    $(document).on("click",".editCoordinator",function(){
+
+        var data = $(this).data("coordinator");
+
+        $("#modalTitle").text("Edit Coordinator");
+        $("#submitBtn").text("Update Coordinator");
+
+        $("#edit_id").val(data.id);
+        $("#name").val(data.name);
+        $("#email").val(data.email);
+        $("#mobile").val(data.mobile);
+        $("#usr_role").val(data.user_type);
+        $("#usr_active").val(data.active);
+        $("#password").val(data.password);
+
+        $("#add-category").modal("show");
+
+    });
+
+});
+
+</script>
 @endsection

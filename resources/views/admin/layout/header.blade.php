@@ -520,7 +520,7 @@
 								<li class="submenu mt-2">
 									<a href="javascript:void(0);"><i class="ti ti-user-edit fs-16 me-2"></i><span>Staff Management</span><span class="menu-arrow"></span></a>
 									<ul>
-										<li><a href="{{ route('vp') }}">Coordinator</a></li>
+										<li><a href="{{ route('coordinator') }}">Coordinator</a></li>
 										<li><a href="{{ route('vp') }}">VP</a></li>
 										<li><a href="subscription.html" >Sale Manager/Executive</a></li>
 										<li><a href="domain.html">Designations</a></li>

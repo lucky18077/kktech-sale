@@ -7,7 +7,11 @@ use App\Http\Controllers\MasterController;
 
 // Unified dashboard route — uses auth middleware from web.php
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/vp', [StaffController::class, 'index'])->name('vp');
+Route::get('/vp', [StaffController::class, 'showVps'])->name('vp');
+Route::post('/vp-save', [StaffController::class, 'addVp'])->name('vp-save');
+Route::get('/coordinator', [StaffController::class, 'showCoordinators'])->name('coordinator');
+Route::post('/coordinator-save', [StaffController::class, 'addCoordinator'])->name('coordinator-save');
+
 
 
 // Master Controller
