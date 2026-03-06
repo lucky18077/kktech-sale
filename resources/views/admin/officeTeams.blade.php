@@ -109,7 +109,7 @@
                         </div>
                         <div class="mb-3">
                             <label for=" " class="form-label">Department<span class="text-danger ms-1">*</span></label>
-                            <select class="form-control" name="department" id="department" required>
+                            <select class="form-select" name="department" id="department" required>
                                 @foreach($departments as $department)
 										<option value="{{ $department->id }}">
 											{{ $department->title }}
@@ -119,7 +119,7 @@
 						</div>
                          <div class="mb-3">
                             <label class="form-label">Status<span class="text-danger ms-1">*</span></label>
-                            <select class="select" name="active" required>
+                            <select class="form-select" name="active" required>
                                 <option value="1">Active</option>
                                 <option value="0">Inactive</option>
                             </select>

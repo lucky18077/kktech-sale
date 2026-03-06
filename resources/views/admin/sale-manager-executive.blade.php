@@ -21,7 +21,7 @@
 						</ul>
 						<div class="page-btn">
 							<div class="page-btn">
-							<a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-category"><i class="ti ti-circle-plus me-1"></i>Add Sale Executive/Manager</a>
+							<a href="#" class="btn btn-primary addOfficeTeam" data-bs-toggle="modal" data-bs-target="#add-category"><i class="ti ti-circle-plus me-1"></i>Add Sale Executive/Manager</a>
 						</div>
 						</div>	
 						{{-- <div class="page-btn import">
@@ -72,12 +72,12 @@
                                                     @endif
                                                 </td>
                                                 <td class="action-table-data">
-                                                    <div class="edit-delete-action">
-                                                        <a href="javascript:void(0)" class="me-2 p-2 editsaleManager" data-saleManager='@json($saleManager)'>
-                                                            <i data-feather="edit" class="feather-edit"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
+													<div class="edit-delete-action">
+														<a class="me-2 p-2 editOfficeTeams" data-data="{{ @json_encode($saleManager) }}">
+															<i data-feather="edit" class="feather-edit"></i>
+														</a>
+													</div>
+												</td>
                                             </tr>
                                         @endforeach
 									</tbody>
@@ -90,34 +90,13 @@
 			</div>
         </div>
 		<!-- /Main Wrapper -->
-
-		 
-
-		<!-- delete modal -->
-			<div class="modal fade" id="delete-modal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="page-wrapper-new p-0">
-						<div class="content p-5 px-3 text-center">
-								<span class="rounded-circle d-inline-flex p-2 bg-danger-transparent mb-2"><i class="ti ti-trash fs-24 text-danger"></i></span>
-								<h4 class="fs-20 text-gray-9 fw-bold mb-2 mt-1">Delete Product</h4>
-								<p class="text-gray-6 mb-0 fs-16">Are you sure you want to delete product?</p>
-								<div class="modal-footer-btn mt-3 d-flex justify-content-center">
-									<button type="button" class="btn me-2 btn-secondary fs-13 fw-medium p-2 px-3 shadow-none" data-bs-dismiss="modal">Cancel</button>
-									<button type="submit" class="btn btn-primary fs-13 fw-medium p-2 px-3">Yes Delete</button>
-								</div>						
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
         <!-- Add Category -->
-		<div class="modal fade" id="add-category">
+		<div class="modal fade" id="addOfficeTeam">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 					<div class="modal-header">
 						<div class="page-title">
-							<h4>Add VP</h4>
+							<h4 id= 'submitBtn'>Add VP</h4>
 						</div>
 						<button type="button" class="close bg-danger text-white fs-16" data-bs-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
@@ -126,6 +105,7 @@
 					<form action="/saleManager-save" method ='POST'>
 						@csrf
 						<div class="modal-body">
+							<input type="hidden" name="id">
 							<div class="mb-3">
 								<label class="form-label">Name<span class="text-danger ms-1">*</span></label>
 								<input type="text" class="form-control" name ='name' required>
@@ -170,11 +150,30 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn me-2 btn-secondary" data-bs-dismiss="modal">Cancel</button>
-							<button type="submit" class="btn btn-primary">Add user</button>
+							<button type="submit" class="btn btn-primary" id = 'submitBtn' >Add user</button>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 		<!-- /Add Category -->
+		<script>
+			$(".addOfficeTeam").on("click", function() {
+				$("#title").text("Add Sale Manager/Executive");
+				$("#submitBtn").text("Add User");
+				$("input, select, textarea").not("[name='_token']").val("");
+				$("#addOfficeTeam").modal("show");
+			});
+			$(document).on("click", ".editOfficeTeams", function() {
+				$("#title").text("Edit Team");
+				$("#submitBtn").text("Update Team");
+				var data = $(this).data("data");
+				$.each(data, function(i, o) {
+					$("input[name=" + i + "]").val(o)
+					$("select[name=" + i + "]").val(o)
+					$("textarea[name=" + i + "]").val(o)
+				});
+				$("#addOfficeTeam").modal("show");
+			});
+    </script>
 @endsection

@@ -30,11 +30,36 @@ class StaffController extends Controller
     }
     public function addVp(Request $request)
     {
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required',
+                'password' => 'required',
+                'area' => 'required',
+                'phone' => 'required',
+                'usr_active' => 'required',
+                'usr_role' => 'required',
+            ]);
+        $user = User::where('phone', $request->phone)->first();
+        if ($user) {
+            return redirect()->back()->with('error', 'VP with this phone number already exists.');
+        } elseif ($request->id) {
+            $user = User::find($request->id);
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+                'phone' => $request->phone,
+                'parent_id' => implode(',', $request->parent_id ?? []),
+                'is_active' => $request->is_active,
+                'user_type' => $request->usr_role
+            ]);
+            return redirect()->back()->with('success', 'VP updated successfully');
+        }
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
-        $user->area_id = $request->area;
+        $user->phone = $request->phone;
         $user->parent_id = implode(',', $request->parent_id ?? []);
         $user->is_active = $request->is_active;
         $user->user_type = $request->usr_role;
@@ -71,6 +96,22 @@ class StaffController extends Controller
             'usr_active' => 'required',
             'usr_role' => 'required',
         ]);
+        $user = User::where('email', $request->email)->first();
+        if ($user) {
+            return redirect()->back()->with('error', 'Coordinator with this email already exists.');
+        } elseif ($request->id) {
+            $user = User::find($request->id); 
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+                'parent_id' => Auth::user()->id,
+                'business_category' => implode(',', $request->business_category),
+                'is_active' => $request->usr_active,
+                'user_type' => $request->usr_role
+            ]);
+            return redirect()->back()->with('success', 'Coordinator updated successfully');
+        }
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;

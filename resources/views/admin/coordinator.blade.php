@@ -34,11 +34,7 @@
 							<div class="page-btn">
 							<a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-category"><i class="ti ti-circle-plus me-1"></i>Add Coordinator</a>
 						</div>
-						</div>	
-						{{-- <div class="page-btn import">
-							<a href="#" class="btn btn-secondary color" data-bs-toggle="modal" data-bs-target="#view-notes"><i
-								data-feather="download" class="me-1"></i>Import Product</a>
-						</div> --}}
+						</div>
 					</div>
 					
 					<!-- /product list -->
@@ -49,46 +45,6 @@
 									<span class="btn-searchset"><i class="ti ti-search fs-14 feather-search"></i></span>
 								</div>
 							</div>
-							{{-- <div class="d-flex table-dropdown my-xl-auto right-content align-items-center flex-wrap row-gap-3">
-								<div class="dropdown me-2">
-									<a href="javascript:void(0);" class="dropdown-toggle btn btn-white btn-md d-inline-flex align-items-center" data-bs-toggle="dropdown">
-										Category
-									</a>
-									<ul class="dropdown-menu  dropdown-menu-end p-3">
-										<li>
-											<a href="javascript:void(0);" class="dropdown-item rounded-1">Computers</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="dropdown-item rounded-1">Electronics</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="dropdown-item rounded-1">Shoe</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="dropdown-item rounded-1">Electronics</a>
-										</li>
-									</ul>
-								</div>
-								<div class="dropdown">
-									<a href="javascript:void(0);" class="dropdown-toggle btn btn-white btn-md d-inline-flex align-items-center" data-bs-toggle="dropdown">
-										Brand
-									</a>
-									<ul class="dropdown-menu  dropdown-menu-end p-3">
-										<li>
-											<a href="javascript:void(0);" class="dropdown-item rounded-1">Lenovo</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="dropdown-item rounded-1">Beats</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="dropdown-item rounded-1">Nike</a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="dropdown-item rounded-1">Apple</a>
-										</li>
-									</ul>
-								</div>
-							</div> --}}
 						</div>
 						<div class="card-body p-0">
 							<div class="table-responsive">
@@ -115,11 +71,11 @@
                                             <tr>
                                                 <td>{{ $sno++ }}</td>
                                                 <td>{{ $coordinator->name }}</td>
-                                                <td>{{ $coordinator->mobile }}</td>
+                                                <td>{{ $coordinator->phone }}</td>
                                                 <td>{{ $coordinator->user_type }}</td>
                                                 <td>{{ $coordinator->email }}</td>
                                                 <td>
-                                                    @if($coordinator->active == 1)
+                                                    @if($coordinator->is_active == 1)
                                                     <span class="badge bg-success fw-medium fs-10">Active</span>
                                                     @else
                                                     <span class="badge bg-danger fw-medium fs-10">Inactive</span>
@@ -146,127 +102,6 @@
 				</div>
 			</div>
         </div>
-		<!-- /Main Wrapper -->
-
-		<!-- Import Product -->
-		<div class="modal fade" id="view-notes">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="page-wrapper-new p-0">
-						<div class="content">
-							<div class="modal-header">
-								<div class="page-title">
-									<h4>Import Product</h4>
-								</div>
-								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<form action="https://dreamspos.dreamstechnologies.com/html/template/product-list.html">
-								
-									<div class="row">
-										<div class="col-12">
-											<div class="mb-3">
-												<label>Product<span class="ms-1 text-danger">*</span></label>
-												<select class="select">
-													<option>Select</option>
-													<option>Bold V3.2</option>
-													<option>Nike Jordan</option>
-													<option>Iphone 14 Pro</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-sm-6 col-12">
-											<div class="mb-3">
-												<label>Category<span class="ms-1 text-danger">*</span></label>
-												<select class="select">
-													<option>Select</option>
-													<option>Laptop</option>
-													<option>Electronics</option>
-													<option>Shoe</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-sm-6 col-12">
-											<div class="mb-3">
-												<label>Sub Category<span class="ms-1 text-danger">*</span></label>
-												<select class="select">
-													<option>Select</option>
-													<option>Lenovo</option>
-													<option>Bolt</option>
-													<option>Nike</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-12 col-sm-6 col-12">
-											<div class="row">
-												<div>
-													<div class="modal-footer-btn download-file">
-														<a href="javascript:void(0)" class="btn btn-submit">Download Sample File</a>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="mb-3 image-upload-down">
-												<label class="form-label">Upload CSV File</label>
-												<div class="image-upload download">
-													<input type="file">
-													<div class="image-uploads">
-														<img src="assets/img/download-img.png" alt="img">
-														<h4>Drag and drop a <span>file to upload</span></h4>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-12 col-sm-6 col-12">
-											<div class="mb-3">
-												<label class="form-label">Created by<span class="ms-1 text-danger">*</span></label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-									</div>
-									<div class="row">
-									<div class="col-lg-12">
-										<div class="mb-3 mb-3">
-											<label class="form-label">Description</label>
-											<textarea class="form-control"></textarea>
-											<p class="mt-1">Maximum 60 Characters</p>
-										</div>
-									</div>
-								</div>
-								</form>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn me-2 btn-secondary fs-13 fw-medium p-2 px-3 shadow-none" data-bs-dismiss="modal">Cancel</button>
-								<button type="submit" class="btn btn-primary fs-13 fw-medium p-2 px-3">Submit</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /Import Product -->
-
-		<!-- delete modal -->
-			<div class="modal fade" id="delete-modal">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="page-wrapper-new p-0">
-						<div class="content p-5 px-3 text-center">
-								<span class="rounded-circle d-inline-flex p-2 bg-danger-transparent mb-2"><i class="ti ti-trash fs-24 text-danger"></i></span>
-								<h4 class="fs-20 text-gray-9 fw-bold mb-2 mt-1">Delete Product</h4>
-								<p class="text-gray-6 mb-0 fs-16">Are you sure you want to delete product?</p>
-								<div class="modal-footer-btn mt-3 d-flex justify-content-center">
-									<button type="button" class="btn me-2 btn-secondary fs-13 fw-medium p-2 px-3 shadow-none" data-bs-dismiss="modal">Cancel</button>
-									<button type="submit" class="btn btn-primary fs-13 fw-medium p-2 px-3">Yes Delete</button>
-								</div>						
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
         <!-- Add Category -->
                 <div class="modal fade" id="add-category">
             <div class="modal-dialog modal-dialog-centered">
@@ -288,7 +123,7 @@
                         <input type="hidden" name="id" id="edit_id">
 
                         <div class="modal-body">
-
+							<input type="hidden" name="id" id="edit_id">
                             <div class="mb-3">
                                 <label class="form-label">Name <span class="text-danger ms-1" required>*</span></label>
                                 <input type="text" class="form-control" name="name" id="name" required>
@@ -306,7 +141,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Role <span class="text-danger ms-1" required>*</span></label>
-                                <select class="form-control" id="usr_role" name="usr_role">
+                                <select class="form-select" id="usr_role" name="usr_role">
                                     <option value="">----Select Role----</option>
                                     <option value="Sales coordinator">Sales coordinator</option>
                                 </select>
@@ -314,7 +149,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Sales Area <span class="text-danger ms-1" required>*</span></label>
-                                <select class="form-control" id="area" name="area" required>
+                                <select class="form-select" id="area" name="area" required>
                                     <option value="">----Select Area----</option>
                                     @foreach($areaMst as $area)
                                         <option value="{{ $area->id }}">
@@ -327,7 +162,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Business Category<span class="text-danger ms-1" required>*</span></label>
 
-                                <select class="form-control select2" id="business_category" name="business_category[]" multiple required>
+                                <select class="form-control" id="business_category" name="business_category[]" multiple required>
                                     @foreach($businessCategories as $businessCategory)
                                         <option value="{{ $businessCategory->id }}">
                                             {{ $businessCategory->name }}
