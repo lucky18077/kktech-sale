@@ -33,11 +33,24 @@ Route::post('/property-stage-save', [MasterController::class, 'savePropertyStage
 Route::get('/source', [MasterController::class, 'source'])->name('source');
 Route::post('/source-save', [MasterController::class, 'saveSource'])->name('source-save');
 
+Route::get('/property-category', [MasterController::class, 'propertyCategory'])->name('property-category');
+Route::post('/property-category-save', [MasterController::class, 'savePropertyCategory'])->name('property-category-save');
+
+Route::get('/property-sub-category', [MasterController::class, 'propertySubCategory'])->name('property-sub-category');
+Route::post('/property-sub-category-save', [MasterController::class, 'savePropertySubCategory'])->name('property-sub-category-save');
+
 Route::get('/product-category', [MasterController::class, 'productCategory'])->name('product-category');
 Route::post('/product-category-save', [MasterController::class, 'saveProductCategory'])->name('product-category-save');
 
 Route::get('/product-sub-category', [MasterController::class, 'productSubCategory'])->name('product-sub-category');
 Route::post('/product-sub-category-save', [MasterController::class, 'saveProductSubCategory'])->name('product-sub-category-save');
+
+Route::get('/product-uom', [MasterController::class, 'productUOM'])->name('product-uom');
+Route::post('/product-uom-save', [MasterController::class, 'saveProductUOM'])->name('product-uom-save');
+
+Route::get('/products', [MasterController::class, 'products'])->name('products');
+Route::post('/product-save',[MasterController::class,'saveProduct'])->name('product-save');
+Route::post('/import-products', [MasterController::class, 'importProducts'])->name('products.import');
 
 // Admin, Coordinator, VP named routes (preserve existing controllers/views)
 Route::get('/coordinator/dashboard', [\App\Http\Controllers\Coordinator\DashboardController::class, 'index'])->name('coordinator.dashboard');

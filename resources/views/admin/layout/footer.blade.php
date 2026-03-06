@@ -1,5 +1,5 @@
 <div class="footer d-sm-flex align-items-center justify-content-between border-top bg-white p-3">
-	<p class="mb-0 text-gray-9">22026 � KK-Tech Sales. All Right Reserved</p>
+	<p class="mb-0 text-gray-9">2026 @ KK-Tech Sales. All Right Reserved</p>
 	<p>Designed & Developed by <a href="javascript:void(0);" class="text-primary">Clikzop Innovations</a></p>
 </div>
 </div>
