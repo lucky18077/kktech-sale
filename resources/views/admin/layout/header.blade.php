@@ -466,6 +466,24 @@
 										<li><a href="#">Delivered</a></li>
 									</ul>
 								</li>
+								<li class="submenu">
+									<a href="javascript:void(0);"><i class="ti ti-arrows-shuffle fs-16 me-2"></i><span>Service CheckList</span><span class="menu-arrow"></span></a>
+									<ul>
+										<li><a href="#">Category</a></li>
+										<li><a href="#">CheckList</a></li>
+									</ul>
+								</li>
+								<li class="submenu">
+									<a href="javascript:void(0);"><i class="ti ti-businessplan fs-16 me-2"></i><span>Service Management</span><span class="menu-arrow"></span></a>
+									<ul>
+										<li><a href="#">Add Service</a></li>
+										<li><a href="#">Pending Service</a></li>
+										<li><a href="#">Processing Service</a></li>
+										<li><a href="#">Complete Service</a></li>
+										<li><a href="#">Rejected Service</a></li>
+										<li><a href="#">All Service</a></li>
+									</ul>
+								</li>
 								<li>
 									<a href="{{route('logout')}}"><i class="ti ti-logout fs-16 me-2"></i><span>Logout</span> </a>
 								</li>
