@@ -77,7 +77,7 @@
 				<!-- Logo -->
 				<div class="header-left active">
 					<a href="/" class="logo logo-normal">
-						<img src="/admin/images/logo.svg" alt="Img">
+						<img src="/admin/images/logo.webp" alt="Img" style="height: 45px; width: 45px;">
 					</a>
 					<a href="/" class="logo logo-white">
 						<img src="/admin/images/logo-white.svg" alt="Img">
@@ -101,11 +101,11 @@
 
 				<!-- Header Menu -->
 				<ul class="nav user-menu">
-
-					<!-- Search -->
-					<li class="nav-item nav-searchinputs">
-
-					</li>
+					<div class="nav-searchinputs d-flex align-items-center">
+						<li class="nav-item "><button class="btn btn-sm btn-success">Sale</button></li>
+						<li class="nav-item "><button class="btn btn-sm btn-dark">Inventory</button></li>
+						<li class="nav-item "><button class="btn btn-sm btn-dark">Service</button></li>
+					</div>
 					<!-- /Search -->
 
 					<!-- Select Store -->
@@ -220,11 +220,7 @@
 						</div>
 					</li>
 
-					<li class="nav-item pos-nav">
-						<a href="#" class="btn btn-dark btn-md d-inline-flex align-items-center">
-							<i class="ti ti-device-laptop me-1"></i>POS
-						</a>
-					</li>
+
 
 					<!-- Flag -->
 					<li class="nav-item dropdown has-arrow flag-nav nav-item-box">
@@ -237,85 +233,6 @@
 							<i class="ti ti-maximize"></i>
 						</a>
 					</li>
-					<li class="nav-item nav-item-box">
-						<a href="email.html">
-							<i class="ti ti-mail"></i>
-							<span class="badge rounded-pill">1</span>
-						</a>
-					</li>
-					<!-- Notifications -->
-					<li class="nav-item dropdown nav-item-box">
-						<a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-							<i class="ti ti-bell"></i>
-						</a>
-						<div class="dropdown-menu notifications">
-							<div class="topnav-dropdown-header">
-								<h5 class="notification-title">Notifications</h5>
-								<a href="javascript:void(0)" class="clear-noti">Mark all as read</a>
-							</div>
-							<div class="noti-content">
-								<ul class="notification-list">
-									<li class="notification-message">
-										<a href="activities.html">
-											<div class="media d-flex">
-												<span class="avatar flex-shrink-0">
-													<img alt="Img" src="/admin/images/avatar-13.jpg">
-												</span>
-												<div class="flex-grow-1">
-													<p class="noti-details"><span class="noti-title">James Kirwin</span> confirmed his order. Order No: #78901.Estimated delivery: 2 days</p>
-													<p class="noti-time">4 mins ago</p>
-												</div>
-											</div>
-										</a>
-									</li>
-									<li class="notification-message">
-										<a href="activities.html">
-											<div class="media d-flex">
-												<span class="avatar flex-shrink-0">
-													<img alt="Img" src="/admin/images/avatar-03.jpg">
-												</span>
-												<div class="flex-grow-1">
-													<p class="noti-details"><span class="noti-title">Leo Kelly</span> cancelled his order scheduled for 17 Jan 2025</p>
-													<p class="noti-time">10 mins ago</p>
-												</div>
-											</div>
-										</a>
-									</li>
-									<li class="notification-message">
-										<a href="activities.html" class="recent-msg">
-											<div class="media d-flex">
-												<span class="avatar flex-shrink-0">
-													<img alt="Img" src="/admin/images/avatar-17.jpg">
-												</span>
-												<div class="flex-grow-1">
-													<p class="noti-details">Payment of $50 received for Order #67890 from <span class="noti-title">Antonio Engle</span></p>
-													<p class="noti-time">05 mins ago</p>
-												</div>
-											</div>
-										</a>
-									</li>
-									<li class="notification-message">
-										<a href="activities.html" class="recent-msg">
-											<div class="media d-flex">
-												<span class="avatar flex-shrink-0">
-													<img alt="Img" src="/admin/images/avatar-02.jpg">
-												</span>
-												<div class="flex-grow-1">
-													<p class="noti-details"><span class="noti-title">Andrea</span> confirmed his order. Order No: #73401.Estimated delivery: 3 days</p>
-													<p class="noti-time">4 mins ago</p>
-												</div>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div class="topnav-dropdown-footer d-flex align-items-center gap-3">
-								<a href="#" class="btn btn-secondary btn-md w-100">Cancel</a>
-								<a href="activities.html" class="btn btn-primary btn-md w-100">View all</a>
-							</div>
-						</div>
-					</li>
-					<!-- /Notifications -->
 
 					<li class="nav-item nav-item-box">
 						<a href="#"><i class="ti ti-settings"></i></a>
@@ -339,7 +256,6 @@
 								</div>
 							</div>
 							<a class="dropdown-item" href="#"><i class="ti ti-user-circle me-2"></i>MyProfile</a>
-							<a class="dropdown-item" href="#"><i class="ti ti-file-text me-2"></i>Reports</a>
 							<a class="dropdown-item" href="#"><i class="ti ti-settings-2 me-2"></i>Settings</a>
 							<hr class="my-2">
 							<a class="dropdown-item logout" href="{{ route('logout') }}"><i class="ti ti-logout me-2"></i>Logout</a>
@@ -369,7 +285,7 @@
 			<!-- Logo -->
 			<div class="sidebar-logo">
 				<a href="/" class="logo logo-normal">
-					<img src="/admin/images/logo.svg" alt="Img">
+					<img src="/admin/images/logo.webp" alt="Img" style="height: 45px; width: 45px;">
 				</a>
 				<a href="/" class="logo logo-white">
 					<img src="/admin/images/logo-white.svg" alt="Img">
@@ -468,14 +384,8 @@
 										<li><a href="{{ route('property-sub-category') }}">Property Sub Category</a></li>
 									</ul>
 								</li>
-							</ul>
-						</li>
-
-						<li class="submenu-open">
-							<h6 class="submenu-hdr">Product Master</h6>
-							<ul>
 								<li class="submenu">
-									<a href="javascript:void(0);"><i class="ti ti-layout-grid fs-16 me-2"></i><span>Product Master</span><span class="menu-arrow"></span></a>
+									<a href="javascript:void(0);"><i class="ti ti-chart-bar fs-16 me-2"></i><span>Product Master</span><span class="menu-arrow"></span></a>
 									<ul>
 										<li><a href="{{ route('product-category') }}">Product Category</a></li>
 										<li><a href="{{ route('product-sub-category') }}">Product Sub Category</a></li>
@@ -483,145 +393,95 @@
 										<li><a href="{{ route('products') }}">Product</a></li>
 									</ul>
 								</li>
-								<li><a href="invoice.html"><i class="ti ti-file-invoice fs-16 me-2"></i><span>Invoices</span></a></li>
-								<li><a href="sales-returns.html"><i class="ti ti-receipt-refund fs-16 me-2"></i><span>Sales Return</span></a></li>
-								<li><a href="quotation-list.html"><i class="ti ti-files fs-16 me-2"></i><span>Quotation</span></a></li>
 								<li class="submenu">
-									<a href="javascript:void(0);"><i class="ti ti-device-laptop fs-16 me-2"></i><span>POS</span><span class="menu-arrow"></span></a>
+									<a href="javascript:void(0);"><i class="ti ti-device-laptop fs-16 me-2"></i><span>Purchase Order</span><span class="menu-arrow"></span></a>
 									<ul>
-										<li><a href="pos.html">POS 1</a></li>
-										<li><a href="pos-2.html">POS 2</a></li>
-										<li><a href="pos-3.html">POS 3</a></li>
-										<li><a href="pos-4.html">POS 4</a></li>
-										<li><a href="pos-5.html">POS 5</a></li>
-										<li><a href="https://dreamspos.dreamstechnologies.com/food-pos/html/" target="_blank">POS 6</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li class="submenu-open">
-							<h6 class="submenu-hdr">Peoples</h6>
-							<ul>
-								<li><a href="customers.html"><i class="ti ti-users-group fs-16 me-2"></i><span>Customers</span></a></li>
-								<li><a href="billers.html"><i class="ti ti-user-up fs-16 me-2"></i><span>Billers</span></a></li>
-								<li><a href="suppliers.html"><i class="ti ti-user-dollar fs-16 me-2"></i><span>Suppliers</span></a></li>
-								<li><a href="store-list.html"><i class="ti ti-home-bolt fs-16 me-2"></i><span>Stores</span></a></li>
-								<li><a href="warehouse.html"><i class="ti ti-archive fs-16 me-2"></i><span>Warehouses</span></a>
-								</li>
-							</ul>
-						</li>
-						<li class="submenu-open">
-							<h6 class="submenu-hdr">HRM</h6>
-							<ul>
-								<li><a href="employees-grid.html"><i class="ti ti-user fs-16 me-2"></i><span>Employees</span></a></li>
-								<li><a href="department-grid.html"><i class="ti ti-compass fs-16 me-2"></i><span>Departments</span></a></li>
-								<li><a href="designation.html"><i class="ti ti-git-merge fs-16 me-2"></i><span>Designation</span></a></li>
-								<li><a href="shift.html"><i class="ti ti-arrows-shuffle fs-16 me-2"></i><span>Shifts</span></a></li>
-								<li class="submenu">
-									<a href="javascript:void(0);"><i class="ti ti-user-cog fs-16 me-2"></i><span>Attendence</span><span class="menu-arrow"></span></a>
-									<ul>
-										<li><a href="attendance-employee.html">Employee</a></li>
-										<li><a href="attendance-admin.html">Admin</a></li>
+										<li><a href="#">Generate PO</a></li>
+										<li><a href="#">Generating PO</a></li>
+										<li><a href="#">Generated PO</a></li>
+										<li><a href="#">Purchases</a></li>
+										<li><a href="#">MRN</a></li>
+										<li><a href="#">Partial Approved</a></li>
+										<li><a href="#">Full Approved</a></li>
+										<li><a href="#">Purchase Return</a></li>
+										<li><a href="#">MRN Product Wise</a></li>
 									</ul>
 								</li>
 								<li class="submenu">
-									<a href="javascript:void(0);"><i class="ti ti-calendar fs-16 me-2"></i><span>Leaves</span><span class="menu-arrow"></span></a>
+									<a href="javascript:void(0);"><i class="ti ti-calendar fs-16 me-2"></i><span>Purchase Return</span><span class="menu-arrow"></span></a>
 									<ul>
-										<li><a href="leaves-admin.html">Admin Leaves</a></li>
-										<li><a href="leaves-employee.html">Employee Leaves</a></li>
-										<li><a href="leave-types.html">Leave Types</a></li>
-									</ul>
-								</li>
-								<li><a href="holidays.html"><i class="ti ti-calendar-share fs-16 me-2"></i><span>Holidays</span></a>
-								</li>
-								<li class="submenu">
-									<a href="employee-salary.html"><i class="ti ti-file-dollar fs-16 me-2"></i><span>Payroll</span><span class="menu-arrow"></span></a>
-									<ul>
-										<li><a href="employee-salary.html">Employee Salary</a></li>
-										<li><a href="payslip.html">Payslip</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li class="submenu-open">
-							<h6 class="submenu-hdr">Reports</h6>
-							<ul>
-								<li class="submenu">
-									<a href="javascript:void(0);"><i class="ti ti-chart-bar fs-16 me-2"></i><span>Sales Report</span><span class="menu-arrow"></span></a>
-									<ul>
-										<li><a href="sales-report.html">Sales Report</a></li>
-										<li><a href="best-seller.html">Best Seller</a></li>
-									</ul>
-								</li>
-								<li><a href="purchase-report.html"><i class="ti ti-chart-pie-2 fs-16 me-2"></i><span>Purchase report</span></a></li>
-								<li class="submenu">
-									<a href="javascript:void(0);"><i class="ti ti-triangle-inverted fs-16 me-2"></i><span>Inventory Report</span><span class="menu-arrow"></span></a>
-									<ul>
-										<li><a href="inventory-report.html">Inventory Report</a></li>
-										<li><a href="stock-history.html">Stock History</a></li>
-										<li><a href="sold-stock.html">Sold Stock</a></li>
-									</ul>
-								</li>
-								<li><a href="invoice-report.html"><i class="ti ti-businessplan fs-16 me-2"></i><span>Invoice Report</span></a></li>
-								<li class="submenu">
-									<a href="javascript:void(0);"><i class="ti ti-user-star fs-16 me-2"></i><span>Supplier Report</span><span class="menu-arrow"></span></a>
-									<ul>
-										<li><a href="supplier-report.html">Supplier Report</a></li>
-										<li><a href="supplier-due-report.html">Supplier Due Report</a></li>
-									</ul>
-								</li>
-								<li><a href="expense-report.html"><i class="ti ti-file-vector fs-16 me-2"></i><span>Expense Report</span></a></li>
-								<li><a href="income-report.html"><i class="ti ti-chart-ppf fs-16 me-2"></i><span>Income Report</span></a></li>
-							</ul>
-						</li>
-
-						<li class="submenu-open">
-							<h6 class="submenu-hdr">User Management</h6>
-							<ul>
-								<li><a href="users.html"><i class="ti ti-shield-up fs-16 me-2"></i><span>Users</span></a></li>
-								<li><a href="roles-permissions.html"><i class="ti ti-jump-rope fs-16 me-2"></i><span>Roles & Permissions</span></a></li>
-								<li><a href="delete-account.html"><i class="ti ti-trash-x fs-16 me-2"></i><span>Delete Account Request</span></a></li>
-							</ul>
-						</li>
-						<li class="submenu-open">
-							<h6 class="submenu-hdr">Settings</h6>
-							<ul>
-								<li class="submenu">
-									<a href="javascript:void(0);"><i class="ti ti-settings fs-16 me-2"></i><span>General Settings</span><span class="menu-arrow"></span></a>
-									<ul>
-										<li><a href="general-settings.html">Profile</a></li>
-										<li><a href="security-settings.html">Security</a></li>
-										<li><a href="notification.html">Notifications</a></li>
-										<li><a href="connected-apps.html">Connected Apps</a></li>
+										<li><a href="#">Add Purchase Return</a></li>
+										<li><a href="#">Return Challan</a></li>
 									</ul>
 								</li>
 								<li class="submenu">
-									<a href="javascript:void(0);"><i class="ti ti-world fs-16 me-2"></i><span>Website Settings</span><span class="menu-arrow"></span></a>
+									<a href="javascript:void(0);"><i class="ti ti-triangle-inverted fs-16 me-2"></i><span>Lead Management</span><span class="menu-arrow"></span></a>
 									<ul>
-										<li><a href="system-settings.html">System Settings</a></li>
-										<li><a href="company-settings.html">Company Settings </a></li>
-										<li><a href="localization-settings.html">Localization</a></li>
-										<li><a href="prefixes.html">Prefixes</a></li>
-										<li><a href="preference.html">Preference</a></li>
-										<li><a href="appearance.html">Appearance</a></li>
-										<li><a href="social-authentication.html">Social Authentication</a></li>
-										<li><a href="language-settings.html">Language</a></li>
+										<li><a href="#">Add Lead</a></li>
+										<li><a href="#">New Lead</a></li>
+										<li><a href="#">Pending Lead</a></li>
+										<li><a href="#">Processing Lead</a></li>
+										<li><a href="#">Call Sheduled</a></li>
+										<li><a href="#">Visit Sheduled</a></li>
+										<li><a href="#">Visit Done</a></li>
+										<li><a href="#">Lost Lead</a></li>
+										<li><a href="#">Converted Lead</a></li>
+										<li><a href="#">Partial Lead</a></li>
+										<li><a href="#">Complete</a></li>
+										<li><a href="#">All Lead</a></li>
 									</ul>
 								</li>
 								<li class="submenu">
-									<a href="javascript:void(0);"><i class="ti ti-device-mobile fs-16 me-2"></i>
-										<span>App Settings</span><span class="menu-arrow"></span>
-									</a>
+									<a href="javascript:void(0);"><i class="ti ti-shield-up fs-16 me-2"></i><span>Quotes</span><span class="menu-arrow"></span></a>
 									<ul>
-										<li class="submenu submenu-two"><a href="javascript:void(0);">Invoice<span class="menu-arrow inside-submenu"></span></a>
-											<ul>
-												<li><a href="invoice-settings.html">Invoice Settings</a></li>
-												<li><a href="invoice-template.html">Invoice Template</a></li>
-											</ul>
-										</li>
-										<li><a href="printer-settings.html">Printer</a></li>
-										<li><a href="pos-settings.html">POS</a></li>
-										<li><a href="custom-fields.html">Custom Fields</a></li>
+										<li><a href="#">Requested Quotes</a></li>
+										<li><a href="#">Generated Quotes</a></li>
+									</ul>
+								</li>
+								<li class="submenu">
+									<a href="javascript:void(0);"><i class="ti ti-world fs-16 me-2"></i><span>Performa Invoice (PI)</span><span class="menu-arrow"></span></a>
+									<ul>
+										<li><a href="#">Requested Performa</a></li>
+										<li><a href="#">Generated Performa</a></li>
+									</ul>
+								</li>
+								<li class="submenu">
+									<a href="javascript:void(0);"><i class="ti ti-file fs-16 me-2"></i><span>Order Management</span><span class="menu-arrow"></span></a>
+									<ul>
+										<li><a href="#">Create order</a></li>
+										<li><a href="#">New Order</a></li>
+										<li><a href="#">Pending Order</a></li>
+										<li><a href="#">Completed Order</a></li>
+										<li><a href="#">View Pick Tickets</a></li>
+										<li><a href="#">Cancelled Order</a></li>
+									</ul>
+								</li>
+								<li><a href="#"><i class="ti ti-exchange fs-16 me-2"></i><span>Sale Return</span></a></li>
+								<li><a href="#"><i class="ti ti-wallpaper fs-16 me-2"></i><span>Invoices</span></a></li>
+								<li class="submenu">
+									<a href="javascript:void(0);"><i class="ti ti-compass fs-16 me-2"></i><span>Dispatch Management</span><span class="menu-arrow"></span></a>
+									<ul>
+										<li><a href="#">Dispatch Plan</a></li>
+										<li><a href="#">Ready to Deliver</a></li>
+										<li><a href="#">Delivered</a></li>
+									</ul>
+								</li>
+								<li class="submenu">
+									<a href="javascript:void(0);"><i class="ti ti-arrows-shuffle fs-16 me-2"></i><span>Service CheckList</span><span class="menu-arrow"></span></a>
+									<ul>
+										<li><a href="#">Category</a></li>
+										<li><a href="#">CheckList</a></li>
+									</ul>
+								</li>
+								<li class="submenu">
+									<a href="javascript:void(0);"><i class="ti ti-businessplan fs-16 me-2"></i><span>Service Management</span><span class="menu-arrow"></span></a>
+									<ul>
+										<li><a href="#">Add Service</a></li>
+										<li><a href="#">Pending Service</a></li>
+										<li><a href="#">Processing Service</a></li>
+										<li><a href="#">Complete Service</a></li>
+										<li><a href="#">Rejected Service</a></li>
+										<li><a href="#">All Service</a></li>
 									</ul>
 								</li>
 								<li>

@@ -335,13 +335,11 @@ class MasterController extends Controller
         $request->validate([
             'file' => 'required|mimes:csv'
         ]);
+
         try {
             $file = $request->file('file');
             $handle = fopen($file->getRealPath(), "r");
             $businessCategories = BusinessCategory::pluck('id', 'name')->toArray();
-            $productCategories = ProductCategory::pluck('id', 'name')->toArray();
-            $productSubcategories = ProductSubcategory::pluck('id', 'name')->toArray();
-            $uoms = ProductUom::pluck('id', 'name')->toArray();
             $existingHsn = Product::pluck('hsn_code')->toArray();
             $hsnCheck = [];
             $products = [];
@@ -351,22 +349,30 @@ class MasterController extends Controller
                     $row++;
                     continue;
                 }
-                $business_category_id = $businessCategories[$data[1]] ?? null;
-                $product_category_id = $productCategories[$data[2]] ?? null;
-                $product_subcategory_id = $productSubcategories[$data[3]] ?? null;
-                $product_uom_id = $uoms[$data[4]] ?? null;
-                $hsn = $data[8];
-
-                if (
-                    empty($data[0]) ||
-                    !$business_category_id ||
-                    !$product_category_id ||
-                    !$product_subcategory_id ||
-                    !$product_uom_id
-                ) {
+                if (empty($data[0])) {
                     $row++;
                     continue;
                 }
+                $business_category_id = $businessCategories[$data[1]] ?? null;
+
+                if (!$business_category_id) {
+                    $row++;
+                    continue;
+                }
+                $category = ProductCategory::firstOrCreate(
+                    ['name' => $data[2]],
+                    ['business_category_id' => $business_category_id]
+                );
+                $subcategory = ProductSubcategory::firstOrCreate(
+                    [
+                        'name' => $data[3],
+                        'product_category_id' => $category->id
+                    ]
+                );
+                $uom = ProductUom::firstOrCreate([
+                    'name' => $data[4]
+                ]);
+                $hsn = $data[8];
                 if (in_array($hsn, $existingHsn) || in_array($hsn, $hsnCheck)) {
                     $row++;
                     continue;
@@ -377,13 +383,13 @@ class MasterController extends Controller
                     'name' => $data[0],
                     'barcode' => $barcode,
                     'business_category_id' => $business_category_id,
-                    'product_category_id' => $product_category_id,
-                    'product_subcategory_id' => $product_subcategory_id,
-                    'product_uom_id' => $product_uom_id,
+                    'product_category_id' => $category->id,
+                    'product_subcategory_id' => $subcategory->id,
+                    'product_uom_id' => $uom->id,
                     'price' => $data[5],
                     'dealer_price' => $data[6],
                     'purchase_price' => $data[7],
-                    'hsn_code' => $data[8],
+                    'hsn_code' => $hsn,
                     'gst_tax' => $data[9],
                     'cess_tax' => $data[10],
                     'min_stock' => $data[11],
