@@ -15,33 +15,42 @@ class Product extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'product_code',
-        'product_name',
-        'category_id',
-        'subcategory_id',
-        'price',
-        'stock_qty',
+        'business_category_id',
+        'product_category_id',
+        'product_subcategory_id',
+        'product_uom_id',
+        'warranty_days',
+        'name',
         'description',
-        'sku',
-        'cost_price',
-        'active',
+        'img',
+        'price',
+        'dealer_price',
+        'purchase_price',
+        'hsn_code',
+        'min_stock',
+        'gst_tax',
+        'cess_tax',
+        'active'
     ];
 
-    protected $casts = [
-        'price' => 'decimal:2',
-        'cost_price' => 'decimal:2',
-        'stock_qty' => 'integer',
-        'active' => 'boolean',
-    ];
-
-    public function category()
+    public function businessCategory()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(BusinessCategory::class, 'business_category_id');
     }
 
-    public function subCategory()
+    public function productCategory()
     {
-        return $this->belongsTo(SubCategory::class, 'subcategory_id');
+        return $this->belongsTo(ProductCategory::class, 'product_category_id');
+    }
+
+    public function productSubcategory()
+    {
+        return $this->belongsTo(ProductSubcategory::class, 'product_subcategory_id');
+    }
+
+     public function productUOM()
+    {
+        return $this->belongsTo(ProductUOM::class, 'product_uom_id');
     }
 
     public function leadProducts()

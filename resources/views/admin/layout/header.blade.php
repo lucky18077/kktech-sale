@@ -464,21 +464,23 @@
 										<li><a href="{{ route('department') }}">Department</a></li>
 										<li><a href="{{ route('property-stage') }}">Property Stage</a></li>
 										<li><a href="{{ route('source') }}">Sources</a></li>
-										<li><a href="{{ route('product-category') }}">Property Category</a></li>
-										<li><a href="{{ route('product-sub-category') }}">Property Sub Category</a></li>
+										<li><a href="{{ route('property-category') }}">Property Category</a></li>
+										<li><a href="{{ route('property-sub-category') }}">Property Sub Category</a></li>
 									</ul>
 								</li>
 							</ul>
 						</li>
 
 						<li class="submenu-open">
-							<h6 class="submenu-hdr">Sales</h6>
+							<h6 class="submenu-hdr">Product Master</h6>
 							<ul>
 								<li class="submenu">
-									<a href="javascript:void(0);"><i class="ti ti-layout-grid fs-16 me-2"></i><span>Sales</span><span class="menu-arrow"></span></a>
+									<a href="javascript:void(0);"><i class="ti ti-layout-grid fs-16 me-2"></i><span>Product Master</span><span class="menu-arrow"></span></a>
 									<ul>
-										<li><a href="online-orders.html">Online Orders</a></li>
-										<li><a href="pos-orders.html">POS Orders</a></li>
+										<li><a href="{{ route('product-category') }}">Product Category</a></li>
+										<li><a href="{{ route('product-sub-category') }}">Product Sub Category</a></li>
+										<li><a href="{{ route('product-uom') }}">Product UOM</a></li>
+										<li><a href="{{ route('products') }}">Product</a></li>
 									</ul>
 								</li>
 								<li><a href="invoice.html"><i class="ti ti-file-invoice fs-16 me-2"></i><span>Invoices</span></a></li>
@@ -572,7 +574,7 @@
 								<li><a href="income-report.html"><i class="ti ti-chart-ppf fs-16 me-2"></i><span>Income Report</span></a></li>
 							</ul>
 						</li>
-						 
+
 						<li class="submenu-open">
 							<h6 class="submenu-hdr">User Management</h6>
 							<ul>

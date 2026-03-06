@@ -1,7 +1,7 @@
 @extends('admin.layout.main')
 @section('main-section')
 @push('title')
-<title>Product Sub-Category</title>
+<title>Property Sub-Category</title>
 @endpush
 
 <div class="page-wrapper">
@@ -9,18 +9,18 @@
         <div class="page-header">
             <div class="add-item d-flex">
                 <div class="page-title">
-                    <h4 class="fw-bold">Product Sub-Category</h4>
-                    <h6>Manage product sub-categories</h6>
+                    <h4 class="fw-bold">Property Sub-Category</h4>
+                    <h6>Manage property sub-categories</h6>
                 </div>
             </div>
 
             <div class="page-btn">
-                <button class="btn btn-primary addProductSubCategory"><i class="ti ti-circle-plus me-1"></i>Add Product Sub-Category</button>
+                <button class="btn btn-primary addPropertySubCategory"><i class="ti ti-circle-plus me-1"></i>Add Property Sub-Category</button>
             </div>
 
         </div>
 
-        <!-- /product list -->
+        <!-- /property list -->
         <div class="card">
             <div class="card-header d-flex align-items-center justify-content-between flex-wrap row-gap-3">
                 <div class="search-set">
@@ -38,8 +38,8 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>S.No</th>
-                                <th>Product Category</th>
-                                <th>Product Sub-Category</th>
+                                <th>Property Category</th>
+                                <th>Property Sub-Category</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -48,10 +48,10 @@
                             @php
                             $sno=1;
                             @endphp
-                            @foreach ($productSubCategories as $item)
+                            @foreach ($propertySubCategories as $item)
                             <tr>
                                 <td>{{ $sno++ }}</td>
-                                <td>{{ $item->productCategory->name }}</td>
+                                <td>{{ $item->propertyCategory->name }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>
                                     @if($item->active == 1)
@@ -62,7 +62,7 @@
                                 </td>
                                 <td class="action-table-data">
                                     <div class="edit-delete-action">
-                                        <a class="me-2 p-2 editProductSubCategory" data-data='@json($item)'>
+                                        <a class="me-2 p-2 editPropertySubCategory" data-data='@json($item)'>
                                             <i data-feather="edit" class="feather-edit"></i>
                                         </a>
                                     </div>
@@ -74,29 +74,30 @@
                 </div>
             </div>
         </div>
-        <!-- /product list -->
+        <!-- /property list -->
     </div>
 
-    <!-- Add product sub-category -->
-    <div class="modal fade" id="productSubCategory">
+    <!-- Add property sub-category -->
+    <div class="modal fade" id="propertySubCategory">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="page-title">
-                        <h4 id="submitBtn">Add Product Sub-Category</h4>
+                        <h4 id="submitBtn">Add Property Sub-Category</h4>
                     </div>
                     <button type="button" class="close bg-danger text-white fs-16" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('product-sub-category-save') }}" method="POST">
+                <form action="{{ route('property-sub-category-save') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <input type="hidden" name="id">
                         <div class="mb-3">
-                            <label class="form-label">Product Category <span class="text-danger ms-1">*</span></label>
-                            <select class="select" name="product_category_id" required>
-                                @foreach ($productCategories as $category)
+                            <label class="form-label">Property Category <span class="text-danger ms-1">*</span></label>
+                            <select class="select" name="property_category_id" required>
+                                <option value="">Select Property Category</option>
+                                @foreach ($propertyCategories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
@@ -121,20 +122,20 @@
             </div>
         </div>
     </div>
-    <!-- /Add department -->
+    <!-- /Add property sub-category -->
 
     <script>
-        $(".addProductSubCategory").on("click", function() {
-            $("#title").text("Add Product Sub-Category");
-            $("#submitBtn").text("Add Product Sub-Category");
+        $(".addPropertySubCategory").on("click", function() {
+            $("#title").text("Add Property Sub-Category");
+            $("#submitBtn").text("Add Property Sub-Category");
             $("input[name='id']").val('');
             $("input[name='name']").val('');
             $("select[name='active']").val('');
-            $("#productSubCategory").modal("show");
+            $("#propertySubCategory").modal("show");
         });
-        $(document).on("click", ".editProductSubCategory", function() {
-            $("#title").text("Edit Product Sub-Category");
-            $("#submitBtn").text("Update Product Sub-Category");
+        $(document).on("click", ".editPropertySubCategory", function() {
+            $("#title").text("Edit Property Sub-Category");
+            $("#submitBtn").text("Update Property Sub-Category");
             var data = $(this).data("data");
             $.each(data, function(i, o) {
 
@@ -142,7 +143,7 @@
                 $("select[name='" + i + "']").val(o);
 
             });
-            $("#productSubCategory").modal("show");
+            $("#propertySubCategory").modal("show");
         });
     </script>
     @endsection

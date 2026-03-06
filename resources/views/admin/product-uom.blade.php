@@ -1,7 +1,7 @@
 @extends('admin.layout.main')
 @section('main-section')
 @push('title')
-<title>Product Sub-Category</title>
+<title>Product Unit Of Measurement</title>
 @endpush
 
 <div class="page-wrapper">
@@ -9,15 +9,13 @@
         <div class="page-header">
             <div class="add-item d-flex">
                 <div class="page-title">
-                    <h4 class="fw-bold">Product Sub-Category</h4>
-                    <h6>Manage product sub-categories</h6>
+                    <h4 class="fw-bold">Product Unit Of Measurement</h4>
+                    <h6>Manage product UOM</h6>
                 </div>
             </div>
-
             <div class="page-btn">
-                <button class="btn btn-primary addProductSubCategory"><i class="ti ti-circle-plus me-1"></i>Add Product Sub-Category</button>
+                <button class="btn btn-primary addProductUOM"><i class="ti ti-circle-plus me-1"></i>Add Product UOM</button>
             </div>
-
         </div>
 
         <!-- /product list -->
@@ -38,8 +36,7 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>S.No</th>
-                                <th>Product Category</th>
-                                <th>Product Sub-Category</th>
+                                <th>Product UOM</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -48,10 +45,9 @@
                             @php
                             $sno=1;
                             @endphp
-                            @foreach ($productSubCategories as $item)
+                            @foreach ($productUOMs as $item)
                             <tr>
                                 <td>{{ $sno++ }}</td>
-                                <td>{{ $item->productCategory->name }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>
                                     @if($item->active == 1)
@@ -62,7 +58,7 @@
                                 </td>
                                 <td class="action-table-data">
                                     <div class="edit-delete-action">
-                                        <a class="me-2 p-2 editProductSubCategory" data-data='@json($item)'>
+                                        <a class="me-2 p-2 editProductUOM" data-data='@json($item)'>
                                             <i data-feather="edit" class="feather-edit"></i>
                                         </a>
                                     </div>
@@ -77,30 +73,22 @@
         <!-- /product list -->
     </div>
 
-    <!-- Add product sub-category -->
-    <div class="modal fade" id="productSubCategory">
+    <!-- Add product uom -->
+    <div class="modal fade" id="productUOM">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="page-title">
-                        <h4 id="submitBtn">Add Product Sub-Category</h4>
+                        <h4 id="submitBtn">Add Product UOM</h4>
                     </div>
                     <button type="button" class="close bg-danger text-white fs-16" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('product-sub-category-save') }}" method="POST">
+                <form action="{{ route('product-uom-save') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <input type="hidden" name="id">
-                        <div class="mb-3">
-                            <label class="form-label">Product Category <span class="text-danger ms-1">*</span></label>
-                            <select class="select" name="product_category_id" required>
-                                @foreach ($productCategories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
                         <div class="mb-3">
                             <label class="form-label">Name <span class="text-danger ms-1">*</span></label>
                             <input type="text" class="form-control" name="name" required>
@@ -121,28 +109,26 @@
             </div>
         </div>
     </div>
-    <!-- /Add department -->
+    <!-- /Add product uom -->
 
     <script>
-        $(".addProductSubCategory").on("click", function() {
-            $("#title").text("Add Product Sub-Category");
-            $("#submitBtn").text("Add Product Sub-Category");
+        $(".addProductUOM").on("click", function() {
+            $("#title").text("Add Product UOM");
+            $("#submitBtn").text("Add Product UOM");
             $("input[name='id']").val('');
             $("input[name='name']").val('');
             $("select[name='active']").val('');
-            $("#productSubCategory").modal("show");
+            $("#productUOM").modal("show");
         });
-        $(document).on("click", ".editProductSubCategory", function() {
-            $("#title").text("Edit Product Sub-Category");
-            $("#submitBtn").text("Update Product Sub-Category");
+        $(document).on("click", ".editProductUOM", function() {
+            $("#title").text("Edit Product UOM");
+            $("#submitBtn").text("Update Product UOM");
             var data = $(this).data("data");
             $.each(data, function(i, o) {
-
                 $("input[name='" + i + "']").val(o);
                 $("select[name='" + i + "']").val(o);
-
             });
-            $("#productSubCategory").modal("show");
+            $("#productUOM").modal("show");
         });
     </script>
     @endsection
