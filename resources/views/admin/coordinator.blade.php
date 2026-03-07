@@ -118,10 +118,6 @@
 
                     <form action="/coordinator-save" method="POST">
                         @csrf
-
-                        <!-- Hidden ID for update -->
-                        <input type="hidden" name="id" id="edit_id">
-
                         <div class="modal-body">
 							<input type="hidden" name="id" id="edit_id">
                             <div class="mb-3">
@@ -142,27 +138,12 @@
                             <div class="mb-3">
                                 <label class="form-label">Role <span class="text-danger ms-1" required>*</span></label>
                                 <select class="form-select" id="usr_role" name="usr_role">
-                                    <option value="">----Select Role----</option>
-                                    <option value="Sales coordinator">Sales coordinator</option>
+                                    <option value="Sales coordinator" selected>Sales coordinator</option>
                                 </select>
                             </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Sales Area <span class="text-danger ms-1" required>*</span></label>
-                                <select class="form-select" id="area" name="area" required>
-                                    <option value="">----Select Area----</option>
-                                    @foreach($areaMst as $area)
-                                        <option value="{{ $area->id }}">
-                                            {{ $area->area_name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
                             <div class="mb-3">
                                 <label class="form-label">Business Category<span class="text-danger ms-1" required>*</span></label>
-
-                                <select class="form-control" id="business_category" name="business_category[]" multiple required>
+                                <select class="form-select" id="business_category" name="business_category[]" multiple required>
                                     @foreach($businessCategories as $businessCategory)
                                         <option value="{{ $businessCategory->id }}">
                                             {{ $businessCategory->name }}
@@ -173,7 +154,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Active <span class="text-danger ms-1" required>*</span></label>
-                                <select class="form-control" id="usr_active" name="usr_active" required>
+                                <select class="form-select" id="usr_active" name="usr_active" required>
                                     <option value="1">Active</option>
                                     <option value="0">Inactive</option>
                                 </select>
@@ -181,7 +162,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Password <span class="text-danger ms-1" required>*</span></label>
-                                <input type="text" class="form-control" name="password" id="password" required>
+                                <input type="password" class="form-control" name="password" id="password" required>
                             </div>
 
                         </div>
@@ -215,16 +196,14 @@
     $(document).on("click",".editCoordinator",function(){
 
         var data = $(this).data("coordinator");
-
         $("#modalTitle").text("Edit Coordinator");
         $("#submitBtn").text("Update Coordinator");
-
         $("#edit_id").val(data.id);
         $("#name").val(data.name);
         $("#email").val(data.email);
-        $("#mobile").val(data.mobile);
+        $("#mobile").val(data.phone);
         $("#usr_role").val(data.user_type);
-        $("#usr_active").val(data.active);
+        $("#usr_active").val(data.is_active);
         $("#password").val(data.password);
 
         $("#add-category").modal("show");

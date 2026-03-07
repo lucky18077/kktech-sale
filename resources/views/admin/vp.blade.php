@@ -213,13 +213,13 @@
 		<script>
 			$(".addVp").on("click", function() {
 				$("#title").text("Add VP");
-				$("#submitBtn").text("Add Team");
+				$("#submitBtn").text("Add VP");
 				$("input, select, textarea").not("[name='_token']").val("");
 				$("#addVp").modal("show");
 			});
 			$(document).on("click", ".editVp", function() {
-				$("#title").text("Edit Team");
-				$("#submitBtn").text("Update Team");
+				$("#title").text("Edit VP");
+				$("#submitBtn").text("Update VP");
 				var data = $(this).data("data");
 				$.each(data, function(i, o) {
 					$("input[name=" + i + "]").val(o)
