@@ -16,20 +16,6 @@
 								<h6>Manage your Vice Presidnets</h6>
 							</div>
 						</div>
-						<ul class="table-top-head">
-							<li>
-								<a data-bs-toggle="tooltip" data-bs-placement="top" title="Pdf"><img src="assets/img/icons/pdf.svg" alt="img"></a>
-							</li>
-							<li>
-								<a data-bs-toggle="tooltip" data-bs-placement="top" title="Excel"><img src="assets/img/icons/excel.svg" alt="img"></a>
-							</li>
-							<li>
-								<a data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"><i class="ti ti-refresh"></i></a>
-							</li>
-							<li>
-								<a data-bs-toggle="tooltip" data-bs-placement="top" title="Collapse" id="collapse-header"><i class="ti ti-chevron-up"></i></a>
-							</li>
-						</ul>
 						<div class="page-btn">
 							<div class="page-btn">
 							<a href="#" class="btn btn-primary addVp" data-bs-toggle="modal" data-bs-target="#add-category"><i class="ti ti-circle-plus me-1"></i>Add VP</a>
@@ -150,7 +136,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<div class="page-title">
-							<h4>Add VP</h4>
+							<h4 id = 'title'>Add VP</h4>
 						</div>
 						<button type="button" class="close bg-danger text-white fs-16" data-bs-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>

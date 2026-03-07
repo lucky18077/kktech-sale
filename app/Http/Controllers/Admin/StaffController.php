@@ -23,12 +23,9 @@ class StaffController extends Controller
     {
         $adminId = Auth::user()->id;
         
-        // Get only unassigned coordinators (those without a parent_id)
+        // Get only coordinators under this admin (unassigned or assigned to VPs under this admin)
         $users = User::where('user_type', 'Sales Coordinator')
-            ->where(function($q) {
-                $q->whereNull('parent_id')
-                  ->orWhere('parent_id', '');
-            })
+            ->where('parent_id', $adminId)
             ->get();
         
         // Get VPs created by this admin only
@@ -66,8 +63,8 @@ class StaffController extends Controller
             ]);
             
             // Handle coordinator reassignment during VP edit
-            // First, unassign all coordinators currently assigned to this VP (handle both old comma-separated and new single-value formats)
-            DB::statement('UPDATE users SET parent_id = NULL WHERE parent_id = ? AND user_type = "Sales Coordinator"', [$user->id]);
+            // First, unassign all coordinators currently assigned to this VP (set back to admin)
+            DB::statement('UPDATE users SET parent_id = ? WHERE parent_id = ? AND user_type = "Sales Coordinator"', [$user->parent_id, $user->id]);
             
             // Then assign selected coordinators to this VP
             if ($request->coordinators) {
@@ -99,18 +96,18 @@ class StaffController extends Controller
 
     public function getVpCoordinators($vpId)
     {
+        $vp = User::findOrFail($vpId);
+        $adminId = $vp->parent_id;
+        
         // Get currently assigned coordinators to this VP
         $assignedIds = User::where('parent_id', $vpId)
             ->where('user_type', 'Sales Coordinator')
             ->pluck('id')
             ->toArray();
         
-        // Get all unassigned coordinators (those not assigned to anyone)
+        // Get unassigned coordinators under the same admin
         $unassignedCoordinators = User::where('user_type', 'Sales Coordinator')
-            ->where(function($q) {
-                $q->whereNull('parent_id')
-                  ->orWhere('parent_id', '');
-            })
+            ->where('parent_id', $adminId)
             ->select('id', 'name')
             ->get()
             ->toArray();
@@ -174,12 +171,9 @@ class StaffController extends Controller
         // Get only unassigned business categories for the dropdown
         $businessCategories = BusinessCategory::whereNotIn('id', array_unique($assignedCategoryIds))->get();
         
-        // Get unassigned coordinators (those without a parent_id or parent_id is null/empty)
+        // Get unassigned coordinators (those under this admin, not assigned to any VP)
         $unassignedCoordinators = User::where('user_type', 'Sales Coordinator')
-            ->where(function($q) {
-                $q->whereNull('parent_id')
-                  ->orWhere('parent_id', '');
-            })
+            ->where('parent_id', $adminId)
             ->where('is_active', 1)
             ->get();
         
@@ -203,10 +197,8 @@ class StaffController extends Controller
             'usr_role' => 'required'
         ];
 
-        // Only require parent_id if creating new coordinator (not editing existing)
-        if (!$request->id) {
-            $rules['parent_id'] = 'required';
-        }
+        // parent_id is optional for new coordinators (will default to admin)
+        // For editing, parent_id cannot be changed if already assigned
 
         $validator = validator($request->all(), $rules);
 
@@ -240,13 +232,15 @@ class StaffController extends Controller
             return back()->with('error', 'Coordinator with this email already exists.');
         }
 
-        // Verify selected VP belongs to same admin
-        $vp = User::findOrFail($request->parent_id);
-        $adminIds = explode(',', Auth::user()->parent_id ?? '');
-        $adminIds[] = Auth::user()->id;
-        
-        if (!in_array($vp->parent_id, $adminIds) && $vp->parent_id != Auth::id()) {
-            return back()->with('error', 'Selected VP does not belong to your admin hierarchy.');
+        // Verify selected VP belongs to same admin (if provided)
+        if ($request->parent_id) {
+            $vp = User::findOrFail($request->parent_id);
+            $adminIds = explode(',', Auth::user()->parent_id ?? '');
+            $adminIds[] = Auth::user()->id;
+            
+            if (!in_array($vp->parent_id, $adminIds) && $vp->parent_id != Auth::id()) {
+                return back()->with('error', 'Selected VP does not belong to your admin hierarchy.');
+            }
         }
 
         User::create([
@@ -254,7 +248,7 @@ class StaffController extends Controller
             'email' => $request->email,
             'password' => $request->password,
             'phone' => $request->mobile,
-            'parent_id' => $request->parent_id,  // Assign to selected VP - permanent
+            'parent_id' => $request->parent_id ?: Auth::id(),  // Assign to selected VP or admin if not specified
             'business_category' => implode(',', $request->business_category),
             'is_active' => $request->usr_active,
             'user_type' => $request->usr_role

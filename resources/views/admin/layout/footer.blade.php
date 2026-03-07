@@ -182,6 +182,13 @@
 <!-- Color Picker JS -->
 <script data-cfasync="false" src="/admin/js/pickr.es5.min.js"></script>
 
+<!-- Moment.js for Date/Time -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+<!-- DateRangePicker JS and CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 <!-- Custom JS -->
 <script data-cfasync="false" src="/admin/js/theme-colorpicker.js"></script>
 <script data-cfasync="false" src="/admin/js/script.js"></script>
