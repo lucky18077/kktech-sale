@@ -48,6 +48,9 @@
 	<!-- Datatable CSS -->
 	<link rel="stylesheet" href="/admin/css/dataTables.bootstrap5.min.css">
 
+	<!-- DataTables Buttons CSS (1.x compatible) -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap4.min.css">
+
 	<!-- Fontawesome CSS -->
 	<link rel="stylesheet" href="/admin/css/fontawesome.min.css">
 	<link rel="stylesheet" href="/admin/css/all.min.css">

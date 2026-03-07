@@ -21,18 +21,28 @@ class StaffController extends Controller
 
     public function showVps()
     {
-        $parentIds = explode(',', Auth::user()->parent_id ?? '');
-        $users = User::where('user_type', 'sales coordinator')
-            ->whereNotIn('id', $parentIds)
+        $adminId = Auth::user()->id;
+        
+        // Get only unassigned coordinators (those without a parent_id)
+        $users = User::where('user_type', 'Sales Coordinator')
+            ->where(function($q) {
+                $q->whereNull('parent_id')
+                  ->orWhere('parent_id', '');
+            })
             ->get();
-        $vicePresidents = User::where('user_type', 'Vice President')->get();
+        
+        // Get VPs created by this admin only
+        $vicePresidents = User::where('user_type', 'Vice President')
+            ->where('parent_id', $adminId)
+            ->get();
+        
         return view('admin.vp', compact('users', 'vicePresidents'));
     }
 
     public function addVp(Request $request)
     {
         $validator = validator($request->all(), [
-            'name' => 'required|string|max:255',
+            'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
             'phone' => 'required',
@@ -51,76 +61,173 @@ class StaffController extends Controller
                 'email' => $request->email,
                 'password' => $request->password,
                 'phone' => $request->phone,
-                'parent_id' => $request->parent_id,
                 'is_active' => $request->is_active,
                 'user_type' => $request->usr_role
             ]);
+            
+            // Handle coordinator reassignment during VP edit
+            // First, unassign all coordinators currently assigned to this VP (handle both old comma-separated and new single-value formats)
+            DB::statement('UPDATE users SET parent_id = NULL WHERE parent_id = ? AND user_type = "Sales Coordinator"', [$user->id]);
+            
+            // Then assign selected coordinators to this VP
+            if ($request->coordinators) {
+                User::whereIn('id', $request->coordinators)->update(['parent_id' => $user->id]);
+            }
+            
             return back()->with('success', 'VP updated successfully');
         }
         if (User::where('phone', $request->phone)->exists()) {
             return back()->with('error', 'VP with this phone number already exists.');
         }
-        User::create([
+        $vp = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
             'phone' => $request->phone,
-            'parent_id' => $request->parent_id,
+            'parent_id' => Auth::id(),
             'is_active' => $request->is_active,
             'user_type' => $request->usr_role
         ]);
 
+        // Assign selected coordinators to this VP
+        if ($request->coordinators) {
+            User::whereIn('id', $request->coordinators)->update(['parent_id' => $vp->id]);
+        }
+
         return back()->with('success', 'VP Added Successfully');
+    }
+
+    public function getVpCoordinators($vpId)
+    {
+        // Get currently assigned coordinators to this VP
+        $assignedIds = User::where('parent_id', $vpId)
+            ->where('user_type', 'Sales Coordinator')
+            ->pluck('id')
+            ->toArray();
+        
+        // Get all unassigned coordinators (those not assigned to anyone)
+        $unassignedCoordinators = User::where('user_type', 'Sales Coordinator')
+            ->where(function($q) {
+                $q->whereNull('parent_id')
+                  ->orWhere('parent_id', '');
+            })
+            ->select('id', 'name')
+            ->get()
+            ->toArray();
+        
+        // Get currently assigned coordinators with their details (for display with context)
+        $currentAssignedCoordinators = User::whereIn('id', $assignedIds)
+            ->where('user_type', 'Sales Coordinator')
+            ->select('id', 'name')
+            ->get()
+            ->toArray();
+        
+        // Merge: available (unassigned) + currently assigned
+        $availableCoordinators = array_merge($unassignedCoordinators, $currentAssignedCoordinators);
+        // Remove duplicates
+        $seen = [];
+        $availableCoordinators = array_filter($availableCoordinators, function($item) use (&$seen) {
+            if (in_array($item['id'], $seen)) {
+                return false;
+            }
+            $seen[] = $item['id'];
+            return true;
+        });
+        
+        return response()->json([
+            'assigned' => $assignedIds,
+            'available' => array_values($availableCoordinators)  // Re-index array
+        ]);
     }
 
     /* -------------------- Coordinators -------------------- */
 
     public function showCoordinators()
     {
-        $parentIds = explode(',', Auth::user()->parent_id ?? '');
-        $parentIds[] = Auth::user()->id;
+        $adminId = Auth::user()->id;
 
-        $assignedCategories = User::where('user_type', 'Sales Coordinator')
-            ->pluck('business_category')
-            ->filter()
-            ->map(fn($item) => explode(',', $item))
-            ->flatten()
-            ->unique()
+        // Get all VPs under this admin
+        $vpIds = User::where('user_type', 'Vice President')
+            ->where('parent_id', $adminId)
+            ->where('is_active', 1)
+            ->pluck('id')
             ->toArray();
 
+        // Get coordinators assigned to these VPs
         $coordinates = User::where('user_type', 'Sales Coordinator')
-            ->whereIn('parent_id', $parentIds)
+            ->whereIn('parent_id', $vpIds)
+            ->with('parent')
             ->get();
-        $businessCategories = BusinessCategory::whereNotIn('id', $assignedCategories)->get();
-        return view('admin.coordinator', compact('businessCategories', 'coordinates'));
+        
+        // Get all business category IDs that are already assigned to ANY coordinator
+        $assignedCategoryIds = [];
+        foreach ($coordinates as $coordinator) {
+            if ($coordinator->business_category) {
+                $categoryIds = array_filter(array_map('trim', explode(',', $coordinator->business_category)));
+                $assignedCategoryIds = array_merge($assignedCategoryIds, $categoryIds);
+            }
+        }
+        
+        // Get all categories (for reference in case of editing)
+        $allCategories = BusinessCategory::all()->keyBy('id');
+        
+        // Get only unassigned business categories for the dropdown
+        $businessCategories = BusinessCategory::whereNotIn('id', array_unique($assignedCategoryIds))->get();
+        
+        // Get unassigned coordinators (those without a parent_id or parent_id is null/empty)
+        $unassignedCoordinators = User::where('user_type', 'Sales Coordinator')
+            ->where(function($q) {
+                $q->whereNull('parent_id')
+                  ->orWhere('parent_id', '');
+            })
+            ->where('is_active', 1)
+            ->get();
+        
+        // Get VPs from same admin (coordinators can only be assigned to VPs under same admin)
+        $vicePresidents = User::where('user_type', 'Vice President')
+            ->where('parent_id', $adminId)
+            ->where('is_active', 1)
+            ->get();
+        
+        return view('admin.coordinator', compact('businessCategories', 'coordinates', 'allCategories', 'unassignedCoordinators', 'vicePresidents'));
     }
 
     public function addCoordinator(Request $request)
     {
-
-        $validator = validator($request->all(), [
+        $rules = [
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
             'business_category' => 'required',
             'usr_active' => 'required',
             'usr_role' => 'required'
-        ]);
+        ];
+
+        // Only require parent_id if creating new coordinator (not editing existing)
+        if (!$request->id) {
+            $rules['parent_id'] = 'required';
+        }
+
+        $validator = validator($request->all(), $rules);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
         if ($request->id) {
-
             $user = User::findOrFail($request->id);
+
+            // Only allow editing if coordinator is already assigned (already has parent_id)
+            if (!$user->parent_id) {
+                return back()->with('error', 'Cannot edit coordinator. Please assign to a VP first.');
+            }
 
             $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => $request->password,
                 'phone' => $request->mobile,
-                'parent_id' => Auth::id(),
+                // parent_id is locked - cannot be changed once assigned
                 'business_category' => implode(',', $request->business_category ?? []),
                 'is_active' => $request->usr_active,
                 'user_type' => $request->usr_role
@@ -133,12 +240,21 @@ class StaffController extends Controller
             return back()->with('error', 'Coordinator with this email already exists.');
         }
 
+        // Verify selected VP belongs to same admin
+        $vp = User::findOrFail($request->parent_id);
+        $adminIds = explode(',', Auth::user()->parent_id ?? '');
+        $adminIds[] = Auth::user()->id;
+        
+        if (!in_array($vp->parent_id, $adminIds) && $vp->parent_id != Auth::id()) {
+            return back()->with('error', 'Selected VP does not belong to your admin hierarchy.');
+        }
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
             'phone' => $request->mobile,
-            'parent_id' => Auth::id(),
+            'parent_id' => $request->parent_id,  // Assign to selected VP - permanent
             'business_category' => implode(',', $request->business_category),
             'is_active' => $request->usr_active,
             'user_type' => $request->usr_role
@@ -154,7 +270,7 @@ class StaffController extends Controller
 
         $salesManagers = DB::table('users as a')
             ->join('designation as b', 'a.designation', '=', 'b.id')
-            ->select('a.*', 'b.name as designation')
+            ->select('a.*', 'b.name as designation_name', 'a.designation as designation')
             ->whereIn('a.user_type', ['Sales manager', 'Sales executive'])
             ->get();
 
@@ -254,7 +370,7 @@ class StaffController extends Controller
         ]);
 
         if ($validator->fails()) {
-            
+            return back()->withErrors($validator)->withInput();
         }
 
         OfficeTeam::updateOrCreate(
@@ -362,8 +478,5 @@ class StaffController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'User Added Successfully.');
-    }
-    public function showSalesExecutiveDealers(){
-        
     }
 }

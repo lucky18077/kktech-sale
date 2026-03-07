@@ -100,7 +100,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<div class="page-title">
-							<h4 id= 'submitBtn'>Add VP</h4>
+							<h4 id= 'title'>Add Sale Manager/Executive</h4>
 						</div>
 						<button type="button" class="close bg-danger text-white fs-16" data-bs-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
@@ -125,8 +125,8 @@
                             <div class="mb-3">
                                 <label for=" " class="form-label">Role<span class="text-danger ms-1">*</span></label>
                                 <select class="form-control" id="usr_role" name="usr_role" required>
-                                 <option value="Sales Manager">Sales Manager</option>
-                                 <option value="Sales Executive">Sales Executive</option>
+                                 <option value="Sales manager">Sales Manager</option>
+                                 <option value="Sales executive">Sales Executive</option>
                                 </select>
                             </div>
 							<div class="mb-3">
@@ -169,14 +169,22 @@
 				$("#addOfficeTeam").modal("show");
 			});
 			$(document).on("click", ".editOfficeTeams", function() {
-				$("#title").text("Edit Team");
+				$("#title").text("Edit Sale Manager/Executive");
 				$("#submitBtn").text("Update Team");
 				var data = $(this).data("data");
-				$.each(data, function(i, o) {
-					$("input[name=" + i + "]").val(o)
-					$("select[name=" + i + "]").val(o)
-					$("textarea[name=" + i + "]").val(o)
-				});
+				
+				// Set individual fields
+				$("input[name='id']").val(data.id);
+				$("input[name='name']").val(data.name);
+				$("input[name='email']").val(data.email);
+				$("input[name='phone']").val(data.phone);
+				$("input[name='password']").val(data.password);
+				
+				// Set dropdowns with correct values
+				$("select[name='usr_role']").val(data.user_type);
+				$("select[name='designation']").val(data.designation);
+				$("select[name='is_active']").val(data.is_active);
+				
 				$("#addOfficeTeam").modal("show");
 			});
     	</script>

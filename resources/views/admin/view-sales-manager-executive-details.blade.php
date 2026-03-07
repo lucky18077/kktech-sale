@@ -86,13 +86,13 @@
 
                     <div class="mb-3 col-md-12">
                         <label for=" " class="form-label">Business Category</label>
-                        <select class="form-control" id="business_category" name="business_category[]" multiple required>
+                        <select class="select2" id="business_category" name="business_category[]" multiple="multiple" required>
                         </select>
                     </div>
 
                     <div class="mb-3 col-md-12">
                         <label for=" " class="form-label">Reporting Manager</label>
-                        <select class="form-control" id="vp" name="vp" required>
+                        <select class="select2" id="vp" name="vp" required>
 
                         </select>
                     </div>
@@ -125,7 +125,7 @@
                 data.data.business_category.forEach(element => {
                     html += "<option value=" + element.id + ">" + element.name + "</option>";
                 });
-                $("#business_category").html(html)
+                $("#business_category").html(html).trigger('change');
                 var vp = "";
                 data.data.vp.forEach(element => {
                     vp += "<option value=" + element.id + ">" + element.name + "</option>";

@@ -130,56 +130,70 @@
 <!-- /Delete Modal -->
 
 <!-- jQuery -->
-<script data-cfasync="false" src="/admin/js/email-decode.min.js"></script>
+<script data-cfasync="false" src="/admin/js/jquery-3.7.1.min.js"></script>
 
 <!-- Feather Icon JS -->
-<script src="/admin/js/feather.min.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
+<script data-cfasync="false" src="/admin/js/feather.min.js"></script>
 
 <!-- Slimscroll JS -->
-<script src="/admin/js/jquery.slimscroll.min.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
+<script data-cfasync="false" src="/admin/js/jquery.slimscroll.min.js"></script>
 
 <!-- Datatable JS -->
-<script src="/admin/js/jquery.dataTables.min.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
-<script src="/admin/js/dataTables.bootstrap5.min.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
+<script data-cfasync="false" src="/admin/js/jquery.dataTables.min.js"></script>
+<script data-cfasync="false" src="/admin/js/dataTables.bootstrap5.min.js"></script>
 
 <!-- Bootstrap Core JS -->
-<script src="/admin/js/bootstrap.bundle.min.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
+<script data-cfasync="false" src="/admin/js/bootstrap.bundle.min.js"></script>
 
 <!-- Quill JS -->
-<script src="/admin/js/quill.min.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
+<script data-cfasync="false" src="/admin/js/quill.min.js"></script>
 
 <!-- Select2 JS -->
-<script src="/admin/js/select2.min.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
+<script data-cfasync="false" src="/admin/js/select2.min.js"></script>
 
-<!-- Datetimepicker JS -->
-<script src="/admin/js/moment.min.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
-<script src="/admin/js/bootstrap-datetimepicker.min.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
+<!-- Select2 Initialization -->
+<script data-cfasync="false">
+	$(document).ready(function() {
+		$('.select2').select2();
+	});
+</script>
 
-<!-- Bootstrap Tagsinput JS -->
-<script src="/admin/js/bootstrap-tagsinput.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
+	<!-- DataTables Buttons JS (1.x compatible) -->
+	<script data-cfasync="false" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+	<script data-cfasync="false" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.bootstrap4.min.js"></script>
+
+	<!-- JSZip for Excel export -->
+	<script data-cfasync="false" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+	<!-- PDFMake for PDF export -->
+	<script data-cfasync="false" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.3/pdfmake.min.js"></script>
+	<script data-cfasync="false" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.3/vfs_fonts.min.js"></script>
+
+	<!-- DataTables HTML5 export buttons -->
+	<script data-cfasync="false" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+	<script data-cfasync="false" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+<script data-cfasync="false" src="/admin/js/chart.min.js"></script>
+<script data-cfasync="false" src="/admin/js/chart-data_1.js"></script>
 
 <!-- Chart JS -->
-<script src="/admin/js/chart.min.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
-<script src="/admin/js/chart-data_1.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
-
-<!-- Chart JS -->
-<script src="/admin/js/jquery.peity.min.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
-<script src="/admin/js/chart-data.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
+<script data-cfasync="false" src="/admin/js/jquery.peity.min.js"></script>
+<script data-cfasync="false" src="/admin/js/chart-data.js"></script>
 
 <!-- Color Picker JS -->
-<script src="/admin/js/pickr.es5.min.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
+<script data-cfasync="false" src="/admin/js/pickr.es5.min.js"></script>
 
 <!-- Custom JS -->
-<script src="/admin/js/theme-colorpicker.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
-<script src="/admin/js/script.js" type="4eb94832f85929b2ef942c65-text/javascript"></script>
+<script data-cfasync="false" src="/admin/js/theme-colorpicker.js"></script>
+<script data-cfasync="false" src="/admin/js/script.js"></script>
 
-<script src="/admin/js/rocket-loader.min.js" data-cf-settings="4eb94832f85929b2ef942c65-|49" defer=""></script>
+<!-- Rocket Loader Disabled due to script loading issues -->
+<!-- <script src="/admin/js/rocket-loader.min.js" data-cf-settings="4eb94832f85929b2ef942c65-|49" defer=""></script> -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script data-cfasync="false" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-<script>
+<script data-cfasync="false">
 	$(document).ready(function() {
 
 		toastr.options = {
@@ -221,7 +235,29 @@
 
 		initTooltips();
 
-		$('.dataTable').DataTable().on('draw.dt', initTooltips);
+		// Safe DataTable initialization with Buttons (DataTables 1.x compatible)
+		if ($.fn.DataTable && $('.dataTable').length > 0) {
+			try {
+				if (!$.fn.DataTable.isDataTable('.dataTable')) {
+					$('.dataTable').DataTable({
+						dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>><"row"<"col-sm-12"tr>><"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>B',
+						buttons: [
+							'copy',
+							'csv',
+							'excel',
+							'pdf',
+							{
+								extend: 'colvis',
+								text: 'Column visibility'
+							},
+							'print'
+						]
+					}).on('draw.dt', initTooltips);
+				}
+			} catch (e) {
+				console.warn('DataTable initialization error:', e);
+			}
+		}
 
 	});
 </script>
