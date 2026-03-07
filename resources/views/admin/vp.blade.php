@@ -181,7 +181,7 @@
 
 							<div class="mb-3">
 								<label class="form-label">Coordinator</label>
-								<select class="form-control" id="parent_id" name="parent_id[]" multiple required>
+								<select class="form-select" id="parent_id" name="parent_id" required>
 									@foreach($users as $user)
 										<option value="{{ $user->id }}">
 											{{ $user->name }}

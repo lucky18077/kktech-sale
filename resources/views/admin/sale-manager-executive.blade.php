@@ -73,9 +73,13 @@
                                                 </td>
                                                 <td class="action-table-data">
 													<div class="edit-delete-action">
-														<a class="me-2 p-2 editOfficeTeams" data-data="{{ @json_encode($saleManager) }}">
-															<i data-feather="edit" class="feather-edit"></i>
-														</a>
+													<a class="me-2 p-2 editOfficeTeams" data-data="{{ json_encode($saleManager) }}">
+														<i data-feather="edit"></i>
+													</a>
+
+													<a class="me-2 p-2" href="{{route('view-sales-manager-executive-details', $saleManager->id)}}">
+														<i data-feather="eye"></i>
+													</a>
 													</div>
 												</td>
                                             </tr>
@@ -175,5 +179,5 @@
 				});
 				$("#addOfficeTeam").modal("show");
 			});
-    </script>
+    	</script>
 @endsection

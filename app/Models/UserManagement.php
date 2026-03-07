@@ -15,25 +15,9 @@ class UserManagement extends Model
     protected $table = 'user_mgmt';
 
     protected $fillable = [
-        'user_id',
-        'role',
-        'can_add',
-        'can_edit',
-        'can_delete',
-        'can_view',
-        'can_export',
+       'user_id',
+       'coordinator_id',
+       'business_category_id',
+       'reporting_manager_id'
     ];
-
-    protected $casts = [
-        'can_add' => 'boolean',
-        'can_edit' => 'boolean',
-        'can_delete' => 'boolean',
-        'can_view' => 'boolean',
-        'can_export' => 'boolean',
-    ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }

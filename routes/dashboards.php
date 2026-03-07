@@ -15,6 +15,9 @@ Route::get('/coordinator', [StaffController::class, 'showCoordinators'])->name('
 Route::post('/coordinator-save', [StaffController::class, 'addCoordinator'])->name('coordinator-save');
 Route::get('/saleManager', [StaffController::class, 'showSalesManager'])->name('saleManager');
 Route::post('/saleManager-save', [StaffController::class, 'addSalesManager'])->name('saleManager-save');
+Route::get('/view-sales-manager-executive-details/{id}', [StaffController::class, 'viewSalesManagerDetails'])->name('view-sales-manager-executive-details');
+Route::post('/getCoordinatorData', [StaffController::class, 'getCoordinatorData'])->name('getCoordinatorData');
+Route::post('/storeSalesManager', [StaffController::class, 'storeSalesManager'])->name('storeSalesManager');
 Route::get('/designations', [StaffController::class, 'showDesignations'])->name('designations');
 Route::post('/designation-save', [StaffController::class, 'addDesignation'])->name('designation-save');
 Route::get('/officeTeams', [StaffController::class, 'showOfficeTeams'])->name('officeTeams');

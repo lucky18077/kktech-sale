@@ -12,6 +12,7 @@ use App\Models\BusinessCategory;
 use App\Models\Designation;
 use App\Models\Department;
 use App\Models\OfficeTeam;
+use App\Models\UserManagement;
 
 class StaffController extends Controller
 {
@@ -50,7 +51,7 @@ class StaffController extends Controller
                 'email' => $request->email,
                 'password' => $request->password,
                 'phone' => $request->phone,
-                'parent_id' => implode(',', $request->parent_id ?? []),
+                'parent_id' => $request->parent_id,
                 'is_active' => $request->is_active,
                 'user_type' => $request->usr_role
             ]);
@@ -64,7 +65,7 @@ class StaffController extends Controller
             'email' => $request->email,
             'password' => $request->password,
             'phone' => $request->phone,
-            'parent_id' => implode(',', $request->parent_id ?? []),
+            'parent_id' => $request->parent_id,
             'is_active' => $request->is_active,
             'user_type' => $request->usr_role
         ]);
@@ -253,7 +254,7 @@ class StaffController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
+            
         }
 
         OfficeTeam::updateOrCreate(
@@ -267,5 +268,102 @@ class StaffController extends Controller
         );
 
         return back()->with('success', 'Department saved successfully');
+    }
+    /* Comment : View Sales Manager and Sales Executive Details */
+    public function viewSalesManagerDetails($id)
+    {
+        // Fetch the main user to get the role (user_type)
+        $mainUser = User::find($id);
+        // Fetch all user management entries for this user
+        $userMgmts = UserManagement::where('user_id', $id)->get();
+
+        // Collect all coordinator and manager IDs
+        $userIds = $userMgmts->pluck('coordinator_id')
+                    ->merge($userMgmts->pluck('reporting_manager_id'))
+                    ->unique();
+        // Fetch all users in one query
+        $users = User::whereIn('id', $userIds)
+                    ->pluck('name', 'id');
+        // Collect all business category IDs
+        $allCategoryIds = $userMgmts->flatMap(fn($u) => explode(',', $u->business_category_id))
+                                    ->unique();
+        // Fetch all business categories
+        $businessCategories = BusinessCategory::whereIn('id', $allCategoryIds)
+                                ->pluck('name', 'id');
+        // Prepare final rows ready for Blade
+        $data = $userMgmts->map(function($user) use ($users, $businessCategories) {
+            $categoryNames = collect(explode(',', $user->business_category_id))
+                                ->map(fn($id) => $businessCategories[$id] ?? null)
+                                ->filter()
+                                ->implode(', ');
+
+            return [
+                'coordinator' => $users[$user->coordinator_id] ?? '',
+                'reporting_manager' => $users[$user->reporting_manager_id] ?? '',
+                'business_categories' => $categoryNames,
+            ];
+        });
+
+        $coordinators = User::where('user_type', 'Sales Coordinator')->pluck('name', 'id');
+
+        // Get the main user's role
+        $user_type = $mainUser->user_type ?? '';
+
+        // Pass user_type to Blade
+        return view('admin.view-sales-manager-executive-details', compact('data', 'coordinators', 'id', 'user_type'));
+    }
+    public function getCoordinatorData(Request $request)
+    {
+        $data = [];
+        $error = true;
+        $msg = '';
+        $coordinator = User::where('id', $request->id)->where('is_active', 1)->first();
+        if (!$coordinator) {
+            return response()->json([
+                'data' => null,
+                'error' => true,
+                'msg' => 'User not found or inactive'
+            ]);
+        }
+        $businessCategoryIds = explode(',', $coordinator->business_category ?? '');
+        $businessCategory = BusinessCategory::whereIn('id', $businessCategoryIds)->get(['id', 'name']);
+
+        // 4. Fetch reporting managers (vp) for this coordinator
+        $vp = User::whereRaw("FIND_IN_SET(?, parent_id)", [$coordinator->id])->get(['id','name']);
+        $data['business_category'] = $businessCategory;
+        $data['vp'] = $vp;
+        $error = false;
+
+        return response()->json([
+            'data' => $data,
+            'error' => $error,
+            'msg' => $msg
+        ]);
+    }
+    public function storeSalesManager(Request $request)
+    {
+        $validator = validator($request->all(), [
+            'sales_coordinator' => 'required',
+            'business_category' => 'required|array',
+            'vp' => 'required'
+        ]);
+        $business_category = implode(',', $request->business_category);
+        $exists = UserManagement::where('user_id', $request->id)
+            ->whereRaw("FIND_IN_SET(business_category_id, ?)", [$business_category])
+            ->first();
+        if ($exists) {
+            return redirect()->back()->with('error', 'Already Added.');
+        }
+        UserManagement::create([
+            'user_id' => $request->id,
+            'coordinator_id' => $request->sales_coordinator,
+            'business_category_id' => implode(',', $request->business_category),
+            'reporting_manager_id' => $request->vp,
+        ]);
+
+        return redirect()->back()->with('success', 'User Added Successfully.');
+    }
+    public function showSalesExecutiveDealers(){
+        
     }
 }
