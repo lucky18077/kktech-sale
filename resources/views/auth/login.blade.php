@@ -49,7 +49,7 @@
                         <div class="login-userheading">
                             <h3>Sign In</h3>
                             <h4 class="fs-16">
-                                Access the Dreams POS panel using your email and password.
+                                Access the KK Tech Sales panel using your email and password.
                             </h4>
                         </div>
 
@@ -113,7 +113,7 @@
                         @endif
 
                         <div class="my-4 d-flex justify-content-center align-items-center copyright-text">
-                            <p>Copyright &copy; {{ date('Y') }} DreamsPOS</p>
+                            <p>Copyright &copy; {{ date('Y') }} Clikzop Innovations</p>
                         </div>
 
                     </div>
