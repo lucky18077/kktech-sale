@@ -8,8 +8,8 @@
         <div class="page-header">
             <div class="add-item d-flex">
                 <div class="page-title">
-                    <h4 class="fw-bold">Sales Manager Details</h4>
-                    <h6>Manage your Sales Manager</h6>
+                    <h4 class="fw-bold">Sales Executive Details</h4>
+                    <h6>Manage your Sales Executive</h6>
                 </div>
             </div>
             <div class="page-btn">
@@ -75,13 +75,13 @@
 
                     <div class="mb-3 col-md-12">
                         <label for=" " class="form-label">Business Category</label>
-                        <select class="select2" id="business_category" name="business_category[]" multiple="multiple" required>
+                        <select class="form-select" id="business_category" name="business_category" required>
                         </select>
                     </div>
 
                     <div class="mb-3 col-md-12">
                         <label for=" " class="form-label">Reporting Manager</label>
-                        <select class="select2" id="vp" name="vp" required>
+                        <select class="form-select" id="vp" name="vp" required>
 
                         </select>
                     </div>
@@ -96,37 +96,76 @@
 </div>
 
 <script>
+$(document).ready(function(){
+
     $("#Add").on("click", function() {
         $("#modalId").modal("show");
-    })
+    });
+
+    // When coordinator changes
     $("#sales_coordinator").on("change", function() {
+
+        let coordinatorId = $(this).val();
+
         $.ajax({
             method: 'POST',
             url: "{{ route('getCoordinatorData') }}",
-            dataType: 'text',
+            dataType: 'json',
             data: {
-            id: $(this).val(),
-				_token: "{{ csrf_token() }}"
-			},
-            success: function(data) {
-                data = JSON.parse(data);
-                var html = "";
-                data.data.business_category.forEach(element => {
-                    html += "<option value=" + element.id + ">" + element.name + "</option>";
-                });
-                $("#business_category").html(html).trigger('change');
-                var vp = "";
-                data.data.vp.forEach(element => {
-                    vp += "<option value=" + element.id + ">" + element.name + "</option>";
-                });
-                $("#vp").html(vp)
-
+                id: coordinatorId,
+                _token: "{{ csrf_token() }}"
             },
-            complete: function(data) {
-                $('#wait').hide();
+            success: function(data) {
+
+                // Business Category dropdown
+                let html = "";
+                data.data.business_category.forEach(element => {
+                    html += `<option value="${element.id}">${element.name}</option>`;
+                });
+
+                $("#business_category").html(html).trigger('change');
+
+                // Reporting Manager dropdown
+                let vp = "";
+                data.data.vp.forEach(element => {
+                    vp += `<option value="${element.id}">${element.name}</option>`;
+                });
+
+                $("#vp").html(vp);
             }
         });
 
     });
+
+    // When business category changes
+    $("#business_category").on("change", function() {
+
+        let coordinatorId = $("#sales_coordinator").val(); // get coordinator id
+        let categoryId = $(this).val();
+
+
+        $.ajax({
+            method: 'POST',
+            url: '{{ route('getReportingManagers') }}',
+            dataType: 'json',
+            data: {
+                id: categoryId,
+                coordinator_id: coordinatorId,
+                user_type: "{{ $user_type }}",
+                _token: "{{ csrf_token() }}"
+            },
+            success: function(data) {
+                let rp = "";
+                data.data.vp.forEach(element => {
+                    rp += `<option value="${element.id}">${element.name}</option>`;
+                });
+
+                $("#vp").html(rp);
+            }
+        });
+
+    });
+
+});
 </script>
 @endsection

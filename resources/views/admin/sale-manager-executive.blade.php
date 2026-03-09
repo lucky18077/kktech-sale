@@ -76,10 +76,15 @@
 													<a class="me-2 p-2 editOfficeTeams" data-data="{{ json_encode($saleManager) }}">
 														<i data-feather="edit"></i>
 													</a>
-
-													<a class="me-2 p-2" href="{{route('view-sales-manager-executive-details', $saleManager->id)}}">
+													@if($saleManager->user_type == 'Sales manager')
+													<a class="me-2 p-2" href="{{route('view-sales-manager-details', $saleManager->id)}}">
 														<i data-feather="eye"></i>
 													</a>
+													@else
+													<a class="me-2 p-2" href="{{route('view-sales-executive-details', $saleManager->id)}}">
+														<i data-feather="eye"></i>
+													</a>
+													@endif
 													</div>
 												</td>
                                             </tr>
@@ -125,8 +130,8 @@
                             <div class="mb-3">
                                 <label for=" " class="form-label">Role<span class="text-danger ms-1">*</span></label>
                                 <select class="form-control" id="usr_role" name="usr_role" required>
-                                 <option value="Sales manager">Sales Manager</option>
-                                 <option value="Sales executive">Sales Executive</option>
+									<option value="Sales manager">Sales Manager</option>
+									<option value="Sales executive">Sales Executive</option>
                                 </select>
                             </div>
 							<div class="mb-3">

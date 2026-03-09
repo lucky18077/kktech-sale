@@ -30,9 +30,7 @@
                                 <th>Coordinator</th>
                                 <th>Reporting Manager</th>
                                 <th>Business category</th>
-                                @if($user_type == 'Sales executive')
-                                    <th>Action</th>
-                                @endif                         
+                                                     
                             </tr>
                         </thead>
                         <tbody>
@@ -41,13 +39,6 @@
                                     <td>{{ $row['coordinator'] }}</td>
                                     <td>{{ $row['reporting_manager'] }}</td>
                                     <td>{{ $row['business_categories'] }}</td>
-                                    @if($user_type == 'Sales executive')
-                                        <td>
-                                            <a class="me-2 p-2" href="{{route('view-sales-manager-executive-details', $id)}}">
-                                                <i data-feather="edit"></i>
-                                            </a>
-                                        </td>
-                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
@@ -117,6 +108,7 @@
             dataType: 'text',
             data: {
             id: $(this).val(),
+            user_type: "{{ $user_type }}",
 				_token: "{{ csrf_token() }}"
 			},
             success: function(data) {

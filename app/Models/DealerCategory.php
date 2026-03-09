@@ -15,19 +15,9 @@ class DealerCategory extends Model
     protected $table = 'dealer_category';
 
     protected $fillable = [
-        'dealer_id',
-        'category_id',
+        'id',
+        'name',
     ];
 
     public $timestamps = true;
-
-    public function dealer()
-    {
-        return $this->belongsTo(Dealer::class, 'dealer_id');
-    }
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class, 'category_id');
-    }
 }

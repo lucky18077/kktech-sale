@@ -152,8 +152,8 @@ class StaffController extends Controller
 
         // Get coordinators assigned to these VPs
         $coordinates = User::where('user_type', 'Sales Coordinator')
-            ->whereIn('parent_id', $vpIds)
-            ->with('parent')
+            // ->whereIn('parent_id', $vpIds)
+            // ->with('parent')
             ->get();
         
         // Get all business category IDs that are already assigned to ANY coordinator
@@ -271,6 +271,48 @@ class StaffController extends Controller
         $designations = Designation::all();
 
         return view('admin.sale-manager-executive', compact('salesManagers', 'designations'));
+    }
+    public function viewSalesExecutiveDetails($id)
+    {
+        // Fetch the main user to get the role (user_type)
+        $mainUser = User::find($id);
+        // Fetch all user management entries for this user
+        $userMgmts = UserManagement::where('user_id', $id)->get();
+
+        // Collect all coordinator and manager IDs
+        $userIds = $userMgmts->pluck('coordinator_id')
+                    ->merge($userMgmts->pluck('reporting_manager_id'))
+                    ->unique();
+        // Fetch all users in one query
+        $users = User::whereIn('id', $userIds)
+                    ->pluck('name', 'id');
+        // Collect all business category IDs
+        $allCategoryIds = $userMgmts->flatMap(fn($u) => explode(',', $u->business_category_id))
+                                    ->unique();
+        // Fetch all business categories
+        $businessCategories = BusinessCategory::whereIn('id', $allCategoryIds)
+                                ->pluck('name', 'id');
+        // Prepare final rows ready for Blade
+        $data = $userMgmts->map(function($user) use ($users, $businessCategories) {
+            $categoryNames = collect(explode(',', $user->business_category_id))
+                                ->map(fn($id) => $businessCategories[$id] ?? null)
+                                ->filter()
+                                ->implode(', ');
+
+            return [
+                'coordinator' => $users[$user->coordinator_id] ?? '',
+                'reporting_manager' => $users[$user->reporting_manager_id] ?? '',
+                'business_categories' => $categoryNames,
+            ];
+        });
+
+        $coordinators = User::where('user_type', 'Sales Coordinator')->pluck('name', 'id');
+
+        // Get the main user's role
+        $user_type = $mainUser->user_type ?? '';
+
+        // Pass user_type to Blade
+        return view('admin.view-sales-executive-details', compact('data', 'coordinators', 'id', 'user_type'));
     }
 
     public function addSalesManager(Request $request)
@@ -420,14 +462,14 @@ class StaffController extends Controller
         $user_type = $mainUser->user_type ?? '';
 
         // Pass user_type to Blade
-        return view('admin.view-sales-manager-executive-details', compact('data', 'coordinators', 'id', 'user_type'));
+        return view('admin.view-sales-manager-details', compact('data', 'coordinators', 'id', 'user_type'));
     }
     public function getCoordinatorData(Request $request)
     {
         $data = [];
         $error = true;
         $msg = '';
-        $coordinator = User::where('id', $request->id)->where('is_active', 1)->first();
+       $coordinator = User::where('id', $request->id)->where('is_active', 1)->first();
         if (!$coordinator) {
             return response()->json([
                 'data' => null,
@@ -439,7 +481,7 @@ class StaffController extends Controller
         $businessCategory = BusinessCategory::whereIn('id', $businessCategoryIds)->get(['id', 'name']);
 
         // 4. Fetch reporting managers (vp) for this coordinator
-        $vp = User::whereRaw("FIND_IN_SET(?, parent_id)", [$coordinator->id])->get(['id','name']);
+        $vp = User::whereRaw("FIND_IN_SET(?, parent_id)", [$coordinator->parent_id])->get(['id','name']);
         $data['business_category'] = $businessCategory;
         $data['vp'] = $vp;
         $error = false;
@@ -457,7 +499,11 @@ class StaffController extends Controller
             'business_category' => 'required|array',
             'vp' => 'required'
         ]);
-        $business_category = implode(',', $request->business_category);
+        if (is_array($request->business_category)) {
+            $business_category = implode(',', $request->business_category);
+        } else {
+            $business_category = $request->business_category;
+        }
         $exists = UserManagement::where('user_id', $request->id)
             ->whereRaw("FIND_IN_SET(business_category_id, ?)", [$business_category])
             ->first();
@@ -467,10 +513,55 @@ class StaffController extends Controller
         UserManagement::create([
             'user_id' => $request->id,
             'coordinator_id' => $request->sales_coordinator,
-            'business_category_id' => implode(',', $request->business_category),
+            'business_category_id' => $business_category,
             'reporting_manager_id' => $request->vp,
         ]);
 
         return redirect()->back()->with('success', 'User Added Successfully.');
+    }
+    public function getReportingManagers(Request $request)
+    {
+        $error = true;
+        $msg = '';
+        $data = [];
+        // Validation
+        $request->validate([
+            'coordinator_id' => 'required|integer|exists:users,id',
+            'id' => 'required|integer'
+        ]);
+        try {
+            // Get reporting manager ids from mapping table
+            $reportingManagerIds = UserManagement::where('coordinator_id', $request->coordinator_id)
+                ->whereRaw("FIND_IN_SET(?, business_category_id)", [$request->id])
+                ->pluck('user_id')
+                ->toArray();
+
+            // Add coordinator itself
+            $reportingManagerIds[] = $request->coordinator_id;
+
+            // Get coordinator parent
+            $coordinator = User::select('parent_id')->find($request->coordinator_id);
+            if ($coordinator && $coordinator->parent_id) {
+                $reportingManagerIds[] = $coordinator->parent_id;
+            }
+            // Remove duplicates
+            $reportingManagerIds = array_unique($reportingManagerIds);
+            // Get users
+            $reportingManagers = User::whereIn('id', $reportingManagerIds)
+                ->select('id', 'name')
+                ->get();
+
+            $data['vp'] = $reportingManagers;
+
+            $error = false;
+
+        } catch (\Exception $e) {
+            $msg = $e->getMessage();
+        }
+        return response()->json([
+            'data' => $data,
+            'error' => $error,
+            'msg' => $msg
+        ]);
     }
 }

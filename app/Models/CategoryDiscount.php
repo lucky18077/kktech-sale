@@ -15,24 +15,9 @@ class CategoryDiscount extends Model
     protected $table = 'category_discount';
 
     protected $fillable = [
+        'category_name',
         'category_id',
-        'discount_percent',
-        'discount_amount',
-        'effective_from',
-        'effective_till',
-        'active',
+        'dealer_category_id',
+        'discount'
     ];
-
-    protected $casts = [
-        'discount_percent' => 'integer',
-        'discount_amount' => 'decimal:2',
-        'effective_from' => 'date',
-        'effective_till' => 'date',
-        'active' => 'boolean',
-    ];
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class, 'category_id');
-    }
 }

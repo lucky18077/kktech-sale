@@ -376,6 +376,16 @@
 										<li><a href="{{route('officeTeams')}}">Office Team</a></li>
 									</ul>
 								</li>
+								<li class="submenu mt-2">
+									<a href="javascript:void(0);"><i class="ti ti-user fs-16 me-2"></i><span>Partner Management</span><span class="menu-arrow"></span></a>
+									<ul>
+										<li><a href="{{ route('dealer-category') }}">Dealer Category</a></li>
+										<li><a href="{{ route('dealers') }}">Dealer</a></li>
+										<li><a href="{{route('saleManager')}}">Plumber/Contract</a></li>
+										<li><a href="{{route('designations')}}">Architect/Consulatant</a></li>
+										<li><a href="{{route('officeTeams')}}">MEP</a></li>
+									</ul>
+								</li>
 								<li class="submenu">
 									<a href="javascript:void(0);"><i class="ti ti-layout-sidebar-right-collapse fs-16 me-2"></i><span>Masters</span><span class="menu-arrow"></span></a>
 									<ul>
