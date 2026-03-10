@@ -381,9 +381,7 @@
 									<ul>
 										<li><a href="{{ route('dealer-category') }}">Dealer Category</a></li>
 										<li><a href="{{ route('dealers') }}">Dealer</a></li>
-										<li><a href="{{route('saleManager')}}">Plumber/Contract</a></li>
-										<li><a href="{{route('designations')}}">Architect/Consulatant</a></li>
-										<li><a href="{{route('officeTeams')}}">MEP</a></li>
+										<li><a href="{{ route('partner-types') }}">Partner Types</a></li>
 									</ul>
 								</li>
 								<li class="submenu">

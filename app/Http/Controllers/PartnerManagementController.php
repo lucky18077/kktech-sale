@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\DealerCategory;
 use App\Models\Dealer;
 use App\Models\CategoryDiscount;
+use App\Models\PartnerType;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
@@ -47,7 +48,7 @@ class PartnerManagementController extends Controller
      * Save or update dealer record.
      */
     public function saveDealer(Request $request)
-    {        dd($request->all());
+    { 
         $data = $request->only([
             'name',
             'phone',
@@ -331,5 +332,50 @@ class PartnerManagementController extends Controller
         }
 
         return redirect()->back()->with('success', 'Brands allocated successfully');
+    }
+   public function showPartnerTypes(Request $request)
+    {
+        $query = PartnerType::query();
+        if ($request->has('type') && $request->type != '') {
+            $query->where('type', $request->type);
+        }
+        $partnerTypes = $query->get();
+        $states = DB::table('state_district')->distinct()->pluck('state');
+        return view('admin.partner-type', compact('partnerTypes', 'states'));
+    }
+    public function savePartnerType(Request $request)
+    { 
+        $data = $request->only([
+            'company',
+            'name',
+            'number',
+            'dob',
+            'doa',
+            'address',
+            'state',
+            'city',
+            'active',
+            'type',
+            'remarks'
+        ]);
+
+        if ($request->id) {
+            $dealer = PartnerType::find($request->id);
+            if ($dealer) {
+                $dealer->update($data);
+                $message = 'Partner type updated successfully';
+            } else {
+                return redirect()->back()->with('error', 'Partner type not found');
+            }
+        } else {
+             $dealer = PartnerType::where('number', $request->number)->first();
+            if ($dealer) {
+                return redirect()->back()->with('error', 'Partner type already exists');
+            }
+            PartnerType::create($data);
+            $message = 'Partner type created successfully';
+        }
+
+        return redirect()->back()->with('success', $message);
     }
 }

@@ -48,6 +48,9 @@ Route::get('/brand-discount/{id}', [PartnerManagementController::class, 'brandDi
 Route::post('/brand-discount-save/{id}', [PartnerManagementController::class, 'addBrandDiscount'])->name('brand-discount-save');
 Route::post('/brand-discount-bulk-save/{id}', [PartnerManagementController::class, 'saveBrandDiscount'])->name('brand-discount-bulk-save');
 
+Route::get('/partner-types', [PartnerManagementController::class, 'showPartnerTypes'])->name('partner-types');
+Route::post('/partner-type-save', [PartnerManagementController::class, 'savePartnerType'])->name('partner-type-save');
+
 // Master Controller
 Route::get('/business-category', [MasterController::class, 'businessCategory'])->name('business-category');
 Route::post('/business-category-save', [MasterController::class, 'saveBusinessCategory'])->name('business-category-save');
