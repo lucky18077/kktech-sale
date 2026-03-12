@@ -8,6 +8,7 @@ use App\Models\AreaMaster;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use App\Models\BusinessCategory;
 use App\Models\Designation;
 use App\Models\Department;
@@ -466,10 +467,13 @@ class StaffController extends Controller
     }
     public function getCoordinatorData(Request $request)
     {
-        $data = [];
-        $error = true;
-        $msg = '';
-       $coordinator = User::where('id', $request->id)->where('is_active', 1)->first();
+        $coordinator = User::select('id','name','parent_id','business_category')
+            ->where([
+                ['id', $request->id],
+                ['is_active', 1]
+            ])
+            ->first();
+
         if (!$coordinator) {
             return response()->json([
                 'data' => null,
@@ -477,91 +481,112 @@ class StaffController extends Controller
                 'msg' => 'User not found or inactive'
             ]);
         }
-        $businessCategoryIds = explode(',', $coordinator->business_category ?? '');
-        $businessCategory = BusinessCategory::whereIn('id', $businessCategoryIds)->get(['id', 'name']);
 
-        // 4. Fetch reporting managers (vp) for this coordinator
-        $vp = User::whereRaw("FIND_IN_SET(?, parent_id)", [$coordinator->parent_id])->get(['id','name']);
-        $data['business_category'] = $businessCategory;
-        $data['vp'] = $vp;
-        $error = false;
+        // Business categories
+        $businessCategoryIds = array_filter(explode(',', $coordinator->business_category));
+
+        $businessCategory = BusinessCategory::select('id','name')
+            ->whereIn('id', $businessCategoryIds)
+            ->get();
+
+        // Get coordinator + VP together
+        $vpIds = array_filter([$coordinator->id, $coordinator->parent_id]);
+
+        $vp = User::select('id','name')
+            ->whereIn('id', $vpIds)
+            ->get();
 
         return response()->json([
-            'data' => $data,
-            'error' => $error,
-            'msg' => $msg
+            'data' => [
+                'business_category' => $businessCategory,
+                'vp' => $vp
+            ],
+            'error' => false,
+            'msg' => ''
         ]);
     }
     public function storeSalesManager(Request $request)
     {
-        $validator = validator($request->all(), [
+        $validator = Validator::make($request->all(), [
             'sales_coordinator' => 'required',
-            'business_category' => 'required|array',
+            'business_category' => 'required',
             'vp' => 'required'
         ]);
-        if (is_array($request->business_category)) {
-            $business_category = implode(',', $request->business_category);
-        } else {
-            $business_category = $request->business_category;
+
+        if ($validator->fails()) {
+            return back()->with('error', $validator->errors()->first())->withInput();
         }
+        if (! is_array($request->business_category)) {
+            $businessCategories[] = $request->business_category;
+        } else {
+            $businessCategories = $request->business_category;
+        }
+        // Check if any record already exists
         $exists = UserManagement::where('user_id', $request->id)
-            ->whereRaw("FIND_IN_SET(business_category_id, ?)", [$business_category])
-            ->first();
+            ->where('coordinator_id', $request->sales_coordinator)
+            ->where('reporting_manager_id', $request->vp)
+            ->whereIn('business_category_id', $businessCategories)
+            ->exists();
+
         if ($exists) {
             return redirect()->back()->with('error', 'Already Added.');
         }
-        UserManagement::create([
-            'user_id' => $request->id,
-            'coordinator_id' => $request->sales_coordinator,
-            'business_category_id' => $business_category,
-            'reporting_manager_id' => $request->vp,
-        ]);
+        $insertData = [];
+        foreach ($businessCategories as $category) {
+            $insertData[] = [
+                'user_id' => $request->id,
+                'coordinator_id' => $request->sales_coordinator,
+                'business_category_id' => $category,
+                'reporting_manager_id' => $request->vp,
+            ];
+        }
+        UserManagement::insert($insertData);
 
         return redirect()->back()->with('success', 'User Added Successfully.');
     }
     public function getReportingManagers(Request $request)
     {
-        $error = true;
-        $msg = '';
-        $data = [];
-        // Validation
         $request->validate([
-            'coordinator_id' => 'required|integer|exists:users,id',
-            'id' => 'required|integer'
+            'coordinator_id' => 'required|exists:users,id',
+            'id' => 'required'
         ]);
         try {
-            // Get reporting manager ids from mapping table
-            $reportingManagerIds = UserManagement::where('coordinator_id', $request->coordinator_id)
-                ->whereRaw("FIND_IN_SET(?, business_category_id)", [$request->id])
+            // Get coordinator with parent
+            $coordinator = User::select('id','parent_id')
+                ->find($request->coordinator_id);
+
+            // Managers mapped in user_management
+            $managerIds = UserManagement::where('coordinator_id', $request->coordinator_id)
+                ->where('business_category_id', $request->id)
                 ->pluck('user_id')
                 ->toArray();
+            // Combine manager + coordinator + VP
+            $ids = array_unique(array_filter([
+                ...$managerIds,
+                $coordinator->id,
+                $coordinator->parent_id
+            ]));
 
-            // Add coordinator itself
-            $reportingManagerIds[] = $request->coordinator_id;
-
-            // Get coordinator parent
-            $coordinator = User::select('parent_id')->find($request->coordinator_id);
-            if ($coordinator && $coordinator->parent_id) {
-                $reportingManagerIds[] = $coordinator->parent_id;
-            }
-            // Remove duplicates
-            $reportingManagerIds = array_unique($reportingManagerIds);
-            // Get users
-            $reportingManagers = User::whereIn('id', $reportingManagerIds)
-                ->select('id', 'name')
+            // Fetch reporting managers
+            $reportingManagers = User::select('id','name')
+                ->whereIn('id', $ids)
                 ->get();
 
-            $data['vp'] = $reportingManagers;
-
-            $error = false;
+            return response()->json([
+                'data' => [
+                    'vp' => $reportingManagers
+                ],
+                'error' => false,
+                'msg' => ''
+            ]);
 
         } catch (\Exception $e) {
-            $msg = $e->getMessage();
+
+            return response()->json([
+                'data' => [],
+                'error' => true,
+                'msg' => $e->getMessage()
+            ]);
         }
-        return response()->json([
-            'data' => $data,
-            'error' => $error,
-            'msg' => $msg
-        ]);
     }
 }

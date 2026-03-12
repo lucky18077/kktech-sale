@@ -10,7 +10,8 @@ class PropertyCategory extends Model
 
     protected $fillable = [
         'name',
-        'active',
+        'type',
+        'active'
     ];
 
     public function subcategories()

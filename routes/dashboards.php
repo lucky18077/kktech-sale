@@ -5,6 +5,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\PartnerManagementController;
+use App\Http\Controllers\LeadManagementController;
+use App\Http\Controllers\LeadController;
+use Yajra\DataTables\Facades\DataTables;
 
 /* Dashboard routes */
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -51,6 +54,23 @@ Route::post('/brand-discount-bulk-save/{id}', [PartnerManagementController::clas
 Route::get('/partner-types', [PartnerManagementController::class, 'showPartnerTypes'])->name('partner-types');
 Route::post('/partner-type-save', [PartnerManagementController::class, 'savePartnerType'])->name('partner-type-save');
 
+Route::get('/clients', [PartnerManagementController::class, 'showClients'])->name('clients');
+Route::post('/client-save', [PartnerManagementController::class, 'saveClient'])->name('client-save');
+Route::get('/clients-data', [PartnerManagementController::class,'clientsData'])->name('clients-data');
+
+/* Lead routes */
+Route::get('/leads', [LeadController::class, 'index'])->name('leads');
+Route::post('/add-lead', [LeadController::class, 'store'])->name('lead-save');
+Route::get('/new-lead', [LeadController::class, 'getNewLead'])->name('new-lead');
+Route::post('/leads-data',[LeadController::class,'getLeads'])->name('leads-data');
+Route::post('/lead-show',[LeadController::class,'showLead'])->name('lead-show');
+/* Ajax routes */
+Route::post('/get-property-category', [LeadController::class, 'getPropertyCategory'])->name('get-property-category');
+Route::post('/get-property-subcategory', [LeadController::class, 'getSubCategory'])->name('get-property-subcategory');
+Route::post('/get-business-category',[LeadController::class,'getBusinessCategory'])->name('get-business-category');
+Route::post('/get-product-category',[LeadController::class,'getProductCategory'])->name('get-product-category');
+Route::post('/get-product-subcategory',[LeadController::class,'getProductSubCategory'])->name('get-product-subcategory');
+Route::post('/get-product-lead',[LeadController::class,'getProductLead'])->name('get-product-lead');
 // Master Controller
 Route::get('/business-category', [MasterController::class, 'businessCategory'])->name('business-category');
 Route::post('/business-category-save', [MasterController::class, 'saveBusinessCategory'])->name('business-category-save');
@@ -75,6 +95,9 @@ Route::post('/product-category-save', [MasterController::class, 'saveProductCate
 
 Route::get('/product-sub-category', [MasterController::class, 'productSubCategory'])->name('product-sub-category');
 Route::post('/product-sub-category-save', [MasterController::class, 'saveProductSubCategory'])->name('product-sub-category-save');
+
+Route::get('/leadStatus', [MasterController::class, 'getLeadStatus'])->name('leadStatus');
+Route::post('/leadstatus-save', [MasterController::class, 'saveLeadStatus'])->name('leadstatus-save');
 
 Route::get('/product-uom', [MasterController::class, 'productUOM'])->name('product-uom');
 Route::post('/product-uom-save', [MasterController::class, 'saveProductUOM'])->name('product-uom-save');

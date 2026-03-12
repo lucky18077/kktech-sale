@@ -17,16 +17,8 @@ class LeadProduct extends Model
     protected $fillable = [
         'lead_id',
         'product_id',
-        'quantity',
-        'interested_price',
-        'remarks',
+        'qty',
     ];
-
-    protected $casts = [
-        'quantity' => 'integer',
-        'interested_price' => 'decimal:2',
-    ];
-
     public function lead()
     {
         return $this->belongsTo(Lead::class, 'lead_id');

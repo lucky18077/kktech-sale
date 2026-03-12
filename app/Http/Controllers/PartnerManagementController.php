@@ -8,7 +8,9 @@ use App\Models\Dealer;
 use App\Models\CategoryDiscount;
 use App\Models\PartnerType;
 use App\Models\Product;
+use App\Models\Customer;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
 
 class PartnerManagementController extends Controller
 {
@@ -377,5 +379,112 @@ class PartnerManagementController extends Controller
         }
 
         return redirect()->back()->with('success', $message);
+    }
+    public function showClients()
+    {
+        $clients = Customer::where('active', 1)->get();
+        $states = DB::table('state_district')->distinct()->pluck('state');
+        return view('admin.client', compact('clients', 'states'));
+    }
+    public function saveClient(Request $request) 
+    {
+         $data = $request->only([
+            'name',
+            'number',
+            'email',
+            'address',
+            'state',
+            'city',
+            'district',
+            'company',
+            'gst',
+            'city',
+            'pincode',
+            'ship_address',
+            'ship_state',
+            'ship_district',
+            'ship_city',
+            'ship_pincode',
+            'active',
+        ]);
+
+        if ($request->id) {
+            $customer = Customer::find($request->id);
+            if ($customer) {
+                $customer->update($data);
+                $message = 'Client updated successfully';
+            } else {
+                return redirect()->back()->with('error', 'Client not found');
+            }
+        } else {
+            $customer = Customer::where('number', $request->number)->first();
+            if ($customer) {
+                return redirect()->back()->with('error', 'Client already exists');
+            }
+            Customer::create($data);
+            $message = 'Client created successfully';
+        }
+        return redirect()->back()->with('success', $message);
+    }
+    public function clientsData(Request $request)
+    {
+        // Use all needed columns including shipping and GST info
+        $clients = Customer::select(
+            'id',
+            'company',
+            'name',
+            'number',
+            'address',
+            'state',
+            'city',
+            'active',
+            'gst',
+            'district',
+            'pincode',
+            'ship_address',
+            'ship_state',
+            'ship_district',
+            'ship_city',
+            'ship_pincode',
+            'active',
+        )->where('active', 1);
+
+        // Search filter with optimized LIKE queries
+        if ($request->has('search') && $request->search['value']) {
+            $searchValue = $request->search['value'];
+            $clients->where(function($query) use ($searchValue) {
+                $query->where('name', 'like', "{$searchValue}%")      // Prefix match for better index usage
+                    ->orWhere('company', 'like', "{$searchValue}%")
+                    ->orWhere('number', 'like', "{$searchValue}%");
+            });
+        }
+
+        // Add order by if specified
+        if ($request->has('order') && count($request->order)) {
+            $orderColumn = $request->order[0]['column'];
+            $orderDir = $request->order[0]['dir'];
+            
+            $columns = ['id', 'company', 'name', 'number', 'address', 'state', 'city', 'active'];
+            if (isset($columns[$orderColumn])) {
+                $clients->orderBy($columns[$orderColumn], $orderDir);
+            }
+        } else {
+            $clients->orderBy('id', 'desc');
+        }
+
+        return DataTables::of($clients)
+            ->addIndexColumn()
+            ->editColumn('active', function ($row) {
+                return $row->active == 1 
+                    ? '<span class="badge bg-success">Active</span>'
+                    : '<span class="badge bg-danger">Inactive</span>';
+            })
+            ->addColumn('action', function ($row) {
+                return '<a class="editClient p-2" data-id="'.$row->id.'" data-data=\''.json_encode($row).'\'>
+                            <i class="feather-edit"></i>
+                        </a>';
+            })
+            ->rawColumns(['active','action'])
+            ->make(true);
     }
 }

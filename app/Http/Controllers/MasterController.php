@@ -12,6 +12,7 @@ use App\Models\ProductSubcategory;
 use App\Models\ProductUOM;
 use App\Models\PropertyCategory;
 use App\Models\PropertySubCategory;
+use App\Models\LeadStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -130,6 +131,7 @@ class MasterController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'type' => 'required',
             'active' => 'required'
         ]);
         if ($request->id) {
@@ -412,4 +414,36 @@ class MasterController extends Controller
             return redirect()->back()->with('error', 'Import failed: ' . $e->getMessage());
         }
     }
+    public function getLeadStatus(Request $request)
+    {
+        $leadStatuses = LeadStatus::orderBy('sequence', 'ASC')->get();
+        return view('admin.add-lead-status', compact('leadStatuses'));
+    }
+    public function saveLeadStatus(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required',
+            'sequence' => 'required'
+        ]);
+        if ($request->id) {
+            if (in_array($request->id, [1, 2, 3, 4])) {
+                return redirect()->back()->with('error', 'Cannot edit default lead statuses');
+            }
+            $propertySubCategory = LeadStatus::find($request->id);
+            $propertySubCategory->update([
+                'name' => $request->name,
+                'status' => $request->status,
+                'sequence' => $request->sequence
+            ]);
+        } else {
+            LeadStatus::create([
+                'name' => $request->name,
+                'status' => $request->status,
+                'sequence' => $request->sequence
+            ]);
+        }
+        return redirect()->back()->with('success', 'Lead status saved successfully');
+    }
+
 }
