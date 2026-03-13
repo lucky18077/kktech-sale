@@ -1,7 +1,7 @@
 @extends('admin.layout.main')
 @section('main-section')
 @push('title')
-<title>Property Category</title>
+<title>Lead Statuses</title>
 @endpush
 
 <div class="page-wrapper">
@@ -9,18 +9,18 @@
         <div class="page-header">
             <div class="add-item d-flex">
                 <div class="page-title">
-                    <h4 class="fw-bold">Property Category</h4>
-                    <h6>Manage property categories</h6>
+                    <h4 class="fw-bold">Lead statuses</h4>
+                    <h6>Manage departments</h6>
                 </div>
             </div>
 
             <div class="page-btn">
-                <button class="btn btn-primary addPropertyCategory"><i class="ti ti-circle-plus me-1"></i>Add Property Category</button>
+                <button class="btn btn-primary addDepartment"><i class="ti ti-circle-plus me-1"></i>Add Lead Status</button>
             </div>
 
         </div>
 
-        <!-- /property list -->
+        <!-- /product list -->
         <div class="card">
             <div class="card-header d-flex align-items-center justify-content-between flex-wrap row-gap-3">
                 <div class="search-set">
@@ -38,9 +38,8 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>S.No</th>
-                                <th>Property Category</th>
-                                <th>Type</th>
-                                <th>Status</th>
+                                <th>Lead Status Name</th>
+                                <th>Sequence</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -48,21 +47,16 @@
                             @php
                             $sno=1;
                             @endphp
-                            @foreach ($propertyCategories as $item)
+                            @foreach ($leadStatuses as $leadStatus)
                             <tr>
                                 <td>{{ $sno++ }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->type }}</td>
+                                <td>{{ $leadStatus->name }}</td>
                                 <td>
-                                    @if($item->active == 1)
-                                    <span class="badge bg-success fw-medium fs-10">Active</span>
-                                    @else
-                                    <span class="badge bg-danger fw-medium fs-10">Inactive</span>
-                                    @endif
+                                     {{ $leadStatus->sequence }}
                                 </td>
                                 <td class="action-table-data">
                                     <div class="edit-delete-action">
-                                        <a class="me-2 p-2 editPropertyCategory" data-data='@json($item)'>
+                                        <a class="me-2 p-2 editDepartment" data-data='@json($leadStatus)'>
                                             <i data-feather="edit" class="feather-edit"></i>
                                         </a>
                                     </div>
@@ -77,19 +71,19 @@
         <!-- /product list -->
     </div>
 
-    <!-- Add property category -->
-    <div class="modal fade" id="propertyCategory">
+    <!-- Add department -->
+    <div class="modal fade" id="department">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="page-title">
-                        <h4 id="submitBtn">Add Property Category</h4>
+                        <h4 id="title">Add Department</h4>
                     </div>
                     <button type="button" class="close bg-danger text-white fs-16" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('property-category-save') }}" method="POST">
+                <form action="{{ route('leadstatus-save') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <input type="hidden" name="id">
@@ -98,18 +92,8 @@
                             <input type="text" class="form-control" name="name" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Status<span class="text-danger ms-1">*</span></label>
-                            <select class="select" name="active" required>
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Type<span class="text-danger ms-1">*</span></label>
-                            <select class="select" name="type" required>
-                                <option value="Residential">Residential</option>
-                                <option value="Commerical">Commercial</option>
-                            </select>
+                            <label class="form-label">sequence<span class="text-danger ms-1">*</span></label>
+                           <input type="number" class="form-control" name="sequence" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -120,29 +104,28 @@
             </div>
         </div>
     </div>
-    <!-- /Add Property Category -->
+    <!-- /Add department -->
+
+
 
     <script>
-        $(".addPropertyCategory").on("click", function() {
-            $("#title").text("Add Property Category");
-            $("#submitBtn").text("Add Property Category");
+        $(".addDepartment").on("click", function() {
+            $("#title").text("Add Lead Status");
+            $("#submitBtn").text("Add Lead Status");
             $("input[name='id']").val('');
             $("input[name='name']").val('');
-            $("select[name='active']").val('');
-            $("select[name='type']").val('');
-            $("#propertyCategory").modal("show");
+            $("input[name='sequence']").val('');
+            $("#department").modal("show");
         });
-        $(document).on("click", ".editPropertyCategory", function() {
-            $("#title").text("Edit Property Category");
-            $("#submitBtn").text("Update Property Category");
+        $(document).on("click", ".editDepartment", function() {
+            $("#title").text("Edit Lead Status");
+            $("#submitBtn").text("Update Lead Status");
             var data = $(this).data("data");
             $.each(data, function(i, o) {
-
                 $("input[name='" + i + "']").val(o);
-                $("select[name='" + i + "']").val(o);
-
             });
-            $("#propertyCategory").modal("show");
+
+            $("#department").modal("show");
         });
     </script>
     @endsection

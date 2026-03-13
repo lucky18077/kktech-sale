@@ -11,6 +11,7 @@
 	<meta name="keywords" content="inventory management, admin dashboard, bootstrap template, invoicing, estimates, business management, responsive admin, POS system">
 	<meta name="author" content="Dreams Technologies">
 	<meta name="robots" content="index, follow">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	@stack('title')
 
 	<!-- <script src="/admin/js/theme-script.js" type="4eb94832f85929b2ef942c65-text/javascript"></script> -->
@@ -47,6 +48,9 @@
 
 	<!-- Datatable CSS -->
 	<link rel="stylesheet" href="/admin/css/dataTables.bootstrap5.min.css">
+
+	<!-- DataTables Buttons CSS (1.x compatible) -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap4.min.css">
 
 	<!-- Fontawesome CSS -->
 	<link rel="stylesheet" href="/admin/css/fontawesome.min.css">
@@ -373,6 +377,15 @@
 										<li><a href="{{route('officeTeams')}}">Office Team</a></li>
 									</ul>
 								</li>
+								<li> <a href="{{ route('clients') }}"><i class="ti ti-user-edit fs-16 me-2"></i><span>Client</span></a></li>
+								<li class="submenu mt-2">
+									<a href="javascript:void(0);"><i class="ti ti-user fs-16 me-2"></i><span>Partner Management</span><span class="menu-arrow"></span></a>
+									<ul>
+										<li><a href="{{ route('dealer-category') }}">Dealer Category</a></li>
+										<li><a href="{{ route('dealers') }}">Dealer</a></li>
+										<li><a href="{{ route('partner-types') }}">Partner Types</a></li>
+									</ul>
+								</li>
 								<li class="submenu">
 									<a href="javascript:void(0);"><i class="ti ti-layout-sidebar-right-collapse fs-16 me-2"></i><span>Masters</span><span class="menu-arrow"></span></a>
 									<ul>
@@ -382,6 +395,7 @@
 										<li><a href="{{ route('source') }}">Sources</a></li>
 										<li><a href="{{ route('property-category') }}">Property Category</a></li>
 										<li><a href="{{ route('property-sub-category') }}">Property Sub Category</a></li>
+										<li><a href="{{ route('leadStatus') }}">Lead status</a></li>
 									</ul>
 								</li>
 								<li class="submenu">
@@ -417,8 +431,8 @@
 								<li class="submenu">
 									<a href="javascript:void(0);"><i class="ti ti-triangle-inverted fs-16 me-2"></i><span>Lead Management</span><span class="menu-arrow"></span></a>
 									<ul>
-										<li><a href="#">Add Lead</a></li>
-										<li><a href="#">New Lead</a></li>
+										<li><a href="/leads">Add Lead</a></li>
+										<li><a href="/new-lead">New Lead</a></li>
 										<li><a href="#">Pending Lead</a></li>
 										<li><a href="#">Processing Lead</a></li>
 										<li><a href="#">Call Sheduled</a></li>

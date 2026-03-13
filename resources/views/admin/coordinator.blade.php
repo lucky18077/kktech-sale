@@ -16,20 +16,6 @@
 								<h6>Manage your Coordinators</h6>
 							</div>
 						</div>
-						<ul class="table-top-head">
-							<li>
-								<a data-bs-toggle="tooltip" data-bs-placement="top" title="Pdf"><img src="assets/img/icons/pdf.svg" alt="img"></a>
-							</li>
-							<li>
-								<a data-bs-toggle="tooltip" data-bs-placement="top" title="Excel"><img src="assets/img/icons/excel.svg" alt="img"></a>
-							</li>
-							<li>
-								<a data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"><i class="ti ti-refresh"></i></a>
-							</li>
-							<li>
-								<a data-bs-toggle="tooltip" data-bs-placement="top" title="Collapse" id="collapse-header"><i class="ti ti-chevron-up"></i></a>
-							</li>
-						</ul>
 						<div class="page-btn">
 							<div class="page-btn">
 							<a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-category"><i class="ti ti-circle-plus me-1"></i>Add Coordinator</a>
@@ -143,12 +129,13 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Business Category<span class="text-danger ms-1" required>*</span></label>
-                                <select class="form-select" id="business_category" name="business_category[]" multiple required>
+                                <select class="select2" id="business_category" name="business_category[]" multiple="multiple" required>
                                     @foreach($businessCategories as $businessCategory)
                                         <option value="{{ $businessCategory->id }}">
                                             {{ $businessCategory->name }}
                                         </option>
                                     @endforeach
+                                    <!-- Unallocated categories will be shown, but also need to include coordinator's current categories in edit mode -->
                                 </select>
                             </div>
 
@@ -177,6 +164,11 @@
             </div>
         </div>
 	<script>
+    // Store all categories for reference during edit
+    const allCategoriesData = @json($allCategories ?? []);
+    // IDs of categories that are unassigned to anyone (initial dropdown options)
+    const unassignedCategoryIds = @json($businessCategories->pluck('id')->all());
+
     $(document).ready(function(){
     // Add button reset
     $(".btn-primary[data-bs-target='#add-category']").click(function(){
@@ -191,11 +183,13 @@
         $("#usr_role").val('');
         $("#usr_active").val('');
         $("#password").val('');
+        $("#business_category").val(null).trigger('change');
     });
     // Edit Coordinator
     $(document).on("click",".editCoordinator",function(){
 
         var data = $(this).data("coordinator");
+        
         $("#modalTitle").text("Edit Coordinator");
         $("#submitBtn").text("Update Coordinator");
         $("#edit_id").val(data.id);
@@ -205,6 +199,44 @@
         $("#usr_role").val(data.user_type);
         $("#usr_active").val(data.is_active);
         $("#password").val(data.password);
+
+        // rebuild dropdown options: start with unassigned categories
+        $("#business_category").empty();
+        unassignedCategoryIds.forEach(function(catId) {
+            if (allCategoriesData[catId]) {
+                $("#business_category").append(
+                    $("<option/>").val(catId).text(allCategoriesData[catId].name)
+                );
+            }
+        });
+
+        // Parse coordinator's current categories so we can preselect them
+        var categories = [];
+        var categoryIds = [];
+        if(data.business_category) {
+            if(typeof data.business_category === 'string') {
+                categoryIds = data.business_category.split(',').map(function(val) {
+                    return $.trim(val);
+                });
+            } else if(Array.isArray(data.business_category)) {
+                categoryIds = data.business_category;
+            }
+        }
+
+        // add the current ones if missing, marking them
+        categoryIds.forEach(function(catId) {
+            if (!$("#business_category option[value='" + catId + "']").length) {
+                if (allCategoriesData[catId]) {
+                    $("#business_category").append(
+                        $("<option/>").val(catId).text(allCategoriesData[catId].name)
+                    );
+                }
+            }
+            categories.push(catId);
+        });
+        
+        // preselect values
+        $("#business_category").val(categories).trigger('change');
 
         $("#add-category").modal("show");
 

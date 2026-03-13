@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -12,7 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class LeadComment extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $table = 'lead_comments';
 
@@ -20,7 +19,6 @@ class LeadComment extends Model
         'lead_id',
         'user_id',
         'comment',
-        'is_internal',
     ];
 
     protected $casts = [

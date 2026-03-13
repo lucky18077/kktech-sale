@@ -1,7 +1,7 @@
 @extends('admin.layout.main')
 @section('main-section')
 @push('title')
-<title>Property Category</title>
+<title>Dealer Category</title>
 @endpush
 
 <div class="page-wrapper">
@@ -9,18 +9,18 @@
         <div class="page-header">
             <div class="add-item d-flex">
                 <div class="page-title">
-                    <h4 class="fw-bold">Property Category</h4>
-                    <h6>Manage property categories</h6>
+                    <h4 class="fw-bold">Dealer Category</h4>
+                    <h6>Manage dealer categories</h6>
                 </div>
             </div>
 
             <div class="page-btn">
-                <button class="btn btn-primary addPropertyCategory"><i class="ti ti-circle-plus me-1"></i>Add Property Category</button>
+                <button class="btn btn-primary addDealerCateogry"><i class="ti ti-circle-plus me-1"></i>Add Dealer Category</button>
             </div>
 
         </div>
 
-        <!-- /property list -->
+        <!-- /product list -->
         <div class="card">
             <div class="card-header d-flex align-items-center justify-content-between flex-wrap row-gap-3">
                 <div class="search-set">
@@ -38,9 +38,8 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>S.No</th>
-                                <th>Property Category</th>
-                                <th>Type</th>
-                                <th>Status</th>
+                                <th>Name</th>
+                                 <th>Created at</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -48,22 +47,18 @@
                             @php
                             $sno=1;
                             @endphp
-                            @foreach ($propertyCategories as $item)
+                            @foreach ($dealerCategories as $item)
                             <tr>
                                 <td>{{ $sno++ }}</td>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->type }}</td>
-                                <td>
-                                    @if($item->active == 1)
-                                    <span class="badge bg-success fw-medium fs-10">Active</span>
-                                    @else
-                                    <span class="badge bg-danger fw-medium fs-10">Inactive</span>
-                                    @endif
-                                </td>
+                                <td> {{ $item->created_at }}</td>
                                 <td class="action-table-data">
                                     <div class="edit-delete-action">
-                                        <a class="me-2 p-2 editPropertyCategory" data-data='@json($item)'>
+                                        <a class="me-2 p-2 editDealerCateogry" data-data="{{ @json_encode($item) }}">
                                             <i data-feather="edit" class="feather-edit"></i>
+                                        </a>
+                                        <a class="me-2 p-2" href="{{route('brand-discount', $item->id)}}">
+                                            <i data-feather="eye"></i>
                                         </a>
                                     </div>
                                 </td>
@@ -77,39 +72,25 @@
         <!-- /product list -->
     </div>
 
-    <!-- Add property category -->
-    <div class="modal fade" id="propertyCategory">
+    <!-- Add business Category -->
+    <div class="modal fade" id="dealer-category">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="page-title">
-                        <h4 id="submitBtn">Add Property Category</h4>
+                        <h4 id="title">Add Dealer Category</h4>
                     </div>
                     <button type="button" class="close bg-danger text-white fs-16" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('property-category-save') }}" method="POST">
+                <form action="{{ route('dealer-category-save') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <input type="hidden" name="id">
                         <div class="mb-3">
-                            <label class="form-label">Name <span class="text-danger ms-1">*</span></label>
+                            <label class="form-label">Title<span class="text-danger ms-1">*</span></label>
                             <input type="text" class="form-control" name="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Status<span class="text-danger ms-1">*</span></label>
-                            <select class="select" name="active" required>
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Type<span class="text-danger ms-1">*</span></label>
-                            <select class="select" name="type" required>
-                                <option value="Residential">Residential</option>
-                                <option value="Commerical">Commercial</option>
-                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -120,29 +101,28 @@
             </div>
         </div>
     </div>
-    <!-- /Add Property Category -->
+    <!-- /Add business Category -->
+    
+
 
     <script>
-        $(".addPropertyCategory").on("click", function() {
-            $("#title").text("Add Property Category");
-            $("#submitBtn").text("Add Property Category");
-            $("input[name='id']").val('');
-            $("input[name='name']").val('');
-            $("select[name='active']").val('');
-            $("select[name='type']").val('');
-            $("#propertyCategory").modal("show");
+        $(".addDealerCateogry").on("click", function() {
+            $("#title").text("Add Dealer Category");
+            $("#submitBtn").text("Add Category");
+            $("input, select, textarea").not("[name='_token']").val("");
+            $("#dealer-category").modal("show");
         });
-        $(document).on("click", ".editPropertyCategory", function() {
-            $("#title").text("Edit Property Category");
-            $("#submitBtn").text("Update Property Category");
+        $(document).on("click", ".editDealerCateogry", function() {
+            $("#title").text("Edit Dealer Category");
+            $("#submitBtn").text("Update Category");
             var data = $(this).data("data");
             $.each(data, function(i, o) {
-
-                $("input[name='" + i + "']").val(o);
-                $("select[name='" + i + "']").val(o);
-
+                $("input[name=" + i + "]").val(o)
+                $("select[name=" + i + "]").val(o)
+                $("textarea[name=" + i + "]").val(o)
             });
-            $("#propertyCategory").modal("show");
+
+            $("#dealer-category").modal("show");
         });
     </script>
     @endsection

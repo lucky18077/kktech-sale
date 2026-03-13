@@ -16,20 +16,6 @@
 								<h6>Manage your Vice Presidnets</h6>
 							</div>
 						</div>
-						<ul class="table-top-head">
-							<li>
-								<a data-bs-toggle="tooltip" data-bs-placement="top" title="Pdf"><img src="assets/img/icons/pdf.svg" alt="img"></a>
-							</li>
-							<li>
-								<a data-bs-toggle="tooltip" data-bs-placement="top" title="Excel"><img src="assets/img/icons/excel.svg" alt="img"></a>
-							</li>
-							<li>
-								<a data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"><i class="ti ti-refresh"></i></a>
-							</li>
-							<li>
-								<a data-bs-toggle="tooltip" data-bs-placement="top" title="Collapse" id="collapse-header"><i class="ti ti-chevron-up"></i></a>
-							</li>
-						</ul>
 						<div class="page-btn">
 							<div class="page-btn">
 							<a href="#" class="btn btn-primary addVp" data-bs-toggle="modal" data-bs-target="#add-category"><i class="ti ti-circle-plus me-1"></i>Add VP</a>
@@ -150,7 +136,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<div class="page-title">
-							<h4>Add VP</h4>
+							<h4 id = 'title'>Add VP</h4>
 						</div>
 						<button type="button" class="close bg-danger text-white fs-16" data-bs-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
@@ -179,9 +165,9 @@
                                 </select>
                             </div>
 
-							<div class="mb-3">
+							<div class="mb-3" id="coordinatorField">
 								<label class="form-label">Coordinator</label>
-								<select class="form-select" id="parent_id" name="parent_id" required>
+								<select class="select2" id="coordinators" name="coordinators[]" multiple="multiple">
 									@foreach($users as $user)
 										<option value="{{ $user->id }}">
 											{{ $user->name }}
@@ -215,20 +201,71 @@
 				$("#title").text("Add VP");
 				$("#submitBtn").text("Add VP");
 				$("input, select, textarea").not("[name='_token']").val("");
+				$("select[name='coordinators[]']").val(null).trigger('change');
+				$("#coordinatorField").show();
 				$("#addVp").modal("show");
 			});
 			$(document).on("click", ".editVp", function() {
 				$("#title").text("Edit VP");
 				$("#submitBtn").text("Update VP");
+				$("#coordinatorField").show();
 				var data = $(this).data("data");
+				
 				$.each(data, function(i, o) {
 					$("input[name=" + i + "]").val(o)
 					$("select[name=" + i + "]").val(o)
 					$("textarea[name=" + i + "]").val(o)
 				});
-				if(data.parent_id)
-				{
-       				 $("select[name='parent_id[]']").val(data.parent_id.split(','));
+				
+				// Load available coordinators and currently assigned ones
+				if(data.id) {
+					$.ajax({
+						url: '/vp/coordinators/' + data.id,
+						type: 'GET',
+						dataType: 'json',
+						success: function(response) {
+							var $select = $("select[name='coordinators[]']");
+							var assignedIds = response.assigned || [];
+							var availableCoordinators = response.available || [];
+							
+							// Convert assigned IDs to strings for comparison
+							assignedIds = assignedIds.map(function(id) {
+								return String(id);
+							});
+							
+							// Rebuild dropdown with available (unassigned) coordinators
+							$select.empty();
+							
+							availableCoordinators.forEach(function(coordinator) {
+								var coordinatorId = String(coordinator.id);
+								$select.append(
+									$("<option/>")
+										.val(coordinatorId)
+										.text(coordinator.name)
+								);
+							});
+							
+							// Set the currently assigned ones as selected
+							// If a coordinator is assigned but not in the available list,
+							// add an option for it so it can be displayed and optionally deselected
+							assignedIds.forEach(function(coordId) {
+								if ($select.find("option[value='" + coordId + "']").length === 0) {
+									// This coordinator is assigned but not in available list
+									// We'll just skip adding it and rely on the assignment maintaining it
+								}
+							});
+							
+							// Set the selected values
+							$select.val(assignedIds);
+							
+							// Trigger change to update select2
+							$select.trigger('change');
+						},
+						error: function(xhr, status, error) {
+							console.error('Error loading coordinators:', error);
+							console.log('Response:', xhr.responseText);
+						}
+					});
 				}
 
 				$("#addVp").modal("show");
