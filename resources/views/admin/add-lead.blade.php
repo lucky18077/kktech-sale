@@ -20,7 +20,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="" class="form-label">Select Dealer/Customer</label>
-                                        <select class="form-select customer_type" id="customer_type" name="customer_type" value="" required>
+                                        <select class="form-control customer_type" id="customer_type" name="customer_type" value="" required>
                                             <option value="">Select</option>
                                             <option value="customer">Customer</option>
                                             <option value="dealer">Dealer</option>
@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label for="" class="form-label">Select Sales Manager/Executive</label>
-                                        <select class="form-select" id="sales_manager_id" name="sales_manager_id" required>
+                                        <select class="form-control" id="sales_manager_id" name="sales_manager_id" required>
                                             <option value="">Select</option>
                                                 @foreach($users as $user)
                                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -39,7 +39,7 @@
                                     </div>
                                     <div class="col-md-4 dealer">
                                         <label for="" class="form-label">Select Dealer</label>
-                                        <select class="form-select select" id="dealer_id" name="dealer_id">
+                                        <select class="form-control select" id="dealer_id" name="dealer_id">
                                             <option value="">Select</option>
                                               @foreach($dealers as $id => $name)
                                                     <option value="{{ $id }}">{{ $name }}</option>
@@ -50,7 +50,7 @@
 
                                     <div class="col-md-4 customer">
                                         <label for=" " class="form-label ">Select Customer</label>
-                                        <select name="client_id" id="client_id" class="form-select select">
+                                        <select name="client_id" id="client_id" class="form-control select">
                                             <option value="">Select</option>
                                               @foreach($clients as $client)
                                                     <option value="{{ $client->id }}">{{ $client->name }}({{ $client->number }})</option>
@@ -61,7 +61,7 @@
 
                                     <div class="col-md-4">
                                         <label for="" class="form-label">Select Business Category</label>
-                                        <select class="form-select" id="business_category" name="business_category" required>
+                                        <select class="form-control" id="business_category" name="business_category" required>
                                             <option value="">Select</option>
                                         </select>
                                     </div>
@@ -70,7 +70,7 @@
                             <input type="hidden" id="id" name="id">
                             <div class="col-md-4 customer">
                                 <label for="" class="form-label">Source</label>
-                                <select class="form-select select" id="source" name="source" value="">
+                                <select class="form-control select" id="source" name="source" value="">
                                     <option value="">Select Source</option>
                                     @foreach($sources as $id => $name)
                                         <option value="{{ $id }}">{{ $name }}</option>
@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-md-4 customer">
                                 <label for=" " class="form-label">Plumber</label>
-                                <select class="form-select select" id="plumber" name="plumber" value="">
+                                <select class="form-control select" id="plumber" name="plumber" value="">
                                     <option value="">Select Plumber</option>
                                     @foreach($plumbers as $id => $name)
                                         <option value="{{ $id }}">{{ $name }}</option>
@@ -90,7 +90,7 @@
                             </div>
                             <div class="col-md-4 customer">
                                 <label for=" " class="form-label">Architect</label>
-                                <select class="form-select select" id="architect" name="architect" value="">
+                                <select class="form-control select" id="architect" name="architect" value="">
                                     <option value="">Select Architect</option>
                                     @foreach($architects as $id => $name)
                                         <option value="{{ $id }}">{{ $name }}</option>
@@ -101,7 +101,7 @@
 
                             <div class="col-md-4 customer">
                                 <label for=" " class="form-label">MEP</label>
-                                <select class="form-select select" id="mep" name="mep">
+                                <select class="form-control select" id="mep" name="mep">
                                     <option value="">Select MEP</option>
                                     @foreach($mep as $id => $name)
                                         <option value="{{ $id }}">{{ $name }}</option>
@@ -133,7 +133,7 @@
                             </div>
                             <div class="col-md-3 customer">
                                 <label for=" " class="form-label">Property Stage</label>
-                                <select class="form-select select" id="property_stage" name="property_stage" value="">
+                                <select class="form-control select" id="property_stage" name="property_stage" value="">
                                     <option value="">Select Property Stage</option>
                                     @foreach($propertyStage as $id => $name)
                                         <option value="{{ $id }}">{{ $name }}</option>
@@ -144,7 +144,7 @@
                             <hr>
                             <div class="col-md-4 customer">
                                 <label for=" " class="form-label">Select State</label>
-                                <select class="form-select select" id="lead_state" name="lead_state">
+                                <select class="form-control select" id="plmbr_state" name="lead_state">
                                     <option value="">Select State</option>
                                     @foreach($states as $state)
                                         <option value="{{ $state }}">{{ $state }}</option>
@@ -154,7 +154,7 @@
                             </div>
                             <div class="mb-3 col-md-4 customer">
                                 <label for=" " class="form-label">Select City</label>
-                                 <select class="form-select select" id="lead_city" name="lead_city">
+                                 <select class="form-select select" id="plmbr_city" name="lead_city">
                                     <option value="">Select</option>
                                 </select>
                             </div>
@@ -172,7 +172,7 @@
                             <label>Products</label>
                             <div class="mb-3 col-md-3">
                                 <label for=" " class="form-label">Select Category</label>
-                                <select class="form-select select" id="prod_category" name="prod_category">
+                                <select class="form-control select" id="prod_category" name="prod_category">
                                     <option value="">Select category</option>
                                     @foreach($productCategory as $id => $name)
                                         <option value="{{ $id }}">{{ $name }}</option>
@@ -181,7 +181,7 @@
                             </div>
                             <div class="mb-3 col-md-3">
                                 <label for=" " class="form-label">Select Sub Category</label>
-                                <select class="form-select select" id="prod_subcategory" name="prod_subcategory">
+                                <select class="form-control select" id="prod_subcategory" name="prod_subcategory">
                                     <option value="">Select category</option>
                                      @foreach($productSubCategory as $id => $name)
                                         <option value="{{ $id }}">{{ $name }}</option>
@@ -192,7 +192,7 @@
 
                             <div class="mb-3 col-md-3">
                                 <label for=" " class="form-label">Select Product</label>
-                                <select class="form-select select" id="prod_id" name="prod_id">
+                                <select class="form-control select" id="prod_id" name="prod_id">
                                     <option value="">Select Product</option>
                                 </select>
                             </div>
@@ -289,382 +289,306 @@
 
 <script>
 
-$(document).ready(function(){
+$(function(){
 
-    /* CSRF */
-    $.ajaxSetup({
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-    });
+/* --------------------------
+   GLOBAL AJAX CONFIG
+-------------------------- */
 
-    /* Initialize Select2 */
-    $('.select').select2({ width:'100%' });
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    }
+});
 
-    /* ==============================
-       PROPERTY TYPE -> CATEGORY
-    ============================== */
 
-    $("#category_type").on('change', function(){
+/* --------------------------
+   INITIAL SETUP
+-------------------------- */
 
-        let type = $(this).val();
-        if(!type) return;
+$(".select").select2({ width:'100%' });
 
-        $.ajax({
-            type:'POST',
-            url:'{{route("get-property-category")}}',
-            data:{type:type},
-            success:function(data){
+$(".dealer,.customer").hide();
 
-                $("#category_id").html(data).trigger('change');
 
-            }
+/* --------------------------
+   CUSTOMER TYPE TOGGLE
+-------------------------- */
+
+$(document).on("change","#customer_type",function(){
+
+    const type = $(this).val();
+
+    if(type === "customer"){
+        $(".customer").slideDown(200);
+        $(".dealer").slideUp(200);
+        $("#dealer_id").val('').trigger("change");
+    }
+
+    else if(type === "dealer"){
+        $(".dealer").slideDown(200);
+        $(".customer").slideUp(200);
+        $("#client_id").val('').trigger("change");
+    }
+
+    else{
+        $(".dealer,.customer").hide();
+    }
+
+});
+
+
+/* --------------------------
+   CATEGORY TYPE
+-------------------------- */
+
+$("#category_type").change(function(){
+
+    const type = $(this).val();
+    if(!type) return;
+
+    ajaxLoad(
+        "{{ route('get-property-category') }}",
+        {type:type},
+        "#category_id"
+    );
+
+});
+
+
+/* --------------------------
+   SUB CATEGORY
+-------------------------- */
+
+$("#category_id").change(function(){
+
+    const cat = $(this).val();
+    if(!cat) return;
+
+    ajaxLoad(
+        "{{ route('get-property-subcategory') }}",
+        {category_id:cat},
+        "#sub_category_id"
+    );
+
+});
+
+
+/* --------------------------
+   STATE → CITY
+-------------------------- */
+
+$("#plmbr_state").change(function(){
+
+    const state = $(this).val();
+    if(!state) return;
+
+    ajaxLoad(
+        "{{ route('get-city') }}",
+        {state:state},
+        "#plmbr_city"
+    );
+
+});
+
+
+/* --------------------------
+   SALES MANAGER
+-------------------------- */
+
+$("#sales_manager_id").change(function(){
+
+    const sales_manager_id = $(this).val();
+    if(!sales_manager_id) return;
+
+    $("#wait").show();
+
+    $.post("{{ route('get-business-category') }}",{sales_manager_id})
+      .done(function(res){
+        console.log('business-category response', res);
+        let data = res;
+        if(data.error){
+            toastr.error(data.msg || 'Unable to load categories');
+            return;
+        }
+
+        let category = '<option value="">Select</option>';
+        let dealer = '<option value="">Select</option>';
+
+        data.data.business_category.forEach(el=>{
+            category += `<option value="${el.id}">${el.name}</option>`;
         });
 
-    });
+        data.data.dealer.forEach(el=>{
+            dealer += `<option value="${el.id}">${el.name}</option>`;
+        });
 
-    /* ==============================
-       CATEGORY -> SUB CATEGORY
-    ============================== */
+        $("#business_category").html(category);
+        $("#dealer_id").html(dealer);
+      })
+      .fail(function(xhr){
+          toastr.error('Server error');
+      })
+      .always(()=> $("#wait").hide());
 
-   $(document).on('change','#category_id',function(){
-    let id = $(this).val();
-    if(!id){
-        $("#sub_category_id").html('<option value="">Select</option>');
+});
+
+
+/* --------------------------
+   BUSINESS CATEGORY
+-------------------------- */
+
+$("#business_category").change(function(){
+
+    const business_category = $(this).val();
+    if(!business_category) return;
+
+    ajaxLoad(
+        "{{ route('get-product-category') }}",
+        {business_category},
+        "#prod_category"
+    );
+
+});
+
+
+/* --------------------------
+   PRODUCT CATEGORY
+-------------------------- */
+
+$("#prod_category").change(function(){
+
+    const prod_category_id = $(this).val();
+    if(!prod_category_id) return;
+
+    ajaxLoad(
+        "{{ route('get-product-subcategory') }}",
+        {prod_category_id},
+        "#prod_subcategory"
+    );
+
+});
+
+
+/* --------------------------
+   PRODUCT SUBCATEGORY
+-------------------------- */
+
+$("#prod_subcategory").change(function(){
+
+    const prod_category = $("#prod_category").val();
+    const prod_subcategory = $(this).val();
+
+    // only show error if user actually chose a subcategory without selecting category
+    if(prod_subcategory && !prod_category){
+        toastr.error("Select category first");
+        // clear invalid selection
+        $(this).val('').trigger('change');
         return;
     }
 
-    $.ajax({
-        type:'POST',
-        url:'{{route("get-property-subcategory")}}',
-        data:{ category_id:id },
-        success:function(data){
+    if(!prod_subcategory) return; // nothing to load
 
-            $("#sub_category_id").html(data).trigger('change');
-
-        }
-    });
+    ajaxLoad(
+        "{{ route('get-product-lead') }}",
+        {
+            prod_category_id:prod_category,
+            prod_subcategory_id:prod_subcategory
+        },
+        "#prod_id"
+    );
 
 });
 
 
-    /* ==============================
-       STATE -> CITY
-    ============================== */
-
-    $("#lead_state").on('change', function(){
-
-        let state = $(this).val();
-
-        if(!state){
-            $("#lead_city").html('<option value="">Select</option>');
-            return;
-        }
-
-        $.getJSON("{{ route('get-cities') }}",{state:state})
-        .done(function(cities){
-
-            let opts='<option value="">Select</option>';
-
-            cities.forEach(function(c){
-                opts += '<option value="'+c+'">'+c+'</option>';
-            });
-
-            $("#lead_city").html(opts);
-
-        });
-
-    });
-
-
-    /* ==============================
-       MODAL STATE -> CITY
-    ============================== */
-
-    $("#state").on('change',function(){
-
-        let state=$(this).val();
-
-        if(!state){
-            $("#city").html('<option value="">Select City</option>');
-            return;
-        }
-
-        $.getJSON("{{ route('get-cities') }}",{state:state})
-        .done(function(cities){
-
-            let opts='<option value="">Select City</option>';
-
-            cities.forEach(function(c){
-                opts+='<option value="'+c+'">'+c+'</option>';
-            });
-
-            $("#city").html(opts);
-
-        });
-
-    });
-
-
-    /* ==============================
-       SALES MANAGER -> BUSINESS CATEGORY
-    ============================== */
-
-    $("#sales_manager_id").on("change",function(){
-
-        let sales_manager_id=$(this).val();
-        if(!sales_manager_id) return;
-
-        $.ajax({
-
-            type:'POST',
-            url:'{{ route("get-business-category") }}',
-            data:{sales_manager_id:sales_manager_id},
-
-            success:function(response){
-
-                let html='<option value="">Select</option>';
-                let dealer='<option value="">Select</option>';
-
-                if(response.data.business_category){
-
-                    response.data.business_category.forEach(function(el){
-
-                        html+='<option value="'+el.id+'">'+el.name+'</option>';
-
-                    });
-
-                }
-
-                if(response.data.dealer){
-
-                    response.data.dealer.forEach(function(el){
-
-                        dealer+='<option value="'+el.id+'">'+el.name+'</option>';
-
-                    });
-
-                }
-
-                $("#business_category").html(html).trigger('change');
-                $("#dealer_id").html(dealer);
-
-            }
-
-        });
-
-    });
-
-
-    /* ==============================
-       BUSINESS CATEGORY -> PRODUCT CATEGORY
-    ============================== */
-
-    $(document).on('change','#business_category',function(){
-
-        let business_category=$(this).val();
-        if(!business_category) return;
-
-        $.ajax({
-
-            type:'POST',
-            url:'{{ route("get-product-category") }}',
-            data:{business_category:business_category},
-
-            success:function(data){
-
-                $("#prod_category").html(data).trigger('change');
-
-            }
-
-        });
-
-    });
-
-
-    /* ==============================
-       PRODUCT CATEGORY -> SUB CATEGORY
-    ============================== */
-
-    $(document).on('change','#prod_category',function(){
-
-        let prod_category_id=$(this).val();
-
-        if(!prod_category_id){
-
-            $("#prod_subcategory").html('<option value="">Select</option>');
-            return;
-
-        }
-
-        $.ajax({
-
-            type:'POST',
-            url:'{{ route("get-product-subcategory") }}',
-            data:{prod_category_id:prod_category_id},
-
-            success:function(data){
-
-                $("#prod_subcategory").html(data).trigger('change');
-
-            }
-
-        });
-
-    });
-
-
-    /* ==============================
-       SUB CATEGORY -> PRODUCT
-    ============================== */
-
-    $(document).on('change','#prod_subcategory',function(){
-
-        let prod_category=$("#prod_category").val();
-        let prod_subcategory=$(this).val();
-
-        if(!prod_subcategory){
-
-            $("#prod_id").html('<option value="">Select Product</option>');
-            return;
-
-        }
-
-        $.ajax({
-
-            type:'POST',
-            url:'{{ route("get-product-lead") }}',
-
-            data:{
-                prod_category_id:prod_category,
-                prod_subcategory_id:prod_subcategory
-            },
-
-            success:function(data){
-
-                $("#prod_id").html(data);
-
-            }
-
-        });
-
-    });
-
-
-    /* ==============================
-       CUSTOMER / DEALER SWITCH
-    ============================== */
-
-    $(".dealer,.customer").hide();
-
-    $(document).on("change",".customer_type",function(){
-
-        if($(this).val()=="customer"){
-
-            $(".customer").show();
-            $(".dealer").hide();
-            $("#dealer_id").val("");
-
-        }
-
-        else if($(this).val()=="dealer"){
-
-            $(".dealer").show();
-            $(".customer").hide();
-            $("#client_id").val("");
-
-        }
-
-        else{
-
-            $(".dealer,.customer").hide();
-
-        }
-
-    });
-
 });
 
-var products=[];
+/* --------------------------
+   AJAX HELPER FUNCTION
+-------------------------- */
+function ajaxLoad(url,data,target){
 
-window.addItem=function(){
+    $("#wait").show();
 
-    let id=$("#prod_id").val();
-    let name=$("#prod_id option:selected").text();
-    let qty=parseInt($("#qty").val(),10);
+    $.post(url,data,function(res){
+        $(target).html(res);
+        $(target).trigger('change');  // Refresh Select2
+    })
+    .always(()=>$("#wait").hide());
+
+}
+
+/* --------------------------
+   PRODUCT HANDLING
+-------------------------- */
+
+let products = {};
+function addItem(){
+    const id  = $("#prod_id").val();
+    const qty = $("#qty").val();
+    const name = $("#prod_id option:selected").text();
 
     if(!id){
         alert("Select product");
         return;
     }
 
-    if(!qty || qty<=0){
-        alert("Enter valid qty");
+    if(!qty || qty <= 0){
+        alert("Qty must be greater than 0");
         return;
     }
 
-    if(products.find(p=>p.id==id)){
+    if(products[id]){
         alert("Product already added");
         return;
     }
 
-    products.push({id:id,qty:qty});
+    products[id] = {id,qty};
 
-    let row='<tr class="prod'+id+'">'+
-        '<td>'+name+'</td>'+
-        '<td>'+qty+'</td>'+
-        '<td><button type="button" class="btn btn-danger btn-sm" onclick="removeItem('+id+')"><i class="fa fa-trash"></i></button></td>'+
-        '</tr>';
+    $("#productList").append(`
+        <tr id="prod_${id}">
+            <td>${name}</td>
+            <td>${qty}</td>
+            <td>
+                <button class="btn btn-danger btn-sm" onclick="removeItem(${id})">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    `);
 
-    $("#productList").append(row);
+    $("#qty").val('');
 
-    $("#qty").val("");
-
-};
-
-window.removeItem=function(id){
-
-    products=products.filter(p=>p.id!=id);
-    $(".prod"+id).remove();
-
-};
+}
 
 
-/* ==============================
+function removeItem(id){
+
+    delete products[id];
+    $("#prod_"+id).remove();
+
+}
+
+
+
+/* --------------------------
    FORM SUBMIT
-============================== */
+-------------------------- */
 
-(function(){
+$("#savelead").click(function(){
 
-    'use strict';
+    const form = $("#frmMain")[0];
 
-    var forms=document.getElementsByClassName('needs-validation');
-
-    if(forms.length){
-
-        var form=forms[0];
-        var btn=document.getElementById("savelead");
-
-        btn.addEventListener('click',function(event){
-
-            if(form.checkValidity()===false){
-
-                event.preventDefault();
-                event.stopPropagation();
-
-            }
-
-            else{
-
-                $('#prod_list').val(JSON.stringify(products));
-                $('#frmMain').submit();
-
-            }
-
-            form.classList.add('was-validated');
-
-        });
-
+    if(!form.checkValidity()){
+        form.classList.add('was-validated');
+        return;
     }
 
-})();
+    $("#prod_list").val(JSON.stringify(products));
+    $("#frmMain").submit();
+
+});
+
+
 </script>
 @endsection

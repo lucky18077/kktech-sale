@@ -62,8 +62,22 @@ Route::get('/clients-data', [PartnerManagementController::class,'clientsData'])-
 Route::get('/leads', [LeadController::class, 'index'])->name('leads');
 Route::post('/add-lead', [LeadController::class, 'store'])->name('lead-save');
 Route::get('/new-lead', [LeadController::class, 'getNewLead'])->name('new-lead');
+Route::get('/pending-lead', [LeadController::class, 'pendingLead'])->name('pending-lead');
+Route::get('/processing-lead', [LeadController::class, 'processingLead'])->name('processing-lead');
+Route::get('/call-scheduled-lead', [LeadController::class, 'callScheduledLead'])->name('call-scheduled-lead');
+Route::get('/visit-scheduled-lead', [LeadController::class, 'visitScheduledLead'])->name('visit-scheduled-lead');
+Route::get('/visit-done-lead', [LeadController::class, 'visitDoneLead'])->name('visit-done-lead');
+Route::get('/lost-lead', [LeadController::class, 'lostLead'])->name('lost-lead');
+Route::get('/converted-lead', [LeadController::class, 'convertedLead'])->name('converted-lead');
 Route::post('/leads-data',[LeadController::class,'getLeads'])->name('leads-data');
 Route::post('/lead-show',[LeadController::class,'showLead'])->name('lead-show');
+Route::post('/lead-update',[LeadController::class,'updateLead'])->name('lead-update');
+Route::post('/lead-destroy',[LeadController::class,'destroy'])->name('lead-destroy');
+Route::post('/lead-comment',[LeadController::class,'showComment'])->name('lead-comment');
+Route::post('/lead-product',[LeadController::class,'showProduct'])->name('lead-product');
+Route::post('/lead-dealer',[LeadController::class,'getDealer'])->name('lead-dealer');
+Route::post('/get-city',[LeadController::class,'getCity'])->name('get-city');
+Route::post('/get-client',[LeadController::class,'getClient'])->name('get-client');
 /* Ajax routes */
 Route::post('/get-property-category', [LeadController::class, 'getPropertyCategory'])->name('get-property-category');
 Route::post('/get-property-subcategory', [LeadController::class, 'getSubCategory'])->name('get-property-subcategory');

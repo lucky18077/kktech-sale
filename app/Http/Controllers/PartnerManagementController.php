@@ -412,7 +412,7 @@ class PartnerManagementController extends Controller
             $customer = Customer::find($request->id);
             if ($customer) {
                 $customer->update($data);
-                $message = 'Client updated successfully';
+                $message = 'Dealer updated successfully';
             } else {
                 return redirect()->back()->with('error', 'Client not found');
             }
